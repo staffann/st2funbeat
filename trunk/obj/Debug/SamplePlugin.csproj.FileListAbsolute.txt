@@ -1,0 +1,7 @@
+C:\Projekt\ST2Funbeat\obj\Debug\ResolveAssemblyReference.cache
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.Properties.Resources.resources
+C:\Projekt\ST2Funbeat\obj\Debug\SamplePlugin.csproj.GenerateResource.Cache
+C:\Program\Zone Five Software\SportTracks 2.1\Plugins\Janohl.ST2Funbeat.dll
+C:\Program\Zone Five Software\SportTracks 2.1\Plugins\Janohl.ST2Funbeat.pdb
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.dll
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.pdb

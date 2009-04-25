@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.funbeat.se/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://services.funbeat.se/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://services.funbeat.se/">
+      <s:element name="AddTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="tns:Login" />
+            <s:element minOccurs="0" maxOccurs="1" name="training" type="tns:Training" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Login">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PasswordFormat" type="tns:PasswordFormats" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PasswordFormats">
+        <s:restriction base="s:string">
+          <s:enumeration value="SHA1" />
+          <s:enumeration value="Clear" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Training">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingTypeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Hours" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Minutes" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Seconds" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrivateComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HRAvg" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HRMax" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Intensity" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="KCal" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Repetitions" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sets" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrackPoints" type="tns:ArrayOfTrackPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTrackPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrackPoint" nillable="true" type="tns:TrackPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrackPoint">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Longitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Altitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="HR" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddTrainingResult" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrainingTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTrainingTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrainingTypesResult" type="tns:ArrayOfTrainingType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTrainingType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrainingType" nillable="true" type="tns:TrainingType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrainingType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTraining" />
+  </wsdl:message>
+  <wsdl:message name="AddTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrainingTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrainingTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetTrainingTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrainingTypesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TrainingServiceSoap">
+    <wsdl:operation name="AddTraining">
+      <wsdl:input message="tns:AddTrainingSoapIn" />
+      <wsdl:output message="tns:AddTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingTypes">
+      <wsdl:input message="tns:GetTrainingTypesSoapIn" />
+      <wsdl:output message="tns:GetTrainingTypesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrainingServiceSoap" type="tns:TrainingServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddTraining">
+      <soap:operation soapAction="http://services.funbeat.se/AddTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingTypes">
+      <soap:operation soapAction="http://services.funbeat.se/GetTrainingTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TrainingServiceSoap12" type="tns:TrainingServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddTraining">
+      <soap12:operation soapAction="http://services.funbeat.se/AddTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingTypes">
+      <soap12:operation soapAction="http://services.funbeat.se/GetTrainingTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrainingService">
+    <wsdl:port name="TrainingServiceSoap" binding="tns:TrainingServiceSoap">
+      <soap:address location="http://services.funbeat.se/TrainingService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TrainingServiceSoap12" binding="tns:TrainingServiceSoap12">
+      <soap12:address location="http://services.funbeat.se/TrainingService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

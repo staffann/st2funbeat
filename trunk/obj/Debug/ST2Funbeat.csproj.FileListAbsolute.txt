@@ -1,0 +1,10 @@
+C:\Program\Zone Five Software\SportTracks 2.1\Plugins\Janohl.ST2Funbeat.dll
+C:\Program\Zone Five Software\SportTracks 2.1\Plugins\Janohl.ST2Funbeat.pdb
+C:\Projekt\ST2Funbeat\obj\Debug\ResolveAssemblyReference.cache
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.Properties.Resources.resources
+C:\Projekt\ST2Funbeat\obj\Debug\ST2Funbeat.csproj.GenerateResource.Cache
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.dll
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.pdb
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.SettingsControl.resources
+C:\Projekt\ST2Funbeat\obj\Debug\Janohl.ST2Funbeat.ActivityMappingControl.resources
+C:\Program\Zone Five Software\SportTracks 2.1\Plugins\Janohl.ST2Funbeat.dll.config
