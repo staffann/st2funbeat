@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
-<Properties><Property Name="Solution" Value="SamplePlugin">
-</Property><Property Name="Solution File" Value="C:\Projekt\ST2Funbeat\SamplePlugin.sln">
-</Property><Property Name="Date" Value="den 1 april 2009">
-</Property><Property Name="Time" Value="19:24:59">
-</Property></Properties><Event ErrorLevel="0" Project="SamplePlugin" Source="SamplePlugin.csproj" Description="Project converted successfully">
-</Event><Event ErrorLevel="3" Project="SamplePlugin" Source="SamplePlugin.csproj" Description="Converted">
-</Event><Event ErrorLevel="0" Project="SamplePlugin" Source="SamplePlugin.csproj" Description="Scan complete: Upgrade not required for project files.">
-</Event></UpgradeLog>
