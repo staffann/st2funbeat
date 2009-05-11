@@ -121,9 +121,6 @@
   <data name="FunbeatIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\funbeat.gif;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="janohl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\janohl.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Plugin_GUID" xml:space="preserve">
     <value>{91c28a94-93e5-44ea-a2b2-1a9f900672c4}</value>
   </data>
