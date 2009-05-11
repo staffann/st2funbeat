@@ -76,13 +76,6 @@ namespace Janohl.ST2Funbeat.Properties {
             }
         }
         
-        internal static System.Drawing.Icon janohl {
-            get {
-                object obj = ResourceManager.GetObject("janohl", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
         /// <summary>
         ///   Looks up a localized string similar to {91c28a94-93e5-44ea-a2b2-1a9f900672c4}.
         /// </summary>
