@@ -3,30 +3,31 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
 using Janohl.ST2Funbeat.Funbeat;
-using Janohl.ST2Funbeat;
 using Janohl.ST2Funbeat.Settings;
+using System.Collections.ObjectModel;
 
-namespace Janohl.Funbeat
+
+namespace Janohl.ST2Funbeat
 {
     public class FunbeatService
     {
-
+        private readonly static System.Guid funbeatKey = new System.Guid("65a574f3-1c59-462d-8df6-0cea15c44089");
         private static FunbeatService instance;
         private static FunbeatService Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new FunbeatService(Settings.Instance.User);
+                    instance = new FunbeatService(Settings.Settings.Instance.User);
                 return instance;
             }
         }
 
-        private Login login;
+        private User login;
 
         private FunbeatService(UserSettings user)
         {
-            login = new Login();
+            login = new User();
             login.Password = user.Password;
             login.Username = user.Username;
             login.PasswordFormat = PasswordFormats.Clear;
@@ -54,13 +55,13 @@ namespace Janohl.Funbeat
             training.TrainingTypeID = trainingType;
             training.TrackPoints = trackPoints;
             TrainingService client = new TrainingService();
-            return client.AddTraining(Instance.login, training);
+            return client.AddTraining(funbeatKey,Instance.login, training);
         }
 
-        public static Dictionary<int, string> GetTrainingTypes()
+        private static Dictionary<int, string> GetTrainingTypes()
         {
             TrainingService client = new TrainingService();
-            TrainingType[] types = client.GetTrainingTypes();
+            TrainingType[] types = client.GetTrainingTypes(funbeatKey);
             Dictionary<int, string> result = new Dictionary<int, string>();
             foreach (TrainingType t in types)
                 result.Add(t.ID, t.Name);
@@ -68,18 +69,36 @@ namespace Janohl.Funbeat
             return result;
         }
 
-        public static List<FunbeatActivityType> FunbeatActivityTypes
+        private static IList<FunbeatActivityType> funbeatActivityTypes;
+        public static IList<FunbeatActivityType> FunbeatActivityTypes
         {
             get
             {
-                List<FunbeatActivityType> fat = new List<FunbeatActivityType>();
-                Dictionary<int, string> funbeatValues = FunbeatService.GetTrainingTypes();
-                foreach (int i in funbeatValues.Keys)
-                    fat.Add(new FunbeatActivityType(i, funbeatValues[i]));
-
-                return fat;
+                if (funbeatActivityTypes == null)
+                {
+                    funbeatActivityTypes = new Collection<FunbeatActivityType>();
+                    Dictionary<int, string> funbeatValues = FunbeatService.GetTrainingTypes();
+                    foreach (int i in funbeatValues.Keys)
+                        funbeatActivityTypes.Add(new FunbeatActivityType(i, funbeatValues[i]));
+                }
+                return funbeatActivityTypes;
             }
         }
 
+        public class FunbeatActivityType
+        {
+            public int Id;
+            public string Name;
+
+            public FunbeatActivityType(int id, string name){
+                Id = id;
+                Name = name;
+            }
+
+            public override string ToString()
+            {
+                return Name;
+            }
+        }
     }
 }

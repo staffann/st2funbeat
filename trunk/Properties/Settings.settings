@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Janohl_ST2Funbeat_Funbeat_TrainingService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://services.funbeat.se/TrainingService.asmx</Value>
+      <Value Profile="(Default)">http://www.funbeat.se/api/TrainingService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

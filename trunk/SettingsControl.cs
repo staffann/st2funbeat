@@ -21,12 +21,12 @@ namespace Janohl.ST2Funbeat
             txtPassword.Text = Settings.Settings.Instance.User.Password;
             List<Control> amcs = new List<Control>();
             ActivityTypeMapping active = null;
-            foreach (STActivityType ac in Plugin.SportTrackActivityTypes)
+            foreach (string ac in Plugin.SportTrackActivityTypes.Keys)
             {
                 active = null;
 
                 foreach (ActivityTypeMapping atm in Settings.Settings.Instance.ActivityTypeMappings)
-                    if (atm.SportTracks.ReferenceID == ac.ReferenceID)
+                    if (atm.SportTracks == ac)
                     {
                         active = atm;
                         break;
@@ -35,7 +35,7 @@ namespace Janohl.ST2Funbeat
                 {
                     active = new ActivityTypeMapping();
                     active.SportTracks = ac;
-                    active.Funbeat = new FunbeatActivityType(51, "Övriga aktiviteter");
+                    active.Funbeat = 51;
                     Settings.Settings.Instance.ActivityTypeMappings.Add(active);
                 }
                 ActivityMappingControl amc = new ActivityMappingControl(active);
@@ -49,13 +49,11 @@ namespace Janohl.ST2Funbeat
         private void OnUsernameChanged(object sender, EventArgs e)
         {
             Settings.Settings.Instance.User.Username = txtUsername.Text;
-            Settings.Settings.Save();
         }
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             Settings.Settings.Instance.User.Password = txtPassword.Text;
-            Settings.Settings.Save();
         }
     }
 }
