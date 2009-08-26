@@ -6,21 +6,21 @@ using ZoneFiveSoftware.Common.Visuals.Fitness;
 using Janohl.ST2Funbeat.Settings;
 using System.Windows.Forms;
 using ZoneFiveSoftware.Common.Data.Fitness;
-using Janohl.Funbeat;
+
 
 namespace Janohl.ST2Funbeat
 {
     class Plugin : IPlugin
     {
 
-        internal static List<STActivityType> SportTrackActivityTypes
+        internal static Dictionary<string, string> SportTrackActivityTypes
         {
             get
             {
-                List<STActivityType> sportTrackActivityTypes = new List<STActivityType>();
+                Dictionary<string, string> sportTrackActivityTypes = new Dictionary<string, string>();
 
                 IList<IActivityCategory> categories = application.Logbook.ActivityCategories;
-                sportTrackActivityTypes = new List<STActivityType>();
+                sportTrackActivityTypes = new Dictionary<string, string>();
                 foreach (IActivityCategory cat in categories)
                     FlattenSportTrackActivityTypes(sportTrackActivityTypes, cat);
 
@@ -29,11 +29,11 @@ namespace Janohl.ST2Funbeat
         }
 
 
-        private static void FlattenSportTrackActivityTypes(List<STActivityType> list, IActivityCategory category)
+        private static void FlattenSportTrackActivityTypes(Dictionary<string, string> list, IActivityCategory category)
         {
             foreach (IActivityCategory sub in category.SubCategories)
             {
-                list.Add(new STActivityType(sub.ReferenceId, sub.Name));
+                list.Add(sub.ReferenceId, sub.Name);
                 FlattenSportTrackActivityTypes(list, sub);
             }
         }
@@ -66,6 +66,7 @@ namespace Janohl.ST2Funbeat
 
         public void ReadOptions(XmlDocument xmlDoc, XmlNamespaceManager nsmgr, XmlElement pluginNode)
         {
+            Settings.Settings.PopulateInstance(pluginNode, nsmgr, xmlDoc);
         }
 
         public string Version
@@ -75,6 +76,7 @@ namespace Janohl.ST2Funbeat
 
         public void WriteOptions(XmlDocument xmlDoc, XmlElement pluginNode)
         {
+            Settings.Settings.WriteInstance(xmlDoc, pluginNode);
         }
 
         #endregion

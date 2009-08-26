@@ -96,31 +96,38 @@
             this.gbMappings.Controls.Add(this.pnlMappings);
             this.gbMappings.Location = new System.Drawing.Point(3, 80);
             this.gbMappings.Name = "gbMappings";
-            this.gbMappings.Size = new System.Drawing.Size(469, 100);
+            this.gbMappings.Size = new System.Drawing.Size(469, 107);
             this.gbMappings.TabIndex = 5;
             this.gbMappings.TabStop = false;
             this.gbMappings.Text = "Activity Mappings";
             // 
             // pnlMappings
             // 
+            this.pnlMappings.AutoScroll = true;
+            this.pnlMappings.AutoSize = true;
+            this.pnlMappings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlMappings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMappings.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.pnlMappings.Location = new System.Drawing.Point(3, 16);
             this.pnlMappings.Name = "pnlMappings";
-            this.pnlMappings.Size = new System.Drawing.Size(463, 81);
+            this.pnlMappings.Size = new System.Drawing.Size(463, 88);
             this.pnlMappings.TabIndex = 6;
             // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.gbMappings);
             this.Controls.Add(this.gbAccount);
             this.Name = "SettingsControl";
-            this.Size = new System.Drawing.Size(475, 195);
+            this.Size = new System.Drawing.Size(475, 202);
             this.gbAccount.ResumeLayout(false);
             this.gbAccount.PerformLayout();
             this.gbMappings.ResumeLayout(false);
+            this.gbMappings.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -15,8 +15,7 @@ namespace Janohl.ST2Funbeat
         private void Init()
         {
             InitializeComponent();
-            cbFunbeatActivity.DisplayMember = "Text";
-            cbFunbeatActivity.DataSource = Janohl.Funbeat.FunbeatService.FunbeatActivityTypes;
+            cbFunbeatActivity.DataSource = FunbeatService.FunbeatActivityTypes;
             cbFunbeatActivity.SelectedIndexChanged += new EventHandler(OnSelectedIndexChanged);
         }
 
@@ -28,16 +27,28 @@ namespace Janohl.ST2Funbeat
         {
             this.ac = ac;
             Init();
-            lblSTActivity.Text = ac.SportTracks.Text;
-            lblSTActivity.Tag = ac.SportTracks.ReferenceID;
-            int selectedIndex = cbFunbeatActivity.FindString(ac.Funbeat.Text);
+            
+            lblSTActivity.Tag = ac.SportTracks;
+            lblSTActivity.Text = Plugin.SportTrackActivityTypes[ac.SportTracks];
+
+            string funbeatName = string.Empty;
+            foreach (FunbeatService.FunbeatActivityType type in FunbeatService.FunbeatActivityTypes)
+                if (type.Id == ac.Funbeat)
+                {
+                    funbeatName = type.Name;
+                    break;
+                }
+
+            int selectedIndex = cbFunbeatActivity.FindString(funbeatName);
             cbFunbeatActivity.SelectedIndex = selectedIndex;
         }
 
         void OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ac.Funbeat = (FunbeatActivityType)cbFunbeatActivity.SelectedItem;
-            Settings.Settings.Save();
+            if (cbFunbeatActivity.SelectedItem != null)
+            {
+                this.ac.Funbeat = ((FunbeatService.FunbeatActivityType)cbFunbeatActivity.SelectedItem).Id;
+            }
         }
     }
 }

@@ -38,7 +38,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Program\Zone Five Software\SportTracks 2.1\Plugins\</OutputPath>
+    <OutputPath>..\..\ProgramData\ZoneFiveSoftware\SportTracks\2.0\Plugins\Installed\91c28a94-93e5-44ea-a2b2-1a9f900672c4\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -52,16 +52,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Data, Version=2.1.3326.18908, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Program\Zone Five Software\SportTracks 2.1\Common.Data.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\Zone Five Software\SportTracks 2.1\Common.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Common.Visuals, Version=2.1.3326.18913, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Program\Zone Five Software\SportTracks 2.1\Common.Visuals.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\Zone Five Software\SportTracks 2.1\Common.Visuals.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -144,7 +145,6 @@
       <DependentUpon>SettingsControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="janohl.ico" />
     <Content Include="plugin.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -152,19 +152,6 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://services.funbeat.se/TrainingService.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\Funbeat\</RelPath>
-      <UpdateFromURL>http://services.funbeat.se/TrainingService.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Janohl_ST2Funbeat_Funbeat_TrainingService</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -181,6 +168,19 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://www.funbeat.se/api/TrainingService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\Funbeat\</RelPath>
+      <UpdateFromURL>http://www.funbeat.se/api/TrainingService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Janohl_ST2Funbeat_Funbeat_TrainingService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -189,4 +189,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
