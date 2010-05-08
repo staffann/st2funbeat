@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.funbeat.se/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://services.funbeat.se/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.funbeat.se/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.funbeat.se/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is a part of the FunBeat web site. Please visit http://www.funbeat.se/api/ for more information.</wsdl:documentation>
   <wsdl:types>
-    <s:schema elementFormDefault="qualified" targetNamespace="http://services.funbeat.se/">
-      <s:element name="AddTraining">
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.funbeat.se/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="AddTrainings">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="login" type="tns:Login" />
-            <s:element minOccurs="0" maxOccurs="1" name="training" type="tns:Training" />
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+            <s:element minOccurs="0" maxOccurs="1" name="trainings" type="tns:ArrayOfTraining" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Login">
+      <s:complexType name="User">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
@@ -23,14 +26,21 @@
           <s:enumeration value="Clear" />
         </s:restriction>
       </s:simpleType>
+      <s:complexType name="ArrayOfTraining">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Training" nillable="true" type="tns:Training" />
+        </s:sequence>
+      </s:complexType>
       <s:complexType name="Training">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="TrainingTypeID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasTimeOfDay" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="Hours" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Minutes" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Seconds" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImportedDataID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
           <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PrivateComment" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="HRAvg" nillable="true" type="s:int" />
@@ -54,9 +64,27 @@
           <s:element minOccurs="1" maxOccurs="1" name="Latitude" nillable="true" type="s:double" />
           <s:element minOccurs="1" maxOccurs="1" name="Altitude" nillable="true" type="s:double" />
           <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Speed" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pace" nillable="true" type="s:double" />
           <s:element minOccurs="1" maxOccurs="1" name="HR" nillable="true" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="AddTrainingsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddTrainingsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="tns:User" />
+            <s:element minOccurs="0" maxOccurs="1" name="training" type="tns:Training" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="AddTrainingResponse">
         <s:complexType>
           <s:sequence>
@@ -65,7 +93,11 @@
         </s:complexType>
       </s:element>
       <s:element name="GetTrainingTypes">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="GetTrainingTypesResponse">
         <s:complexType>
@@ -86,7 +118,20 @@
         </s:sequence>
       </s:complexType>
     </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
   </wsdl:types>
+  <wsdl:message name="AddTrainingsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTrainings" />
+  </wsdl:message>
+  <wsdl:message name="AddTrainingsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTrainingsResponse" />
+  </wsdl:message>
   <wsdl:message name="AddTrainingSoapIn">
     <wsdl:part name="parameters" element="tns:AddTraining" />
   </wsdl:message>
@@ -100,6 +145,10 @@
     <wsdl:part name="parameters" element="tns:GetTrainingTypesResponse" />
   </wsdl:message>
   <wsdl:portType name="TrainingServiceSoap">
+    <wsdl:operation name="AddTrainings">
+      <wsdl:input message="tns:AddTrainingsSoapIn" />
+      <wsdl:output message="tns:AddTrainingsSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="AddTraining">
       <wsdl:input message="tns:AddTrainingSoapIn" />
       <wsdl:output message="tns:AddTrainingSoapOut" />
@@ -111,8 +160,17 @@
   </wsdl:portType>
   <wsdl:binding name="TrainingServiceSoap" type="tns:TrainingServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddTrainings">
+      <soap:operation soapAction="http://www.funbeat.se/AddTrainings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddTraining">
-      <soap:operation soapAction="http://services.funbeat.se/AddTraining" style="document" />
+      <soap:operation soapAction="http://www.funbeat.se/AddTraining" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -121,7 +179,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetTrainingTypes">
-      <soap:operation soapAction="http://services.funbeat.se/GetTrainingTypes" style="document" />
+      <soap:operation soapAction="http://www.funbeat.se/GetTrainingTypes" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -132,8 +190,17 @@
   </wsdl:binding>
   <wsdl:binding name="TrainingServiceSoap12" type="tns:TrainingServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddTrainings">
+      <soap12:operation soapAction="http://www.funbeat.se/AddTrainings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AddTraining">
-      <soap12:operation soapAction="http://services.funbeat.se/AddTraining" style="document" />
+      <soap12:operation soapAction="http://www.funbeat.se/AddTraining" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -142,7 +209,7 @@
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetTrainingTypes">
-      <soap12:operation soapAction="http://services.funbeat.se/GetTrainingTypes" style="document" />
+      <soap12:operation soapAction="http://www.funbeat.se/GetTrainingTypes" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -152,11 +219,12 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="TrainingService">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This web service is a part of the FunBeat web site. Please visit http://www.funbeat.se/api/ for more information.</wsdl:documentation>
     <wsdl:port name="TrainingServiceSoap" binding="tns:TrainingServiceSoap">
-      <soap:address location="http://services.funbeat.se/TrainingService.asmx" />
+      <soap:address location="http://www.funbeat.se/api/TrainingService.asmx" />
     </wsdl:port>
     <wsdl:port name="TrainingServiceSoap12" binding="tns:TrainingServiceSoap12">
-      <soap12:address location="http://services.funbeat.se/TrainingService.asmx" />
+      <soap12:address location="http://www.funbeat.se/api/TrainingService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
