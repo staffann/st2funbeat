@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://services.funbeat.se/TrainingService.asmx?wsdl" docRef="http://services.funbeat.se/TrainingService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://services.funbeat.se/TrainingService.asmx" xmlns:q1="http://services.funbeat.se/" binding="q1:TrainingServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://services.funbeat.se/TrainingService.asmx" xmlns:q2="http://services.funbeat.se/" binding="q2:TrainingServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <contractRef ref="http://www.funbeat.se/api/TrainingService.asmx?wsdl" docRef="http://www.funbeat.se/api/TrainingService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://www.funbeat.se/api/TrainingService.asmx" xmlns:q1="http://www.funbeat.se/" binding="q1:TrainingServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://www.funbeat.se/api/TrainingService.asmx" xmlns:q2="http://www.funbeat.se/" binding="q2:TrainingServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
 </discovery>
