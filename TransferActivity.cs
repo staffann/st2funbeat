@@ -62,16 +62,16 @@ namespace Janohl.ST2Funbeat
                         TrackPoint[] trackPoints = GetTrackPoints(activity);
                         int? hrAvg;
                         int? hrMax;
-                        if (activity.HeartRatePerMinuteTrack == null)
-                        {
+
+                        // Get pulse data. Works with and without a HR data track.
+                        ActivityInfoCache actInfoCache = new ActivityInfoCache();
+                        ActivityInfo activityInfo = actInfoCache.GetInfo(activity);
+                        hrAvg = (int)activityInfo.AverageHeartRate;
+                        if (hrAvg == 0)
                             hrAvg = null;
+                        hrMax = (int)activityInfo.MaximumHeartRate;
+                        if (hrMax == 0)
                             hrMax = null;
-                        }
-                        else
-                        {
-                            hrAvg = (int)activity.HeartRatePerMinuteTrack.Avg;
-                            hrMax = (int)activity.HeartRatePerMinuteTrack.Max;
-                        }
 
                         DateTime activityDate = ConvertToLocalTime(activity.StartTime);
 
@@ -117,14 +117,20 @@ namespace Janohl.ST2Funbeat
 
                 DateTime actualTime = activity.StartTime.AddSeconds(p.ElapsedSeconds);
 
-                if (actualTime < activity.HeartRatePerMinuteTrack.StartTime)
-                    actualTime = activity.HeartRatePerMinuteTrack.StartTime;
+                if (activity.HeartRatePerMinuteTrack != null)
+                {
+                    if (actualTime < activity.HeartRatePerMinuteTrack.StartTime)
+                        actualTime = activity.HeartRatePerMinuteTrack.StartTime;
 
-                ITimeValueEntry<float> interpolatedHR = activity.HeartRatePerMinuteTrack.GetInterpolatedValue(actualTime);
-                float heartRate = interpolatedHR.Value;
+                    ITimeValueEntry<float> interpolatedHR = activity.HeartRatePerMinuteTrack.GetInterpolatedValue(actualTime);
+                    float heartRate = interpolatedHR.Value;
+                    tp.HR = Convert.ToInt32(heartRate);
+                }
+                else
+                {
+                    tp.HR = null;
+                }
 
-                tp.HR = Convert.ToInt32(heartRate);
-                tp.Altitude = Convert.ToDouble(p.Value.ElevationMeters);
                 tp.Latitude = Convert.ToDouble(p.Value.LatitudeDegrees);
                 tp.Longitude = Convert.ToDouble(p.Value.LongitudeDegrees);
                 tp.Altitude = Convert.ToDouble(p.Value.ElevationMeters);
