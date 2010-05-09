@@ -21,7 +21,8 @@ namespace Janohl.ST2Funbeat.Settings
             get
             {
                 if (instance == null)
-                    throw new Exception("Settings not populated");
+                    instance = new Settings();
+                    //throw new Exception("Settings not populated");
                 return instance;
             }
         }
