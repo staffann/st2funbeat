@@ -89,9 +89,6 @@
             // 
             // gbMappings
             // 
-            this.gbMappings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
             this.gbMappings.AutoSize = true;
             this.gbMappings.Controls.Add(this.pnlMappings);
             this.gbMappings.Location = new System.Drawing.Point(3, 80);
@@ -123,7 +120,7 @@
             this.Controls.Add(this.gbMappings);
             this.Controls.Add(this.gbAccount);
             this.Name = "SettingsControl";
-            this.Size = new System.Drawing.Size(475, 202);
+            this.Size = new System.Drawing.Size(475, 190);
             this.gbAccount.ResumeLayout(false);
             this.gbAccount.PerformLayout();
             this.gbMappings.ResumeLayout(false);
