@@ -33,7 +33,7 @@ namespace Janohl.ST2Funbeat
             login.PasswordFormat = PasswordFormats.Clear;
         }
 
-        public static int? SendTraining(DateTime startDate, TimeSpan duration, float? distance, string comment,
+        public static int? SendTraining(DateTime startDate, bool hasStartTime, TimeSpan duration, float? distance, string comment,
             int? hrAvg, int? hrMax, int? intensity, int kcal, string privateComment, int? repetitions, int? sets,
             int trainingType, TrackPoint[] trackPoints)
         {
@@ -41,6 +41,7 @@ namespace Janohl.ST2Funbeat
             training.Comment = comment;
             training.Distance = distance;
             training.StartDateTime = startDate;
+            training.HasTimeOfDay = hasStartTime;
             training.Hours = duration.Hours;
             training.Minutes = duration.Minutes;
             training.Seconds = duration.Seconds;
