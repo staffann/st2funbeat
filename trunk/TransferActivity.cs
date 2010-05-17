@@ -77,6 +77,7 @@ namespace Janohl.ST2Funbeat
 
                         int? id = FunbeatService.SendTraining(
                             activityDate,
+                            activity.HasStartTime,
                             activity.TotalTimeEntered,
                             activity.TotalDistanceMetersEntered / 1000,
                             activity.Notes,
