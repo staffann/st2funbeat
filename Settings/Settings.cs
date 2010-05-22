@@ -38,8 +38,9 @@ namespace Janohl.ST2Funbeat.Settings
             get
             {
                 if (instance == null)
+                {
                     instance = new Settings();
-                    //throw new Exception("Settings not populated");
+                }
                 return instance;
             }
         }
@@ -70,6 +71,7 @@ namespace Janohl.ST2Funbeat.Settings
             instance = new Settings();
 
             foreach (XmlNode node in pluginNode.ChildNodes)
+            {
                 if (node.Name == "User")
                 {
                     instance.User.Username = node.Attributes[0].Value;
@@ -86,10 +88,16 @@ namespace Janohl.ST2Funbeat.Settings
                         instance.ActivityTypeMappings.Add(atm);
                     }
                 }
+            }
         }
 
         internal static void WriteInstance(XmlDocument xmlDoc, XmlElement pluginNode)
         {
+            if (instance == null)
+            {
+                //This can occur if a logbook could not be loaded, then ST is closed
+                instance = new Settings();
+            }
             XmlElement user = xmlDoc.CreateElement("User");
             XmlAttribute username = xmlDoc.CreateAttribute("username");
             username.Value = instance.User.Username;
@@ -103,8 +111,6 @@ namespace Janohl.ST2Funbeat.Settings
                 pluginNode.AppendChild(user);
             else
                 pluginNode.ReplaceChild(user, existing);
-
-
 
             XmlElement mappings = xmlDoc.CreateElement("Mappings");
             foreach (ActivityTypeMapping atm in instance.ActivityTypeMappings)
