@@ -83,11 +83,13 @@
       <HintPath>$(ProgramFiles)\Zone Five Software\SportTracks 2.1\Common.Visuals.dll</HintPath>
       <Private>False</Private>
     </Reference>
+<!--
     <Reference Include="SportTracks, Version=2.1.3478.21513, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\Zone Five Software\SportTracks 2.1\SportTracks.exe</HintPath>
       <Private>False</Private>
     </Reference>
+-->
   </ItemGroup>
 
   <!-- references to ST API 3.0 -->
@@ -102,11 +104,12 @@
       <HintPath>$(ProgramFiles)\Zone Five Software\SportTracks 3\Common.Visuals.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="SportTracks, Version=3.0.3769.30929, Culture=neutral, processorArchitecture=x86">
+<!--    <Reference Include="SportTracks, Version=3.0.3769.30929, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>$(ProgramFiles)\Zone Five Software\SportTracks 3\SportTracks.exe</HintPath>
       <Private>False</Private>
     </Reference>
+-->
   </ItemGroup>
 
 
@@ -158,13 +161,13 @@ set guid=$(PluginId)
 IF "%25guid%25"=="" GOTO END
 
 REM ST version, for plugin.xml file
-SET StVersion=3.0.3769
+SET StVersion=3.0.3797
 IF "$(StPluginVersion)"=="2" SET StVersion=2.1.3478
 
 REM 7-zip must be configured, hardcoded path used
 REM "%25programfiles%25\7-zip\7z.exe"
 
-set stPlgFile=$(ProjectDir)$(ProjectName)-0.2.x.st$(StPluginVersion)plugin
+set stPlgFile=$(ProjectDir)$(ProjectName)-0.6.x.st$(StPluginVersion)plugin
 REM To move a .st2plugin to common area, create environment variable (or set it below)
 REM set stPlgoutdir=g:\Users\go\dev\web
 
