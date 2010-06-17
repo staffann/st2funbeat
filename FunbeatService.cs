@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using Janohl.ST2Funbeat.Funbeat;
 using Janohl.ST2Funbeat.Settings;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
+
 
 
 namespace Janohl.ST2Funbeat
@@ -18,45 +20,63 @@ namespace Janohl.ST2Funbeat
             get
             {
                 if (instance == null)
-                    instance = new FunbeatService(Settings.Settings.Instance.User);
+                    instance = new FunbeatService();
                 return instance;
             }
         }
 
-        private User login;
-
-        private FunbeatService(UserSettings user)
+        private FunbeatService()
         {
-            login = new User();
-            login.Password = user.Password;
-            login.Username = user.Username;
-            login.PasswordFormat = PasswordFormats.Clear;
         }
 
         public static int? SendTraining(DateTime startDate, bool hasStartTime, TimeSpan duration, float? distance, string comment,
             int? hrAvg, int? hrMax, int? intensity, int kcal, string privateComment, int? repetitions, int? sets,
             int trainingType, TrackPoint[] trackPoints)
         {
-            Training training = new Training();
-            training.Comment = comment;
-            training.Distance = distance;
-            training.StartDateTime = startDate;
-            training.HasTimeOfDay = hasStartTime;
-            training.Hours = duration.Hours;
-            training.Minutes = duration.Minutes;
-            training.Seconds = duration.Seconds;
+            User login;
 
-            training.HRAvg = hrAvg;
-            training.HRMax = hrMax;
-            training.Intensity = intensity;
-            training.KCal = kcal;
-            training.PrivateComment = privateComment;
-            training.Repetitions = repetitions;
-            training.Sets = sets;
-            training.TrainingTypeID = trainingType;
-            training.TrackPoints = trackPoints;
-            TrainingService client = new TrainingService();
-            return client.AddTraining(funbeatKey,Instance.login, training);
+            login = new User();
+            login.Password = Settings.Settings.Instance.User.Password;
+            login.Username = Settings.Settings.Instance.User.Username;
+            login.PasswordFormat = PasswordFormats.Clear;
+
+            if (login.Username.Length == 0 || login.Password.Length == 0)
+            {
+                MessageBox.Show("Funbeat user name and password must be entered in the ST2funbeat settings", "Login failure", MessageBoxButtons.OK);
+                return null;
+            }
+            else
+            {
+                Training training = new Training();
+                training.Comment = comment;
+                training.Distance = distance;
+                training.StartDateTime = startDate;
+                training.HasTimeOfDay = hasStartTime;
+                training.Hours = duration.Hours;
+                training.Minutes = duration.Minutes;
+                training.Seconds = duration.Seconds;
+
+                training.HRAvg = hrAvg;
+                training.HRMax = hrMax;
+                training.Intensity = intensity;
+                training.KCal = kcal;
+                training.PrivateComment = privateComment;
+                training.Repetitions = repetitions;
+                training.Sets = sets;
+                training.TrainingTypeID = trainingType;
+                training.TrackPoints = trackPoints;
+
+                try
+                {
+                    TrainingService client = new TrainingService();
+                    return client.AddTraining(funbeatKey, login, training);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(string.Concat("Problem sending the activity to funbeat\n", ex.Message), "Funbeat communication error");
+                    return null;
+                }
+            }
         }
 
         private static Dictionary<int, string> GetTrainingTypes()
@@ -77,10 +97,20 @@ namespace Janohl.ST2Funbeat
             {
                 if (funbeatActivityTypes == null)
                 {
-                    funbeatActivityTypes = new Collection<FunbeatActivityType>();
-                    Dictionary<int, string> funbeatValues = FunbeatService.GetTrainingTypes();
-                    foreach (int i in funbeatValues.Keys)
-                        funbeatActivityTypes.Add(new FunbeatActivityType(i, funbeatValues[i]));
+                    try
+                    {
+                        funbeatActivityTypes = new Collection<FunbeatActivityType>();
+                        Dictionary<int, string> funbeatValues = FunbeatService.GetTrainingTypes();
+                        foreach (int i in funbeatValues.Keys)
+                            funbeatActivityTypes.Add(new FunbeatActivityType(i, funbeatValues[i]));
+                    }
+                    catch (Exception ex)
+                    {
+                        funbeatActivityTypes = null;
+                        MessageBox.Show(string.Concat("The settings page needs to communicate with funbeat. Make sure that you are connected to the internet.\n", ex.Message),
+                                        "Funbeat communication error");
+                        throw;
+                    }
                 }
                 return funbeatActivityTypes;
             }

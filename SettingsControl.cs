@@ -17,31 +17,44 @@ namespace Janohl.ST2Funbeat
         {
             InitializeComponent();
 
-            txtUsername.Text = Settings.Settings.Instance.User.Username;
-            txtPassword.Text = Settings.Settings.Instance.User.Password;
-            List<Control> amcs = new List<Control>();
-            ActivityTypeMapping active = null;
-            foreach (string ac in Plugin.SportTrackActivityTypes.Keys)
+            try
             {
-                active = null;
-
-                foreach (ActivityTypeMapping atm in Settings.Settings.Instance.ActivityTypeMappings)
-                    if (atm.SportTracks == ac)
-                    {
-                        active = atm;
-                        break;
-                    }
-                if (active == null)
+                txtUsername.Text = Settings.Settings.Instance.User.Username;
+                txtPassword.Text = Settings.Settings.Instance.User.Password;
+                List<Control> amcs = new List<Control>();
+                ActivityTypeMapping active = null;
+                foreach (string ac in Plugin.SportTrackActivityTypes.Keys)
                 {
-                    active = new ActivityTypeMapping();
-                    active.SportTracks = ac;
-                    active.Funbeat = 51;
-                    Settings.Settings.Instance.ActivityTypeMappings.Add(active);
+                    active = null;
+
+                    foreach (ActivityTypeMapping atm in Settings.Settings.Instance.ActivityTypeMappings)
+                        if (atm.SportTracks == ac)
+                        {
+                            active = atm;
+                            break;
+                        }
+                    if (active == null)
+                    {
+                        active = new ActivityTypeMapping();
+                        active.SportTracks = ac;
+                        active.Funbeat = 51;
+                        Settings.Settings.Instance.ActivityTypeMappings.Add(active);
+                    }
+                    ActivityMappingControl amc = new ActivityMappingControl(active);
+                    amcs.Add(amc);
                 }
-                ActivityMappingControl amc = new ActivityMappingControl(active);
-                amcs.Add(amc);
+                pnlMappings.Controls.AddRange(amcs.ToArray());
             }
-            pnlMappings.Controls.AddRange(amcs.ToArray());
+            catch (Exception ex)
+            {
+                TextBox ErrMessageBox = new TextBox();
+                ErrMessageBox.Text = string.Concat("Failed to read training type mappings from funbeat.\r\nException message:\r\n",
+                                                    ex.ToString());
+                ErrMessageBox.Size = pnlMappings.Size;
+                ErrMessageBox.ReadOnly = true;
+                ErrMessageBox.Multiline = true;
+                pnlMappings.Controls.Add(ErrMessageBox);
+            }
         }
 
 
