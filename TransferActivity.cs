@@ -66,10 +66,10 @@ namespace Janohl.ST2Funbeat
                         // Get pulse data. Works with and without a HR data track.
                         ActivityInfoCache actInfoCache = new ActivityInfoCache();
                         ActivityInfo activityInfo = actInfoCache.GetInfo(activity);
-                        hrAvg = (int)activityInfo.AverageHeartRate;
+                        hrAvg = (int?)activityInfo.AverageHeartRate;
                         if (hrAvg == 0)
                             hrAvg = null;
-                        hrMax = (int)activityInfo.MaximumHeartRate;
+                        hrMax = (int?)activityInfo.MaximumHeartRate;
                         if (hrMax == 0)
                             hrMax = null;
 
@@ -110,6 +110,12 @@ namespace Janohl.ST2Funbeat
                 // GPS track exists. Base the trackpoints on that and use HR data if available
                 return GetTrackPointsFromGPSTrack(activity);
             }
+            else
+            {
+                // Get any track data that exists
+                return GetTrackPointsFromDataTrack(activity);
+            }
+#if OLDERVERSION
             else if (activity.HeartRatePerMinuteTrack != null)
             {
                 // Base the trackpoints on HR data and enter null for the GPS data.
@@ -120,6 +126,7 @@ namespace Janohl.ST2Funbeat
                 // No data track exists.
                 return null;
             }
+#endif
         }
 
         // Use the GPS track as a base when creating the TrackPoints.
@@ -175,6 +182,114 @@ namespace Janohl.ST2Funbeat
 
                 tps.Add(tp);
                 prevPoint = p;
+            }
+            return tps.ToArray();
+        }
+
+        // Use any data track as a base when creating the TrackPoints.
+        // Set GPS properties to null
+        private TrackPoint[] GetTrackPointsFromDataTrack(IActivity activity)
+        {
+            ITimeDataSeries<float> ReferenceTrack;
+            if (activity.DistanceMetersTrack != null)
+                ReferenceTrack = activity.DistanceMetersTrack;
+            else if (activity.HeartRatePerMinuteTrack != null)
+                ReferenceTrack = activity.HeartRatePerMinuteTrack;
+            else if (activity.ElevationMetersTrack != null)
+                ReferenceTrack = activity.ElevationMetersTrack;
+            else
+                return null;
+
+            List<TrackPoint> tps = new List<TrackPoint>();
+            foreach (ITimeValueEntry<float> p in ReferenceTrack)
+            {
+
+                TrackPoint tp = new TrackPoint();
+                tp.DateTime = ConvertToLocalTime(activity.StartTime.AddSeconds(p.ElapsedSeconds));
+
+                DateTime actualTime = activity.StartTime.AddSeconds(p.ElapsedSeconds);
+
+                // Get distance
+                if (activity.DistanceMetersTrack != null)
+                {
+                    if (actualTime < activity.DistanceMetersTrack.StartTime)
+                        actualTime = activity.DistanceMetersTrack.StartTime;
+
+                    ITimeValueEntry<float> interpolatedDistance = activity.DistanceMetersTrack.GetInterpolatedValue(actualTime);
+                    if (interpolatedDistance != null)
+                    {
+                        tp.Distance = interpolatedDistance.Value/1000;
+                        if (double.IsNaN((double)tp.Distance))
+                        {
+                            tp.Distance = null;
+                        }
+                    }
+                    else
+                    {
+                        tp.Distance = null;
+                    }
+                }
+                else
+                {
+                    tp.Distance = null;
+                }
+
+                // Get elevation track
+                if (activity.ElevationMetersTrack != null)
+                {
+                    if (actualTime < activity.ElevationMetersTrack.StartTime)
+                        actualTime = activity.ElevationMetersTrack.StartTime;
+
+                    ITimeValueEntry<float> interpolatedElevation = activity.ElevationMetersTrack.GetInterpolatedValue(actualTime);
+                    if (interpolatedElevation != null)
+                    {
+                        tp.Altitude = interpolatedElevation.Value;
+                        if (double.IsNaN((double)tp.Altitude))
+                        {
+                            tp.Altitude = null;
+                        }
+
+                    }
+                    else
+                    {
+                        tp.Altitude = null;
+                    }
+                }
+                else
+                {
+                    tp.Altitude = null;
+                }
+
+                // Get heart rate track
+                if (activity.HeartRatePerMinuteTrack != null)
+                {
+                    if (actualTime < activity.HeartRatePerMinuteTrack.StartTime)
+                        actualTime = activity.HeartRatePerMinuteTrack.StartTime;
+
+                    ITimeValueEntry<float> interpolatedHR = activity.HeartRatePerMinuteTrack.GetInterpolatedValue(actualTime);
+                    if (interpolatedHR != null)
+                    {
+                        float heartRate = interpolatedHR.Value;
+                        tp.HR = Convert.ToInt32(heartRate);
+                        if (double.IsNaN((double)tp.HR))
+                        {
+                            tp.HR = null;
+                        }
+                    }
+                    else
+                    {
+                        tp.HR = null;
+                    }
+                }
+                else
+                {
+                    tp.HR = null;
+                }
+
+                tp.Latitude = null;
+                tp.Longitude = null;
+
+                tps.Add(tp);
             }
             return tps.ToArray();
         }
