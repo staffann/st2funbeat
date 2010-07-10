@@ -13,3 +13,7 @@ You must already have Sporttracks installed. Then download the desired release f
 When you start ST, you will see a new ST2Funbeat page under Settings/Plugins. Navigate to that page and enter your username and passward for funbeat. You also have to map the categories in ST to funbeat categories. Save for logbook.
 
 Note that you have to be connected to internet when choosing your settings!
+
+Now go to Daily Activity view within ST. Choose an activity that you'd like to export to funbeat. Choose Export->Funbeat and your activity will automatically be exported.
+
+Now fire up for web browser and go to [http://www.funbeat.se] or [http://www.funbeat.net]. Log in. Go to your starting tabl ("Min startsida"). You will see a yellow box saying that a new activity is waiting. Click the link. Now you can edit the activity, adding more information if you like. Save the activity and you're done!
