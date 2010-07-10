@@ -1,0 +1,7 @@
+#summary Introduction to ST2Funbeat
+
+= Introduction =
+
+ST2Funbeat is a plugin that works with the well known training analysis software [http://www.zonefivesoftware.com/sporttracks/ SportTracks]. It enables you to export an activity to the swedish training site [http://www.funbeat.se funbeat]. Funbeat is also available in [http://www.funbeat.net/ english].
+
+By using ST2Funbeat you avoid having to enter you data twice. Also data tracks from a HR monitor, GPS and/or foot pod will be exported so that they can be seen in funbeat.
