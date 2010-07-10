@@ -1,4 +1,5 @@
 #summary Introduction to ST2Funbeat
+#labels Featured
 
 = Introduction =
 
@@ -16,4 +17,4 @@ Note that you have to be connected to internet when choosing your settings!
 
 Now go to Daily Activity view within ST. Choose an activity that you'd like to export to funbeat. Choose Export->Funbeat and your activity will automatically be exported.
 
-Now fire up for web browser and go to [http://www.funbeat.se] or [http://www.funbeat.net]. Log in. Go to your starting tabl ("Min startsida"). You will see a yellow box saying that a new activity is waiting. Click the link. Now you can edit the activity, adding more information if you like. Save the activity and you're done!
+Fire up for web browser and go to [http://www.funbeat.se] or [http://www.funbeat.net]. Log in. Go to your starting tab ("Min startsida"). You will see a yellow box saying that a new activity is waiting. Click the link. Now you can edit the activity, adding more information if you like. Save the activity and you're done!
