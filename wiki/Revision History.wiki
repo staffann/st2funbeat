@@ -1,0 +1,18 @@
+= Revision History =
+
+=0.6.1 for Sporttracks 2.1=
+- Issue 21, No pace exported when activity is created with foot pod (no GPS track), is corrected. Now all relevant data tracks are exported when available.
+- Issue 19, ST restart necessary before changed login name or password takes effect, is corrected.
+- Issue 18, Better error message needed when login nane and/or password is missing, has been improved.
+
+=0.6.0 for ST2=
+Targets Sporttracks 2.1.
+The changes since 0.5 are:
+- Fixed a bug that prevented proper function unless an older version of the plugin had been installed first.
+- Fixed two exceptions that could cause an error message "Object reference not set to an instance of an object". The first one was triggered by not having a HR track and the second one was triggered by watch pauses.
+- HR track is now exported even if no GPS track exists.
+- Manually entered HR values (max, mean) are exported when present.
+- The start time of the activity is now exported to funbeat. Most code was there already but a flag telling funbeat to use the time was not initialised.
+- NaN is now removed from the elevation track during export, allowing funbeat to handle it properly. Was an issue with Garmin 310XT and possibly others.
+- It is now possible to scroll within the plugin settings page. 
+
