@@ -2,12 +2,12 @@
 
 = Revision History =
 
-==0.6.1 for Sporttracks 2.1==
+== 0.6.1 for Sporttracks 2.1 ==
 - Issue 21, No pace exported when activity is created with foot pod (no GPS track), is corrected. Now all relevant data tracks are exported when available.
 - Issue 19, ST restart necessary before changed login name or password takes effect, is corrected.
 - Issue 18, Better error message needed when login nane and/or password is missing, has been improved.
 
-==0.6.0 for ST2=
+== 0.6.0 for ST2 ==
 Targets Sporttracks 2.1.
 The changes since 0.5 are:
 - Fixed a bug that prevented proper function unless an older version of the plugin had been installed first.
