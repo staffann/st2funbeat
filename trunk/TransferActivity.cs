@@ -151,18 +151,6 @@ namespace Janohl.ST2Funbeat
                 // Get any track data that exists
                 return GetTrackPointsFromDataTrack(activity);
             }
-#if OLDERVERSION
-            else if (activity.HeartRatePerMinuteTrack != null)
-            {
-                // Base the trackpoints on HR data and enter null for the GPS data.
-                return GetTrackPointsFromHRTrack(activity);
-            }
-            else
-            {
-                // No data track exists.
-                return null;
-            }
-#endif
         }
 
         // Use the GPS track as a base when creating the TrackPoints.
@@ -324,27 +312,6 @@ namespace Janohl.ST2Funbeat
 
                 tp.Latitude = null;
                 tp.Longitude = null;
-
-                tps.Add(tp);
-            }
-            return tps.ToArray();
-        }
-
-        // Use the HR track as a base when creating the TrackPoints.
-        // Set GPS properties to null
-        private TrackPoint[] GetTrackPointsFromHRTrack(IActivity activity)
-        {
-            List<TrackPoint> tps = new List<TrackPoint>();
-            foreach (ITimeValueEntry<float> p in activity.HeartRatePerMinuteTrack)
-            {
-
-                TrackPoint tp = new TrackPoint();
-                tp.DateTime = ConvertToLocalTime(activity.StartTime.AddSeconds(p.ElapsedSeconds));
-                tp.HR = (int?)p.Value;
-                tp.Latitude = null;
-                tp.Longitude = null; ;
-                tp.Altitude = null;
-                tp.Distance = null;
 
                 tps.Add(tp);
             }
