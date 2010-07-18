@@ -39,6 +39,8 @@
           <s:element minOccurs="1" maxOccurs="1" name="Hours" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Minutes" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="Seconds" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TE" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="CadAvg" nillable="true" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="ImportedDataID" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
           <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
