@@ -98,16 +98,23 @@ namespace Janohl.ST2Funbeat
                         TrackPoint[] trackPoints = GetTrackPoints(activity);
                         int? hrAvg;
                         int? hrMax;
+                        int? cadenceAvg;
 
                         // Get pulse data. Works with and without a HR data track.
                         ActivityInfoCache actInfoCache = new ActivityInfoCache();
                         ActivityInfo activityInfo = actInfoCache.GetInfo(activity);
-                        hrAvg = (int?)activityInfo.AverageHeartRate;
-                        if (hrAvg == 0)
+                        if (activityInfo.AverageHeartRate == 0)
                             hrAvg = null;
-                        hrMax = (int?)activityInfo.MaximumHeartRate;
-                        if (hrMax == 0)
+                        else
+                            hrAvg = (int?)Math.Round(activityInfo.AverageHeartRate);
+                        if (activityInfo.MaximumHeartRate == 0)
                             hrMax = null;
+                        else
+                            hrMax = (int?)Math.Round(activityInfo.MaximumHeartRate);
+                        if (activityInfo.AverageCadence == 0)
+                            cadenceAvg = null;
+                        else
+                            cadenceAvg = (int?)Math.Round(activityInfo.AverageCadence);
 
                         DateTime activityDate = ConvertToLocalTime(activity.StartTime);
 
@@ -115,6 +122,8 @@ namespace Janohl.ST2Funbeat
                             activityDate,
                             activity.HasStartTime,
                             activity.TotalTimeEntered,
+                            null,
+                            cadenceAvg,
                             activity.TotalDistanceMetersEntered / 1000,
                             activity.Notes,
                             hrAvg,
