@@ -1,4 +1,5 @@
 #summary Revision History
+#labels Featured
 
 = Revision History =
 
