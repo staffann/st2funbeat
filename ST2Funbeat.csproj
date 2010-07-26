@@ -18,12 +18,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityDetailsPage.cs" />
+    <Compile Include="ActivityDetailsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ActivityDetailsControl.Designer.cs">
+      <DependentUpon>ActivityDetailsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ActivityMappingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ActivityMappingControl.Designer.cs">
       <DependentUpon>ActivityMappingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FitnessDataHandler.cs" />
     <Compile Include="FunbeatService.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +88,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ActivityDetailsControl.resx">
+      <DependentUpon>ActivityDetailsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ActivityMappingControl.resx">
       <DependentUpon>ActivityMappingControl.cs</DependentUpon>
       <SubType>Designer</SubType>
