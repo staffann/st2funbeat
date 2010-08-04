@@ -1,4 +1,20 @@
-﻿
+﻿/*
+Copyright (C) 2009, 2010 Jan Ohlson
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 3 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 namespace Janohl.ST2Funbeat
 {
 #if !ST_2_1
@@ -32,53 +48,54 @@ namespace Janohl.ST2Funbeat
         {
             this.ExportedCheckBox1 = new System.Windows.Forms.CheckBox();
             this.InputGroupBox = new System.Windows.Forms.GroupBox();
-            this.SetsInputTextBox = new System.Windows.Forms.TextBox();
-            this.RepInputTextBox = new System.Windows.Forms.TextBox();
-            this.TEInputTextBox = new System.Windows.Forms.TextBox();
+            this.SetsInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
+            this.RepInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
+            this.TEInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.SetLabel = new System.Windows.Forms.Label();
             this.RepLabel = new System.Windows.Forms.Label();
-            this.RPETextBox = new System.Windows.Forms.TextBox();
             this.TELabel = new System.Windows.Forms.Label();
             this.RPEComboBox = new System.Windows.Forms.ComboBox();
             this.StatusGroupBox1 = new System.Windows.Forms.GroupBox();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.UserInputTabPage = new System.Windows.Forms.TabPage();
+            this.RPELabel1 = new System.Windows.Forms.Label();
             this.ExportPreviewTabPage = new System.Windows.Forms.TabPage();
             this.ExportGroupBox = new System.Windows.Forms.GroupBox();
-            this.StartTimeTextBox = new System.Windows.Forms.TextBox();
+            this.StartTimeTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.GPSCheckBox = new System.Windows.Forms.CheckBox();
             this.HRCheckBox = new System.Windows.Forms.CheckBox();
             this.AltitudeCheckBox = new System.Windows.Forms.CheckBox();
             this.DistanceCheckBox = new System.Windows.Forms.CheckBox();
-            this.PrivCommentTextBox = new System.Windows.Forms.TextBox();
+            this.PrivCommentTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.CommentTextBox = new System.Windows.Forms.TextBox();
+            this.CommentTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.SetsTextBox = new System.Windows.Forms.TextBox();
+            this.SetsTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.RepetitionsTextBox = new System.Windows.Forms.TextBox();
+            this.RepetitionsTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.RPEExportTextBox = new System.Windows.Forms.TextBox();
+            this.RPEExportTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.TETextBox = new System.Windows.Forms.TextBox();
+            this.TETextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.CadenceTextBox = new System.Windows.Forms.TextBox();
+            this.CadenceTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.CaloriesTextBox = new System.Windows.Forms.TextBox();
+            this.CaloriesTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.HRMaxTextBox = new System.Windows.Forms.TextBox();
+            this.HRMaxTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.HRAvgTextBox = new System.Windows.Forms.TextBox();
+            this.HRAvgTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.DistanceTextBox = new System.Windows.Forms.TextBox();
+            this.DistanceTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.DurationTextBox = new System.Windows.Forms.TextBox();
+            this.DurationTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.DateTextBox = new System.Windows.Forms.TextBox();
+            this.DateTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.StatusGroupBox2 = new System.Windows.Forms.GroupBox();
             this.ExportedCheckBox2 = new System.Windows.Forms.CheckBox();
+            this.RPELabel2 = new System.Windows.Forms.Label();
             this.InputGroupBox.SuspendLayout();
             this.StatusGroupBox1.SuspendLayout();
             this.TabControl.SuspendLayout();
@@ -101,12 +118,13 @@ namespace Janohl.ST2Funbeat
             // 
             // InputGroupBox
             // 
+            this.InputGroupBox.Controls.Add(this.RPELabel2);
+            this.InputGroupBox.Controls.Add(this.RPELabel1);
             this.InputGroupBox.Controls.Add(this.SetsInputTextBox);
             this.InputGroupBox.Controls.Add(this.RepInputTextBox);
             this.InputGroupBox.Controls.Add(this.TEInputTextBox);
             this.InputGroupBox.Controls.Add(this.SetLabel);
             this.InputGroupBox.Controls.Add(this.RepLabel);
-            this.InputGroupBox.Controls.Add(this.RPETextBox);
             this.InputGroupBox.Controls.Add(this.TELabel);
             this.InputGroupBox.Controls.Add(this.RPEComboBox);
             this.InputGroupBox.Location = new System.Drawing.Point(3, 77);
@@ -118,26 +136,62 @@ namespace Janohl.ST2Funbeat
             // 
             // SetsInputTextBox
             // 
+            this.SetsInputTextBox.AcceptsReturn = false;
+            this.SetsInputTextBox.AcceptsTab = false;
+            this.SetsInputTextBox.BackColor = System.Drawing.Color.White;
+            this.SetsInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.SetsInputTextBox.ButtonImage = null;
             this.SetsInputTextBox.Location = new System.Drawing.Point(190, 136);
+            this.SetsInputTextBox.MaxLength = 32767;
+            this.SetsInputTextBox.Multiline = false;
             this.SetsInputTextBox.Name = "SetsInputTextBox";
+            this.SetsInputTextBox.ReadOnly = false;
+            this.SetsInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.SetsInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.SetsInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.SetsInputTextBox.Size = new System.Drawing.Size(75, 20);
             this.SetsInputTextBox.TabIndex = 12;
+            this.SetsInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.SetsInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
             // 
             // RepInputTextBox
             // 
+            this.RepInputTextBox.AcceptsReturn = false;
+            this.RepInputTextBox.AcceptsTab = false;
+            this.RepInputTextBox.BackColor = System.Drawing.Color.White;
+            this.RepInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.RepInputTextBox.ButtonImage = null;
             this.RepInputTextBox.Location = new System.Drawing.Point(190, 99);
+            this.RepInputTextBox.MaxLength = 32767;
+            this.RepInputTextBox.Multiline = false;
             this.RepInputTextBox.Name = "RepInputTextBox";
+            this.RepInputTextBox.ReadOnly = false;
+            this.RepInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.RepInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.RepInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RepInputTextBox.Size = new System.Drawing.Size(75, 20);
             this.RepInputTextBox.TabIndex = 11;
+            this.RepInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.RepInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
             // 
             // TEInputTextBox
             // 
+            this.TEInputTextBox.AcceptsReturn = false;
+            this.TEInputTextBox.AcceptsTab = false;
+            this.TEInputTextBox.BackColor = System.Drawing.Color.White;
+            this.TEInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.TEInputTextBox.ButtonImage = null;
             this.TEInputTextBox.Location = new System.Drawing.Point(190, 62);
+            this.TEInputTextBox.MaxLength = 32767;
+            this.TEInputTextBox.Multiline = false;
             this.TEInputTextBox.Name = "TEInputTextBox";
+            this.TEInputTextBox.ReadOnly = false;
+            this.TEInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.TEInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.TEInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TEInputTextBox.Size = new System.Drawing.Size(75, 20);
             this.TEInputTextBox.TabIndex = 7;
+            this.TEInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.TEInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
             // 
             // SetLabel
@@ -157,18 +211,6 @@ namespace Janohl.ST2Funbeat
             this.RepLabel.Size = new System.Drawing.Size(60, 13);
             this.RepLabel.TabIndex = 9;
             this.RepLabel.Text = "Repetitions";
-            // 
-            // RPETextBox
-            // 
-            this.RPETextBox.BackColor = System.Drawing.SystemColors.Menu;
-            this.RPETextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RPETextBox.Location = new System.Drawing.Point(10, 23);
-            this.RPETextBox.Multiline = true;
-            this.RPETextBox.Name = "RPETextBox";
-            this.RPETextBox.ReadOnly = true;
-            this.RPETextBox.Size = new System.Drawing.Size(174, 33);
-            this.RPETextBox.TabIndex = 0;
-            this.RPETextBox.Text = "Intensity (Rated Percieved Exertion), Borg Scale";
             // 
             // TELabel
             // 
@@ -238,6 +280,15 @@ namespace Janohl.ST2Funbeat
             this.UserInputTabPage.TabIndex = 0;
             this.UserInputTabPage.Text = "User Input";
             // 
+            // RPELabel1
+            // 
+            this.RPELabel1.AutoSize = true;
+            this.RPELabel1.Location = new System.Drawing.Point(7, 23);
+            this.RPELabel1.Name = "RPELabel1";
+            this.RPELabel1.Size = new System.Drawing.Size(119, 13);
+            this.RPELabel1.TabIndex = 8;
+            this.RPELabel1.Text = "Funbeat Intensity (RPE)";
+            // 
             // ExportPreviewTabPage
             // 
             this.ExportPreviewTabPage.BackColor = System.Drawing.Color.Transparent;
@@ -293,11 +344,22 @@ namespace Janohl.ST2Funbeat
             // 
             // StartTimeTextBox
             // 
+            this.StartTimeTextBox.AcceptsReturn = false;
+            this.StartTimeTextBox.AcceptsTab = false;
+            this.StartTimeTextBox.BackColor = System.Drawing.Color.White;
+            this.StartTimeTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.StartTimeTextBox.ButtonImage = null;
             this.StartTimeTextBox.Location = new System.Drawing.Point(91, 44);
+            this.StartTimeTextBox.MaxLength = 32767;
+            this.StartTimeTextBox.Multiline = false;
             this.StartTimeTextBox.Name = "StartTimeTextBox";
             this.StartTimeTextBox.ReadOnly = true;
+            this.StartTimeTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.StartTimeTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.StartTimeTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartTimeTextBox.Size = new System.Drawing.Size(100, 20);
             this.StartTimeTextBox.TabIndex = 33;
+            this.StartTimeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label4
             // 
@@ -354,12 +416,22 @@ namespace Janohl.ST2Funbeat
             // 
             // PrivCommentTextBox
             // 
+            this.PrivCommentTextBox.AcceptsReturn = false;
+            this.PrivCommentTextBox.AcceptsTab = false;
+            this.PrivCommentTextBox.BackColor = System.Drawing.Color.White;
+            this.PrivCommentTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.PrivCommentTextBox.ButtonImage = null;
             this.PrivCommentTextBox.Location = new System.Drawing.Point(393, 144);
+            this.PrivCommentTextBox.MaxLength = 32767;
             this.PrivCommentTextBox.Multiline = true;
             this.PrivCommentTextBox.Name = "PrivCommentTextBox";
             this.PrivCommentTextBox.ReadOnly = true;
+            this.PrivCommentTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.PrivCommentTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.PrivCommentTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.PrivCommentTextBox.Size = new System.Drawing.Size(184, 107);
             this.PrivCommentTextBox.TabIndex = 27;
+            this.PrivCommentTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label14
             // 
@@ -372,12 +444,22 @@ namespace Janohl.ST2Funbeat
             // 
             // CommentTextBox
             // 
+            this.CommentTextBox.AcceptsReturn = false;
+            this.CommentTextBox.AcceptsTab = false;
+            this.CommentTextBox.BackColor = System.Drawing.Color.White;
+            this.CommentTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.CommentTextBox.ButtonImage = null;
             this.CommentTextBox.Location = new System.Drawing.Point(207, 144);
+            this.CommentTextBox.MaxLength = 32767;
             this.CommentTextBox.Multiline = true;
             this.CommentTextBox.Name = "CommentTextBox";
             this.CommentTextBox.ReadOnly = true;
+            this.CommentTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.CommentTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.CommentTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CommentTextBox.Size = new System.Drawing.Size(178, 107);
             this.CommentTextBox.TabIndex = 25;
+            this.CommentTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label13
             // 
@@ -390,11 +472,22 @@ namespace Janohl.ST2Funbeat
             // 
             // SetsTextBox
             // 
+            this.SetsTextBox.AcceptsReturn = false;
+            this.SetsTextBox.AcceptsTab = false;
+            this.SetsTextBox.BackColor = System.Drawing.Color.White;
+            this.SetsTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.SetsTextBox.ButtonImage = null;
             this.SetsTextBox.Location = new System.Drawing.Point(285, 96);
+            this.SetsTextBox.MaxLength = 32767;
+            this.SetsTextBox.Multiline = false;
             this.SetsTextBox.Name = "SetsTextBox";
             this.SetsTextBox.ReadOnly = true;
+            this.SetsTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.SetsTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.SetsTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.SetsTextBox.Size = new System.Drawing.Size(100, 20);
             this.SetsTextBox.TabIndex = 23;
+            this.SetsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label12
             // 
@@ -407,11 +500,22 @@ namespace Janohl.ST2Funbeat
             // 
             // RepetitionsTextBox
             // 
+            this.RepetitionsTextBox.AcceptsReturn = false;
+            this.RepetitionsTextBox.AcceptsTab = false;
+            this.RepetitionsTextBox.BackColor = System.Drawing.Color.White;
+            this.RepetitionsTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.RepetitionsTextBox.ButtonImage = null;
             this.RepetitionsTextBox.Location = new System.Drawing.Point(285, 70);
+            this.RepetitionsTextBox.MaxLength = 32767;
+            this.RepetitionsTextBox.Multiline = false;
             this.RepetitionsTextBox.Name = "RepetitionsTextBox";
             this.RepetitionsTextBox.ReadOnly = true;
+            this.RepetitionsTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.RepetitionsTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.RepetitionsTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RepetitionsTextBox.Size = new System.Drawing.Size(100, 20);
             this.RepetitionsTextBox.TabIndex = 21;
+            this.RepetitionsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label11
             // 
@@ -424,11 +528,22 @@ namespace Janohl.ST2Funbeat
             // 
             // RPEExportTextBox
             // 
+            this.RPEExportTextBox.AcceptsReturn = false;
+            this.RPEExportTextBox.AcceptsTab = false;
+            this.RPEExportTextBox.BackColor = System.Drawing.Color.White;
+            this.RPEExportTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.RPEExportTextBox.ButtonImage = null;
             this.RPEExportTextBox.Location = new System.Drawing.Point(285, 44);
+            this.RPEExportTextBox.MaxLength = 32767;
+            this.RPEExportTextBox.Multiline = false;
             this.RPEExportTextBox.Name = "RPEExportTextBox";
             this.RPEExportTextBox.ReadOnly = true;
+            this.RPEExportTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.RPEExportTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.RPEExportTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.RPEExportTextBox.Size = new System.Drawing.Size(100, 20);
             this.RPEExportTextBox.TabIndex = 19;
+            this.RPEExportTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label10
             // 
@@ -441,11 +556,22 @@ namespace Janohl.ST2Funbeat
             // 
             // TETextBox
             // 
+            this.TETextBox.AcceptsReturn = false;
+            this.TETextBox.AcceptsTab = false;
+            this.TETextBox.BackColor = System.Drawing.Color.White;
+            this.TETextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.TETextBox.ButtonImage = null;
             this.TETextBox.Location = new System.Drawing.Point(285, 18);
+            this.TETextBox.MaxLength = 32767;
+            this.TETextBox.Multiline = false;
             this.TETextBox.Name = "TETextBox";
             this.TETextBox.ReadOnly = true;
+            this.TETextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.TETextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.TETextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TETextBox.Size = new System.Drawing.Size(100, 20);
             this.TETextBox.TabIndex = 17;
+            this.TETextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label9
             // 
@@ -458,11 +584,22 @@ namespace Janohl.ST2Funbeat
             // 
             // CadenceTextBox
             // 
+            this.CadenceTextBox.AcceptsReturn = false;
+            this.CadenceTextBox.AcceptsTab = false;
+            this.CadenceTextBox.BackColor = System.Drawing.Color.White;
+            this.CadenceTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.CadenceTextBox.ButtonImage = null;
             this.CadenceTextBox.Location = new System.Drawing.Point(91, 200);
+            this.CadenceTextBox.MaxLength = 32767;
+            this.CadenceTextBox.Multiline = false;
             this.CadenceTextBox.Name = "CadenceTextBox";
             this.CadenceTextBox.ReadOnly = true;
+            this.CadenceTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.CadenceTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.CadenceTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CadenceTextBox.Size = new System.Drawing.Size(100, 20);
             this.CadenceTextBox.TabIndex = 15;
+            this.CadenceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label8
             // 
@@ -475,11 +612,22 @@ namespace Janohl.ST2Funbeat
             // 
             // CaloriesTextBox
             // 
+            this.CaloriesTextBox.AcceptsReturn = false;
+            this.CaloriesTextBox.AcceptsTab = false;
+            this.CaloriesTextBox.BackColor = System.Drawing.Color.White;
+            this.CaloriesTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.CaloriesTextBox.ButtonImage = null;
             this.CaloriesTextBox.Location = new System.Drawing.Point(91, 174);
+            this.CaloriesTextBox.MaxLength = 32767;
+            this.CaloriesTextBox.Multiline = false;
             this.CaloriesTextBox.Name = "CaloriesTextBox";
             this.CaloriesTextBox.ReadOnly = true;
+            this.CaloriesTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.CaloriesTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.CaloriesTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.CaloriesTextBox.Size = new System.Drawing.Size(100, 20);
             this.CaloriesTextBox.TabIndex = 13;
+            this.CaloriesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label7
             // 
@@ -492,11 +640,22 @@ namespace Janohl.ST2Funbeat
             // 
             // HRMaxTextBox
             // 
+            this.HRMaxTextBox.AcceptsReturn = false;
+            this.HRMaxTextBox.AcceptsTab = false;
+            this.HRMaxTextBox.BackColor = System.Drawing.Color.White;
+            this.HRMaxTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.HRMaxTextBox.ButtonImage = null;
             this.HRMaxTextBox.Location = new System.Drawing.Point(91, 148);
+            this.HRMaxTextBox.MaxLength = 32767;
+            this.HRMaxTextBox.Multiline = false;
             this.HRMaxTextBox.Name = "HRMaxTextBox";
             this.HRMaxTextBox.ReadOnly = true;
+            this.HRMaxTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.HRMaxTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.HRMaxTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.HRMaxTextBox.Size = new System.Drawing.Size(100, 20);
             this.HRMaxTextBox.TabIndex = 11;
+            this.HRMaxTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label6
             // 
@@ -509,11 +668,22 @@ namespace Janohl.ST2Funbeat
             // 
             // HRAvgTextBox
             // 
+            this.HRAvgTextBox.AcceptsReturn = false;
+            this.HRAvgTextBox.AcceptsTab = false;
+            this.HRAvgTextBox.BackColor = System.Drawing.Color.White;
+            this.HRAvgTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.HRAvgTextBox.ButtonImage = null;
             this.HRAvgTextBox.Location = new System.Drawing.Point(91, 122);
+            this.HRAvgTextBox.MaxLength = 32767;
+            this.HRAvgTextBox.Multiline = false;
             this.HRAvgTextBox.Name = "HRAvgTextBox";
             this.HRAvgTextBox.ReadOnly = true;
+            this.HRAvgTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.HRAvgTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.HRAvgTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.HRAvgTextBox.Size = new System.Drawing.Size(100, 20);
             this.HRAvgTextBox.TabIndex = 9;
+            this.HRAvgTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label5
             // 
@@ -526,11 +696,22 @@ namespace Janohl.ST2Funbeat
             // 
             // DistanceTextBox
             // 
+            this.DistanceTextBox.AcceptsReturn = false;
+            this.DistanceTextBox.AcceptsTab = false;
+            this.DistanceTextBox.BackColor = System.Drawing.Color.White;
+            this.DistanceTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.DistanceTextBox.ButtonImage = null;
             this.DistanceTextBox.Location = new System.Drawing.Point(91, 96);
+            this.DistanceTextBox.MaxLength = 32767;
+            this.DistanceTextBox.Multiline = false;
             this.DistanceTextBox.Name = "DistanceTextBox";
             this.DistanceTextBox.ReadOnly = true;
+            this.DistanceTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.DistanceTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.DistanceTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.DistanceTextBox.Size = new System.Drawing.Size(100, 20);
             this.DistanceTextBox.TabIndex = 5;
+            this.DistanceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label3
             // 
@@ -543,11 +724,22 @@ namespace Janohl.ST2Funbeat
             // 
             // DurationTextBox
             // 
+            this.DurationTextBox.AcceptsReturn = false;
+            this.DurationTextBox.AcceptsTab = false;
+            this.DurationTextBox.BackColor = System.Drawing.Color.White;
+            this.DurationTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.DurationTextBox.ButtonImage = null;
             this.DurationTextBox.Location = new System.Drawing.Point(91, 70);
+            this.DurationTextBox.MaxLength = 32767;
+            this.DurationTextBox.Multiline = false;
             this.DurationTextBox.Name = "DurationTextBox";
             this.DurationTextBox.ReadOnly = true;
+            this.DurationTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.DurationTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.DurationTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.DurationTextBox.Size = new System.Drawing.Size(100, 20);
             this.DurationTextBox.TabIndex = 3;
+            this.DurationTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label2
             // 
@@ -560,11 +752,22 @@ namespace Janohl.ST2Funbeat
             // 
             // DateTextBox
             // 
+            this.DateTextBox.AcceptsReturn = false;
+            this.DateTextBox.AcceptsTab = false;
+            this.DateTextBox.BackColor = System.Drawing.Color.White;
+            this.DateTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.DateTextBox.ButtonImage = null;
             this.DateTextBox.Location = new System.Drawing.Point(91, 18);
+            this.DateTextBox.MaxLength = 32767;
+            this.DateTextBox.Multiline = false;
             this.DateTextBox.Name = "DateTextBox";
             this.DateTextBox.ReadOnly = true;
+            this.DateTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.DateTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.DateTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.DateTextBox.Size = new System.Drawing.Size(100, 20);
             this.DateTextBox.TabIndex = 1;
+            this.DateTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // label1
             // 
@@ -595,6 +798,15 @@ namespace Janohl.ST2Funbeat
             this.ExportedCheckBox2.TabIndex = 0;
             this.ExportedCheckBox2.Text = "Exported to Funbeat";
             this.ExportedCheckBox2.UseVisualStyleBackColor = true;
+            // 
+            // RPELabel2
+            // 
+            this.RPELabel2.AutoSize = true;
+            this.RPELabel2.Location = new System.Drawing.Point(7, 36);
+            this.RPELabel2.Name = "RPELabel2";
+            this.RPELabel2.Size = new System.Drawing.Size(119, 13);
+            this.RPELabel2.TabIndex = 9;
+            this.RPELabel2.Text = "according to Borg scale";
             // 
             // ActivityDetailsControl
             // 
@@ -628,7 +840,6 @@ namespace Janohl.ST2Funbeat
         private System.Windows.Forms.ComboBox RPEComboBox;
         private System.Windows.Forms.Label TELabel;
         private System.Windows.Forms.GroupBox StatusGroupBox1;
-        private System.Windows.Forms.TextBox RPETextBox;
         private System.Windows.Forms.Label SetLabel;
         private System.Windows.Forms.Label RepLabel;
         private System.Windows.Forms.TabControl TabControl;
@@ -637,41 +848,43 @@ namespace Janohl.ST2Funbeat
         private System.Windows.Forms.GroupBox ExportGroupBox;
         private System.Windows.Forms.GroupBox StatusGroupBox2;
         private System.Windows.Forms.CheckBox ExportedCheckBox2;
-        private System.Windows.Forms.TextBox DateTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox DateTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox HRMaxTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox HRMaxTextBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox HRAvgTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox HRAvgTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox DistanceTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox DistanceTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox DurationTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox DurationTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox CaloriesTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox CaloriesTextBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox CadenceTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox CadenceTextBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox TETextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox TETextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox RPEExportTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox RPEExportTextBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox SetsTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox SetsTextBox;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox RepetitionsTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox RepetitionsTextBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox PrivCommentTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox PrivCommentTextBox;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox CommentTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox CommentTextBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox HRCheckBox;
         private System.Windows.Forms.CheckBox AltitudeCheckBox;
         private System.Windows.Forms.CheckBox DistanceCheckBox;
         private System.Windows.Forms.CheckBox GPSCheckBox;
-        private System.Windows.Forms.TextBox StartTimeTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox StartTimeTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TEInputTextBox;
-        private System.Windows.Forms.TextBox RepInputTextBox;
-        private System.Windows.Forms.TextBox SetsInputTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox TEInputTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox RepInputTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox SetsInputTextBox;
+        private System.Windows.Forms.Label RPELabel1;
+        private System.Windows.Forms.Label RPELabel2;
     }
 #endif
 }
