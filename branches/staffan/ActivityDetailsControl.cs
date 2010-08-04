@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace Janohl.ST2Funbeat
 {
     public partial class ActivityDetailsControl : UserControl
     {
+#if !ST_2_1
         private FitnessDataHandler fitnessDataHandler = null;
         private IActivity activity = null;
         //private Collection<IActivity> InitialisedActivities=null;
@@ -227,5 +229,6 @@ namespace Janohl.ST2Funbeat
         {
             RefreshInfo();
         }
+#endif
     }
 }

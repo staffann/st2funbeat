@@ -4,7 +4,9 @@ using System.Text;
 using ZoneFiveSoftware.Common.Data;
 using ZoneFiveSoftware.Common.Data.Fitness;
 using ZoneFiveSoftware.Common.Data.GPS;
+#if !ST_2_1
 using ZoneFiveSoftware.Common.Data.Fitness.CustomData;
+#endif
 using Janohl.ST2Funbeat.Funbeat;
 
 namespace Janohl.ST2Funbeat
@@ -19,17 +21,21 @@ namespace Janohl.ST2Funbeat
         private Guid RepetitionsGuid = new Guid("684AC20E-F90A-4410-9413-93DF8340872E");
         private Guid SetsGuid = new Guid("86D40A63-E56E-421B-9D13-EE6A372DED4B");
 
+#if !ST_2_1
         ICustomDataFieldDefinition RPEField = null;
         ICustomDataFieldDefinition FunbeatExportedField = null;
         ICustomDataFieldDefinition TEField = null;
         ICustomDataFieldDefinition RepetitionsField = null;
         ICustomDataFieldDefinition SetsField = null;
-
+#endif
         public FitnessDataHandler(ILogbook Logbook, Guid PluginGuid)
         {
+#if !ST_2_1
             CheckCustomDataFields(Logbook, PluginGuid);
+#endif
         }
 
+#if !ST_2_1
         public void CheckCustomDataFields(ILogbook Logbook, Guid PluginGuid)
         {
             // Check for custom data fields in the logbook. If they aren't there, create them!
@@ -145,7 +151,7 @@ namespace Janohl.ST2Funbeat
                     activity.SetCustomDataValue(SetsField, (double?)Sets);
             }
         }
-
+#endif
         public void GetExportData(IActivity activity,
                                   out DateTime startDate,
                                   out bool hasStartTime,
@@ -168,11 +174,18 @@ namespace Janohl.ST2Funbeat
 
                 int? RPECustFieldData, RepetitionsCustFieldData, SetsCustFieldData;
                 double? TECustFieldData;
+#if !ST_2_1
                 GetCustomFieldsData(activity,
                                     out RPECustFieldData,
                                     out TECustFieldData,
                                     out RepetitionsCustFieldData,
                                     out SetsCustFieldData);
+#else
+                RPECustFieldData = null;
+                TECustFieldData = null;
+                RepetitionsCustFieldData = null;
+                SetsCustFieldData = null;
+#endif
 
                 // Get pulse data. Works with and without a HR data track.
                 ActivityInfoCache actInfoCache = new ActivityInfoCache();

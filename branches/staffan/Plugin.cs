@@ -124,10 +124,14 @@ namespace Janohl.ST2Funbeat
                 if (application.Logbook.FileLocation != logBookLocation)
                 {
                     logBookLocation = application.Logbook.FileLocation;
-                    if(dataHandler == null)
+                    if (dataHandler == null)
                         dataHandler = new FitnessDataHandler(application.Logbook, PluginId);
                     else
+                    {
+#if !ST_2_1
                         dataHandler.CheckCustomDataFields(application.Logbook, PluginId);
+#endif
+                    }
                 }
             }
         }

@@ -1,5 +1,7 @@
-﻿namespace Janohl.ST2Funbeat
+﻿
+namespace Janohl.ST2Funbeat
 {
+#if !ST_2_1
     partial class ActivityDetailsControl
     {
         /// <summary> 
@@ -109,7 +111,7 @@
             this.InputGroupBox.Controls.Add(this.RPEComboBox);
             this.InputGroupBox.Location = new System.Drawing.Point(3, 77);
             this.InputGroupBox.Name = "InputGroupBox";
-            this.InputGroupBox.Size = new System.Drawing.Size(568, 167);
+            this.InputGroupBox.Size = new System.Drawing.Size(583, 167);
             this.InputGroupBox.TabIndex = 2;
             this.InputGroupBox.TabStop = false;
             this.InputGroupBox.Text = "User Input - for info used by Funbeat that otherwise isn\'t in ST";
@@ -205,13 +207,14 @@
             // 
             // StatusGroupBox1
             // 
+            this.StatusGroupBox1.BackColor = System.Drawing.Color.Transparent;
             this.StatusGroupBox1.Controls.Add(this.ExportedCheckBox1);
             this.StatusGroupBox1.Location = new System.Drawing.Point(3, 6);
             this.StatusGroupBox1.Name = "StatusGroupBox1";
-            this.StatusGroupBox1.Size = new System.Drawing.Size(568, 65);
+            this.StatusGroupBox1.Size = new System.Drawing.Size(583, 65);
             this.StatusGroupBox1.TabIndex = 6;
             this.StatusGroupBox1.TabStop = false;
-            this.StatusGroupBox1.Text = "Status";
+            this.StatusGroupBox1.Text = "Export Status";
             // 
             // TabControl
             // 
@@ -580,7 +583,7 @@
             this.StatusGroupBox2.Size = new System.Drawing.Size(583, 65);
             this.StatusGroupBox2.TabIndex = 7;
             this.StatusGroupBox2.TabStop = false;
-            this.StatusGroupBox2.Text = "Status";
+            this.StatusGroupBox2.Text = "Export Status";
             // 
             // ExportedCheckBox2
             // 
@@ -670,4 +673,5 @@
         private System.Windows.Forms.TextBox RepInputTextBox;
         private System.Windows.Forms.TextBox SetsInputTextBox;
     }
+#endif
 }
