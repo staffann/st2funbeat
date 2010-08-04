@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using ZoneFiveSoftware.Common.Data.Fitness;
 
 namespace Janohl.ST2Funbeat
 {
+#if !ST_2_1
     public class ActivityDetailsPage:IExtendActivityDetailPages
     {
         #region IExtendActivityDetailPages Members
@@ -143,5 +145,5 @@ namespace Janohl.ST2Funbeat
             }
         }
     }
-
+#endif
 }
