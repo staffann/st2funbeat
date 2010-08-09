@@ -291,7 +291,25 @@ namespace Janohl.ST2Funbeat
         public bool boGetExported(IActivity activity)
         {
             if (activity != null)
-                return (activity.Metadata.Source.IndexOf("Funbeated") >= 0);
+            {
+                int? ExportedCustData = (int?)(activity.GetCustomDataValue(TEField) as double?);
+
+                // Upgrade from old to new method of marking an activity to be exported
+                if (ExportedCustData == null)
+                {
+                    // Check if metadata string exists and update the cust data field
+                    bool boExported = (activity.Metadata.Source.IndexOf("Funbeated") >= 0);
+                    if (boExported)
+                        activity.SetCustomDataValue(FunbeatExportedField, (double?)1.0);
+                    else
+                        activity.SetCustomDataValue(FunbeatExportedField, (double?)0.0);
+                    return boExported;
+                }
+                else
+                {
+                    return (ExportedCustData != 0);
+                }
+            }
             else
                 return false;
         }
@@ -301,10 +319,15 @@ namespace Janohl.ST2Funbeat
             if (activity != null)
             {
                 if (boExported)
+                {
+                    // Use both old method (metadata string) and new method (cust data field)
                     activity.Metadata.Source += "Funbeated";
+                    activity.SetCustomDataValue(FunbeatExportedField, (double?)1.0);
+                }
                 else
                 {
-                    //TODO: Add code to remove the Funbeated string   
+                    //TODO: Add code to remove the Funbeated string
+                    activity.SetCustomDataValue(FunbeatExportedField, (double?)0.0);
                 }
             }
         }
