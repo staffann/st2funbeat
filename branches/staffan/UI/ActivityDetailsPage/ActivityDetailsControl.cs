@@ -176,11 +176,46 @@ namespace Janohl.ST2Funbeat
 
         public void ThemeChanged(ZoneFiveSoftware.Common.Visuals.ITheme visualTheme)
         {
+            List<ZoneFiveSoftware.Common.Visuals.TextBox> TextBoxes = new List<ZoneFiveSoftware.Common.Visuals.TextBox>();
+
             this.BackColor = visualTheme.Control;
+            this.InputTabPanel.ThemeChanged(visualTheme);
+            this.ExportPreviewPanel.ThemeChanged(visualTheme);
             foreach (TabPage t in this.TabControl.TabPages)
             {
                 t.BackColor = visualTheme.Control;
+
+                foreach (System.Windows.Forms.Control control in  t.Controls)
+                {
+                    TextBoxes.AddRange(FindTextBoxes(control));
+                }
             }
+            foreach (ZoneFiveSoftware.Common.Visuals.TextBox TB in TextBoxes)
+            {
+                TB.ThemeChanged(visualTheme);
+            }
+            // ThemeChanged combo box looks worse when following the colors of the theme
+            // since the frame and arrow remain white
+            //this.RPEComboBox.BackColor = visualTheme.Window;
+            //this.RPEComboBox.ForeColor = visualTheme.ControlText;
+        }
+
+        private List<ZoneFiveSoftware.Common.Visuals.TextBox> FindTextBoxes(Control control)
+        {
+            List<ZoneFiveSoftware.Common.Visuals.TextBox> TextBoxes = new List<ZoneFiveSoftware.Common.Visuals.TextBox>();
+
+            foreach (System.Windows.Forms.Control ctrl in control.Controls)
+            {
+                if (ctrl.GetType().Equals(typeof(ZoneFiveSoftware.Common.Visuals.TextBox)))
+                {
+                    TextBoxes.Add((ZoneFiveSoftware.Common.Visuals.TextBox)ctrl);
+                }
+                else if (ctrl.GetType().Equals(typeof(GroupBox)))
+                {
+                    TextBoxes.AddRange(FindTextBoxes(ctrl));
+                }
+            }
+            return (TextBoxes);
         }
 
         public void UICultureChanged(System.Globalization.CultureInfo culture)

@@ -134,3 +134,4 @@
     </WebReferenceUrl>
   </ItemGroup>
   <Import Project=".\Common-Files.csproj" />
+</Project>

@@ -48,6 +48,8 @@ namespace Janohl.ST2Funbeat
         {
             this.ExportedCheckBox1 = new System.Windows.Forms.CheckBox();
             this.InputGroupBox = new System.Windows.Forms.GroupBox();
+            this.RPELabel2 = new System.Windows.Forms.Label();
+            this.RPELabel1 = new System.Windows.Forms.Label();
             this.SetsInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.RepInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.TEInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
@@ -58,8 +60,11 @@ namespace Janohl.ST2Funbeat
             this.StatusGroupBox1 = new System.Windows.Forms.GroupBox();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.UserInputTabPage = new System.Windows.Forms.TabPage();
-            this.RPELabel1 = new System.Windows.Forms.Label();
+            this.InputTabPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
             this.ExportPreviewTabPage = new System.Windows.Forms.TabPage();
+            this.ExportPreviewPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
+            this.StatusGroupBox2 = new System.Windows.Forms.GroupBox();
+            this.ExportedCheckBox2 = new System.Windows.Forms.CheckBox();
             this.ExportGroupBox = new System.Windows.Forms.GroupBox();
             this.StartTimeTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -93,16 +98,15 @@ namespace Janohl.ST2Funbeat
             this.label2 = new System.Windows.Forms.Label();
             this.DateTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.StatusGroupBox2 = new System.Windows.Forms.GroupBox();
-            this.ExportedCheckBox2 = new System.Windows.Forms.CheckBox();
-            this.RPELabel2 = new System.Windows.Forms.Label();
             this.InputGroupBox.SuspendLayout();
             this.StatusGroupBox1.SuspendLayout();
             this.TabControl.SuspendLayout();
             this.UserInputTabPage.SuspendLayout();
+            this.InputTabPanel.SuspendLayout();
             this.ExportPreviewTabPage.SuspendLayout();
-            this.ExportGroupBox.SuspendLayout();
+            this.ExportPreviewPanel.SuspendLayout();
             this.StatusGroupBox2.SuspendLayout();
+            this.ExportGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ExportedCheckBox1
@@ -127,12 +131,30 @@ namespace Janohl.ST2Funbeat
             this.InputGroupBox.Controls.Add(this.RepLabel);
             this.InputGroupBox.Controls.Add(this.TELabel);
             this.InputGroupBox.Controls.Add(this.RPEComboBox);
-            this.InputGroupBox.Location = new System.Drawing.Point(3, 77);
+            this.InputGroupBox.Location = new System.Drawing.Point(3, 74);
             this.InputGroupBox.Name = "InputGroupBox";
             this.InputGroupBox.Size = new System.Drawing.Size(583, 167);
             this.InputGroupBox.TabIndex = 2;
             this.InputGroupBox.TabStop = false;
             this.InputGroupBox.Text = "User Input - for info used by Funbeat that otherwise isn\'t in ST";
+            // 
+            // RPELabel2
+            // 
+            this.RPELabel2.AutoSize = true;
+            this.RPELabel2.Location = new System.Drawing.Point(7, 36);
+            this.RPELabel2.Name = "RPELabel2";
+            this.RPELabel2.Size = new System.Drawing.Size(119, 13);
+            this.RPELabel2.TabIndex = 9;
+            this.RPELabel2.Text = "according to Borg scale";
+            // 
+            // RPELabel1
+            // 
+            this.RPELabel1.AutoSize = true;
+            this.RPELabel1.Location = new System.Drawing.Point(7, 23);
+            this.RPELabel1.Name = "RPELabel1";
+            this.RPELabel1.Size = new System.Drawing.Size(119, 13);
+            this.RPELabel1.TabIndex = 8;
+            this.RPELabel1.Text = "Funbeat Intensity (RPE)";
             // 
             // SetsInputTextBox
             // 
@@ -251,7 +273,7 @@ namespace Janohl.ST2Funbeat
             // 
             this.StatusGroupBox1.BackColor = System.Drawing.Color.Transparent;
             this.StatusGroupBox1.Controls.Add(this.ExportedCheckBox1);
-            this.StatusGroupBox1.Location = new System.Drawing.Point(3, 6);
+            this.StatusGroupBox1.Location = new System.Drawing.Point(3, 3);
             this.StatusGroupBox1.Name = "StatusGroupBox1";
             this.StatusGroupBox1.Size = new System.Drawing.Size(583, 65);
             this.StatusGroupBox1.TabIndex = 6;
@@ -262,7 +284,7 @@ namespace Janohl.ST2Funbeat
             // 
             this.TabControl.Controls.Add(this.UserInputTabPage);
             this.TabControl.Controls.Add(this.ExportPreviewTabPage);
-            this.TabControl.Location = new System.Drawing.Point(3, 3);
+            this.TabControl.Location = new System.Drawing.Point(11, 12);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
             this.TabControl.Size = new System.Drawing.Size(600, 366);
@@ -271,8 +293,7 @@ namespace Janohl.ST2Funbeat
             // UserInputTabPage
             // 
             this.UserInputTabPage.BackColor = System.Drawing.Color.Transparent;
-            this.UserInputTabPage.Controls.Add(this.StatusGroupBox1);
-            this.UserInputTabPage.Controls.Add(this.InputGroupBox);
+            this.UserInputTabPage.Controls.Add(this.InputTabPanel);
             this.UserInputTabPage.Location = new System.Drawing.Point(4, 22);
             this.UserInputTabPage.Name = "UserInputTabPage";
             this.UserInputTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -280,26 +301,71 @@ namespace Janohl.ST2Funbeat
             this.UserInputTabPage.TabIndex = 0;
             this.UserInputTabPage.Text = "User Input";
             // 
-            // RPELabel1
+            // InputTabPanel
             // 
-            this.RPELabel1.AutoSize = true;
-            this.RPELabel1.Location = new System.Drawing.Point(7, 23);
-            this.RPELabel1.Name = "RPELabel1";
-            this.RPELabel1.Size = new System.Drawing.Size(119, 13);
-            this.RPELabel1.TabIndex = 8;
-            this.RPELabel1.Text = "Funbeat Intensity (RPE)";
+            this.InputTabPanel.BackColor = System.Drawing.Color.Transparent;
+            this.InputTabPanel.BorderColor = System.Drawing.Color.Gray;
+            this.InputTabPanel.Controls.Add(this.StatusGroupBox1);
+            this.InputTabPanel.Controls.Add(this.InputGroupBox);
+            this.InputTabPanel.HeadingBackColor = System.Drawing.Color.LightBlue;
+            this.InputTabPanel.HeadingFont = null;
+            this.InputTabPanel.HeadingLeftMargin = 0;
+            this.InputTabPanel.HeadingText = null;
+            this.InputTabPanel.HeadingTextColor = System.Drawing.Color.Black;
+            this.InputTabPanel.HeadingTopMargin = 3;
+            this.InputTabPanel.Location = new System.Drawing.Point(0, 0);
+            this.InputTabPanel.Name = "InputTabPanel";
+            this.InputTabPanel.Size = new System.Drawing.Size(592, 340);
+            this.InputTabPanel.TabIndex = 1;
             // 
             // ExportPreviewTabPage
             // 
             this.ExportPreviewTabPage.BackColor = System.Drawing.Color.Transparent;
-            this.ExportPreviewTabPage.Controls.Add(this.ExportGroupBox);
-            this.ExportPreviewTabPage.Controls.Add(this.StatusGroupBox2);
+            this.ExportPreviewTabPage.Controls.Add(this.ExportPreviewPanel);
             this.ExportPreviewTabPage.Location = new System.Drawing.Point(4, 22);
             this.ExportPreviewTabPage.Name = "ExportPreviewTabPage";
             this.ExportPreviewTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.ExportPreviewTabPage.Size = new System.Drawing.Size(592, 340);
             this.ExportPreviewTabPage.TabIndex = 1;
             this.ExportPreviewTabPage.Text = "Export Preview";
+            // 
+            // ExportPreviewPanel
+            // 
+            this.ExportPreviewPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ExportPreviewPanel.BorderColor = System.Drawing.Color.Gray;
+            this.ExportPreviewPanel.Controls.Add(this.StatusGroupBox2);
+            this.ExportPreviewPanel.Controls.Add(this.ExportGroupBox);
+            this.ExportPreviewPanel.HeadingBackColor = System.Drawing.Color.LightBlue;
+            this.ExportPreviewPanel.HeadingFont = null;
+            this.ExportPreviewPanel.HeadingLeftMargin = 0;
+            this.ExportPreviewPanel.HeadingText = null;
+            this.ExportPreviewPanel.HeadingTextColor = System.Drawing.Color.Black;
+            this.ExportPreviewPanel.HeadingTopMargin = 3;
+            this.ExportPreviewPanel.Location = new System.Drawing.Point(0, 0);
+            this.ExportPreviewPanel.Name = "ExportPreviewPanel";
+            this.ExportPreviewPanel.Size = new System.Drawing.Size(592, 340);
+            this.ExportPreviewPanel.TabIndex = 9;
+            // 
+            // StatusGroupBox2
+            // 
+            this.StatusGroupBox2.Controls.Add(this.ExportedCheckBox2);
+            this.StatusGroupBox2.Location = new System.Drawing.Point(3, 3);
+            this.StatusGroupBox2.Name = "StatusGroupBox2";
+            this.StatusGroupBox2.Size = new System.Drawing.Size(583, 65);
+            this.StatusGroupBox2.TabIndex = 7;
+            this.StatusGroupBox2.TabStop = false;
+            this.StatusGroupBox2.Text = "Export Status";
+            // 
+            // ExportedCheckBox2
+            // 
+            this.ExportedCheckBox2.AutoSize = true;
+            this.ExportedCheckBox2.Enabled = false;
+            this.ExportedCheckBox2.Location = new System.Drawing.Point(10, 19);
+            this.ExportedCheckBox2.Name = "ExportedCheckBox2";
+            this.ExportedCheckBox2.Size = new System.Drawing.Size(122, 17);
+            this.ExportedCheckBox2.TabIndex = 0;
+            this.ExportedCheckBox2.Text = "Exported to Funbeat";
+            this.ExportedCheckBox2.UseVisualStyleBackColor = true;
             // 
             // ExportGroupBox
             // 
@@ -335,9 +401,9 @@ namespace Janohl.ST2Funbeat
             this.ExportGroupBox.Controls.Add(this.label2);
             this.ExportGroupBox.Controls.Add(this.DateTextBox);
             this.ExportGroupBox.Controls.Add(this.label1);
-            this.ExportGroupBox.Location = new System.Drawing.Point(3, 77);
+            this.ExportGroupBox.Location = new System.Drawing.Point(3, 74);
             this.ExportGroupBox.Name = "ExportGroupBox";
-            this.ExportGroupBox.Size = new System.Drawing.Size(583, 257);
+            this.ExportGroupBox.Size = new System.Drawing.Size(583, 258);
             this.ExportGroupBox.TabIndex = 8;
             this.ExportGroupBox.TabStop = false;
             this.ExportGroupBox.Text = "Export Info Preview";
@@ -778,36 +844,6 @@ namespace Janohl.ST2Funbeat
             this.label1.TabIndex = 0;
             this.label1.Text = "Date";
             // 
-            // StatusGroupBox2
-            // 
-            this.StatusGroupBox2.Controls.Add(this.ExportedCheckBox2);
-            this.StatusGroupBox2.Location = new System.Drawing.Point(3, 6);
-            this.StatusGroupBox2.Name = "StatusGroupBox2";
-            this.StatusGroupBox2.Size = new System.Drawing.Size(583, 65);
-            this.StatusGroupBox2.TabIndex = 7;
-            this.StatusGroupBox2.TabStop = false;
-            this.StatusGroupBox2.Text = "Export Status";
-            // 
-            // ExportedCheckBox2
-            // 
-            this.ExportedCheckBox2.AutoSize = true;
-            this.ExportedCheckBox2.Enabled = false;
-            this.ExportedCheckBox2.Location = new System.Drawing.Point(10, 19);
-            this.ExportedCheckBox2.Name = "ExportedCheckBox2";
-            this.ExportedCheckBox2.Size = new System.Drawing.Size(122, 17);
-            this.ExportedCheckBox2.TabIndex = 0;
-            this.ExportedCheckBox2.Text = "Exported to Funbeat";
-            this.ExportedCheckBox2.UseVisualStyleBackColor = true;
-            // 
-            // RPELabel2
-            // 
-            this.RPELabel2.AutoSize = true;
-            this.RPELabel2.Location = new System.Drawing.Point(7, 36);
-            this.RPELabel2.Name = "RPELabel2";
-            this.RPELabel2.Size = new System.Drawing.Size(119, 13);
-            this.RPELabel2.TabIndex = 9;
-            this.RPELabel2.Text = "according to Borg scale";
-            // 
             // ActivityDetailsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -817,18 +853,20 @@ namespace Janohl.ST2Funbeat
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.TabControl);
             this.Name = "ActivityDetailsControl";
-            this.Size = new System.Drawing.Size(606, 372);
+            this.Size = new System.Drawing.Size(614, 471);
             this.InputGroupBox.ResumeLayout(false);
             this.InputGroupBox.PerformLayout();
             this.StatusGroupBox1.ResumeLayout(false);
             this.StatusGroupBox1.PerformLayout();
             this.TabControl.ResumeLayout(false);
             this.UserInputTabPage.ResumeLayout(false);
+            this.InputTabPanel.ResumeLayout(false);
             this.ExportPreviewTabPage.ResumeLayout(false);
-            this.ExportGroupBox.ResumeLayout(false);
-            this.ExportGroupBox.PerformLayout();
+            this.ExportPreviewPanel.ResumeLayout(false);
             this.StatusGroupBox2.ResumeLayout(false);
             this.StatusGroupBox2.PerformLayout();
+            this.ExportGroupBox.ResumeLayout(false);
+            this.ExportGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -885,6 +923,8 @@ namespace Janohl.ST2Funbeat
         private ZoneFiveSoftware.Common.Visuals.TextBox SetsInputTextBox;
         private System.Windows.Forms.Label RPELabel1;
         private System.Windows.Forms.Label RPELabel2;
+        private ZoneFiveSoftware.Common.Visuals.Panel InputTabPanel;
+        private ZoneFiveSoftware.Common.Visuals.Panel ExportPreviewPanel;
     }
 #endif
 }
