@@ -65,12 +65,16 @@ namespace Janohl.ST2Funbeat
             this.Activity = activity;
             fitnessDataHandler = Plugin.dataHandler;
             RefreshInfo();
+            this.PanelChoiceActionBanner.Text = "User Input";
         }
 
         public void RefreshInfo()
         {
             bool boExported;
 
+            // Check the range of RPE and TE
+            CheckAndCorrectRPEAndTE();
+            
             // Update status info
             boExported = fitnessDataHandler.boGetExported(activity);
 
@@ -178,18 +182,20 @@ namespace Janohl.ST2Funbeat
         {
             List<ZoneFiveSoftware.Common.Visuals.TextBox> TextBoxes = new List<ZoneFiveSoftware.Common.Visuals.TextBox>();
 
+            this.PanelChoiceActionBanner.ThemeChanged(visualTheme);
             this.BackColor = visualTheme.Control;
-            this.InputTabPanel.ThemeChanged(visualTheme);
+            this.InputsPanel.ThemeChanged(visualTheme);
             this.ExportPreviewPanel.ThemeChanged(visualTheme);
-            foreach (TabPage t in this.TabControl.TabPages)
-            {
-                t.BackColor = visualTheme.Control;
 
-                foreach (System.Windows.Forms.Control control in  t.Controls)
-                {
-                    TextBoxes.AddRange(FindTextBoxes(control));
-                }
+            foreach (System.Windows.Forms.Control control in InputsPanel.Controls)
+            {
+                TextBoxes.AddRange(FindTextBoxes(control));
             }
+            foreach (System.Windows.Forms.Control control in ExportPreviewPanel.Controls)
+            {
+                TextBoxes.AddRange(FindTextBoxes(control));
+            }
+            
             foreach (ZoneFiveSoftware.Common.Visuals.TextBox TB in TextBoxes)
             {
                 TB.ThemeChanged(visualTheme);
@@ -293,6 +299,66 @@ namespace Janohl.ST2Funbeat
         {
             RefreshInfo();
         }
+
+        private void CheckAndCorrectRPEAndTE()
+        {
+            bool modifyCustData = false;
+
+            // Check valid range of data
+            int? RPE, Repetitions, Sets;
+            double? TE;
+            fitnessDataHandler.GetCustomFieldsData(activity,
+                                out RPE,
+                                out TE,
+                                out Repetitions,
+                                out Sets);
+
+            if (RPE != null)
+            {
+                if (RPE > 20 || RPE < 6)
+                {
+                    RPE = null;
+                    modifyCustData = true;
+                }
+            }
+            if (TE != null)
+            {
+                if (TE < 1 || TE > 5)
+                {
+                    TE = null;
+                    modifyCustData = true;
+                }
+            }
+
+            if (modifyCustData)
+            {
+                fitnessDataHandler.SetCustomFieldsData(activity, RPE, TE, Repetitions, Sets);
+            }
+        }
+
+        void PanelChoiceActionBanner_MenuClicked(object sender, System.EventArgs e)
+        {
+            PanelChoiceActionBanner.ContextMenuStrip.Width = 100;
+            PanelChoiceActionBanner.ContextMenuStrip.Show(PanelChoiceActionBanner.Parent.PointToScreen(new System.Drawing.Point(PanelChoiceActionBanner.Right - PanelChoiceActionBanner.ContextMenuStrip.Width - 2,
+                PanelChoiceActionBanner.Bottom + 1)));
+        }
+
+        private void inputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainSplitContainer.Panel1Collapsed = false;
+            MainSplitContainer.Panel2Collapsed = true;
+            this.PanelChoiceActionBanner.Text = "User Input";
+
+        }
+
+        private void exportPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainSplitContainer.Panel1Collapsed = true;
+            MainSplitContainer.Panel2Collapsed = false;
+            this.PanelChoiceActionBanner.Text = "Export Preview";
+        }
+
+
 
 #endif
     }
