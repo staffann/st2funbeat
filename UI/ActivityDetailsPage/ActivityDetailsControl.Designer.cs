@@ -46,23 +46,7 @@ namespace Janohl.ST2Funbeat
         /// </summary>
         private void InitializeComponent()
         {
-            this.ExportedCheckBox1 = new System.Windows.Forms.CheckBox();
-            this.InputGroupBox = new System.Windows.Forms.GroupBox();
-            this.RPELabel2 = new System.Windows.Forms.Label();
-            this.RPELabel1 = new System.Windows.Forms.Label();
-            this.SetsInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
-            this.RepInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
-            this.TEInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
-            this.SetLabel = new System.Windows.Forms.Label();
-            this.RepLabel = new System.Windows.Forms.Label();
-            this.TELabel = new System.Windows.Forms.Label();
-            this.RPEComboBox = new System.Windows.Forms.ComboBox();
-            this.StatusGroupBox1 = new System.Windows.Forms.GroupBox();
-            this.TabControl = new System.Windows.Forms.TabControl();
-            this.UserInputTabPage = new System.Windows.Forms.TabPage();
-            this.InputTabPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
-            this.ExportPreviewTabPage = new System.Windows.Forms.TabPage();
-            this.ExportPreviewPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
+            this.components = new System.ComponentModel.Container();
             this.StatusGroupBox2 = new System.Windows.Forms.GroupBox();
             this.ExportedCheckBox2 = new System.Windows.Forms.CheckBox();
             this.ExportGroupBox = new System.Windows.Forms.GroupBox();
@@ -98,258 +82,41 @@ namespace Janohl.ST2Funbeat
             this.label2 = new System.Windows.Forms.Label();
             this.DateTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.InputGroupBox.SuspendLayout();
-            this.StatusGroupBox1.SuspendLayout();
-            this.TabControl.SuspendLayout();
-            this.UserInputTabPage.SuspendLayout();
-            this.InputTabPanel.SuspendLayout();
-            this.ExportPreviewTabPage.SuspendLayout();
-            this.ExportPreviewPanel.SuspendLayout();
+            this.PanelChoiceActionBanner = new ZoneFiveSoftware.Common.Visuals.ActionBanner();
+            this.PanelChoiceMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.inputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.InputsPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
+            this.StatusGroupBox1 = new System.Windows.Forms.GroupBox();
+            this.ExportedCheckBox1 = new System.Windows.Forms.CheckBox();
+            this.InputGroupBox = new System.Windows.Forms.GroupBox();
+            this.RPELabel2 = new System.Windows.Forms.Label();
+            this.RPELabel1 = new System.Windows.Forms.Label();
+            this.SetsInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
+            this.RepInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
+            this.TEInputTextBox = new ZoneFiveSoftware.Common.Visuals.TextBox();
+            this.SetLabel = new System.Windows.Forms.Label();
+            this.RepLabel = new System.Windows.Forms.Label();
+            this.TELabel = new System.Windows.Forms.Label();
+            this.RPEComboBox = new System.Windows.Forms.ComboBox();
+            this.ExportPreviewPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
+            this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
             this.StatusGroupBox2.SuspendLayout();
             this.ExportGroupBox.SuspendLayout();
+            this.PanelChoiceMenuStrip.SuspendLayout();
+            this.InputsPanel.SuspendLayout();
+            this.StatusGroupBox1.SuspendLayout();
+            this.InputGroupBox.SuspendLayout();
+            this.ExportPreviewPanel.SuspendLayout();
+            this.MainSplitContainer.Panel1.SuspendLayout();
+            this.MainSplitContainer.Panel2.SuspendLayout();
+            this.MainSplitContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // ExportedCheckBox1
-            // 
-            this.ExportedCheckBox1.AutoSize = true;
-            this.ExportedCheckBox1.Enabled = false;
-            this.ExportedCheckBox1.Location = new System.Drawing.Point(10, 19);
-            this.ExportedCheckBox1.Name = "ExportedCheckBox1";
-            this.ExportedCheckBox1.Size = new System.Drawing.Size(122, 17);
-            this.ExportedCheckBox1.TabIndex = 0;
-            this.ExportedCheckBox1.Text = "Exported to Funbeat";
-            this.ExportedCheckBox1.UseVisualStyleBackColor = true;
-            // 
-            // InputGroupBox
-            // 
-            this.InputGroupBox.Controls.Add(this.RPELabel2);
-            this.InputGroupBox.Controls.Add(this.RPELabel1);
-            this.InputGroupBox.Controls.Add(this.SetsInputTextBox);
-            this.InputGroupBox.Controls.Add(this.RepInputTextBox);
-            this.InputGroupBox.Controls.Add(this.TEInputTextBox);
-            this.InputGroupBox.Controls.Add(this.SetLabel);
-            this.InputGroupBox.Controls.Add(this.RepLabel);
-            this.InputGroupBox.Controls.Add(this.TELabel);
-            this.InputGroupBox.Controls.Add(this.RPEComboBox);
-            this.InputGroupBox.Location = new System.Drawing.Point(3, 74);
-            this.InputGroupBox.Name = "InputGroupBox";
-            this.InputGroupBox.Size = new System.Drawing.Size(583, 167);
-            this.InputGroupBox.TabIndex = 2;
-            this.InputGroupBox.TabStop = false;
-            this.InputGroupBox.Text = "User Input - for info used by Funbeat that otherwise isn\'t in ST";
-            // 
-            // RPELabel2
-            // 
-            this.RPELabel2.AutoSize = true;
-            this.RPELabel2.Location = new System.Drawing.Point(7, 36);
-            this.RPELabel2.Name = "RPELabel2";
-            this.RPELabel2.Size = new System.Drawing.Size(119, 13);
-            this.RPELabel2.TabIndex = 9;
-            this.RPELabel2.Text = "according to Borg scale";
-            // 
-            // RPELabel1
-            // 
-            this.RPELabel1.AutoSize = true;
-            this.RPELabel1.Location = new System.Drawing.Point(7, 23);
-            this.RPELabel1.Name = "RPELabel1";
-            this.RPELabel1.Size = new System.Drawing.Size(119, 13);
-            this.RPELabel1.TabIndex = 8;
-            this.RPELabel1.Text = "Funbeat Intensity (RPE)";
-            // 
-            // SetsInputTextBox
-            // 
-            this.SetsInputTextBox.AcceptsReturn = false;
-            this.SetsInputTextBox.AcceptsTab = false;
-            this.SetsInputTextBox.BackColor = System.Drawing.Color.White;
-            this.SetsInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
-            this.SetsInputTextBox.ButtonImage = null;
-            this.SetsInputTextBox.Location = new System.Drawing.Point(190, 136);
-            this.SetsInputTextBox.MaxLength = 32767;
-            this.SetsInputTextBox.Multiline = false;
-            this.SetsInputTextBox.Name = "SetsInputTextBox";
-            this.SetsInputTextBox.ReadOnly = false;
-            this.SetsInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
-            this.SetsInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
-            this.SetsInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SetsInputTextBox.Size = new System.Drawing.Size(75, 20);
-            this.SetsInputTextBox.TabIndex = 12;
-            this.SetsInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.SetsInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
-            // 
-            // RepInputTextBox
-            // 
-            this.RepInputTextBox.AcceptsReturn = false;
-            this.RepInputTextBox.AcceptsTab = false;
-            this.RepInputTextBox.BackColor = System.Drawing.Color.White;
-            this.RepInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
-            this.RepInputTextBox.ButtonImage = null;
-            this.RepInputTextBox.Location = new System.Drawing.Point(190, 99);
-            this.RepInputTextBox.MaxLength = 32767;
-            this.RepInputTextBox.Multiline = false;
-            this.RepInputTextBox.Name = "RepInputTextBox";
-            this.RepInputTextBox.ReadOnly = false;
-            this.RepInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
-            this.RepInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
-            this.RepInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.RepInputTextBox.Size = new System.Drawing.Size(75, 20);
-            this.RepInputTextBox.TabIndex = 11;
-            this.RepInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.RepInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
-            // 
-            // TEInputTextBox
-            // 
-            this.TEInputTextBox.AcceptsReturn = false;
-            this.TEInputTextBox.AcceptsTab = false;
-            this.TEInputTextBox.BackColor = System.Drawing.Color.White;
-            this.TEInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
-            this.TEInputTextBox.ButtonImage = null;
-            this.TEInputTextBox.Location = new System.Drawing.Point(190, 62);
-            this.TEInputTextBox.MaxLength = 32767;
-            this.TEInputTextBox.Multiline = false;
-            this.TEInputTextBox.Name = "TEInputTextBox";
-            this.TEInputTextBox.ReadOnly = false;
-            this.TEInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
-            this.TEInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
-            this.TEInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TEInputTextBox.Size = new System.Drawing.Size(75, 20);
-            this.TEInputTextBox.TabIndex = 7;
-            this.TEInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.TEInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
-            // 
-            // SetLabel
-            // 
-            this.SetLabel.AutoSize = true;
-            this.SetLabel.Location = new System.Drawing.Point(7, 139);
-            this.SetLabel.Name = "SetLabel";
-            this.SetLabel.Size = new System.Drawing.Size(28, 13);
-            this.SetLabel.TabIndex = 10;
-            this.SetLabel.Text = "Sets";
-            // 
-            // RepLabel
-            // 
-            this.RepLabel.AutoSize = true;
-            this.RepLabel.Location = new System.Drawing.Point(7, 102);
-            this.RepLabel.Name = "RepLabel";
-            this.RepLabel.Size = new System.Drawing.Size(60, 13);
-            this.RepLabel.TabIndex = 9;
-            this.RepLabel.Text = "Repetitions";
-            // 
-            // TELabel
-            // 
-            this.TELabel.AutoSize = true;
-            this.TELabel.Location = new System.Drawing.Point(6, 64);
-            this.TELabel.Name = "TELabel";
-            this.TELabel.Size = new System.Drawing.Size(119, 13);
-            this.TELabel.TabIndex = 6;
-            this.TELabel.Text = "Training Effect (Suunto)";
-            // 
-            // RPEComboBox
-            // 
-            this.RPEComboBox.FormattingEnabled = true;
-            this.RPEComboBox.Items.AddRange(new object[] {
-            "",
-            "6 - No exertion at all",
-            "7 - Extremely light",
-            "8 - ",
-            "9 - Very light",
-            "10 -",
-            "11 - Light",
-            "12 - ",
-            "13 - Somewhat hard",
-            "14 - ",
-            "15 - Hard (heavy)",
-            "16 - ",
-            "17 - Very hard",
-            "18 -",
-            "19 - Extremely hard",
-            "20 - Maximal exertion"});
-            this.RPEComboBox.Location = new System.Drawing.Point(190, 23);
-            this.RPEComboBox.Name = "RPEComboBox";
-            this.RPEComboBox.Size = new System.Drawing.Size(175, 21);
-            this.RPEComboBox.TabIndex = 3;
-            this.RPEComboBox.Leave += new System.EventHandler(this.NewUserInput);
-            // 
-            // StatusGroupBox1
-            // 
-            this.StatusGroupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.StatusGroupBox1.Controls.Add(this.ExportedCheckBox1);
-            this.StatusGroupBox1.Location = new System.Drawing.Point(3, 3);
-            this.StatusGroupBox1.Name = "StatusGroupBox1";
-            this.StatusGroupBox1.Size = new System.Drawing.Size(583, 65);
-            this.StatusGroupBox1.TabIndex = 6;
-            this.StatusGroupBox1.TabStop = false;
-            this.StatusGroupBox1.Text = "Export Status";
-            // 
-            // TabControl
-            // 
-            this.TabControl.Controls.Add(this.UserInputTabPage);
-            this.TabControl.Controls.Add(this.ExportPreviewTabPage);
-            this.TabControl.Location = new System.Drawing.Point(11, 12);
-            this.TabControl.Name = "TabControl";
-            this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(600, 366);
-            this.TabControl.TabIndex = 8;
-            // 
-            // UserInputTabPage
-            // 
-            this.UserInputTabPage.BackColor = System.Drawing.Color.Transparent;
-            this.UserInputTabPage.Controls.Add(this.InputTabPanel);
-            this.UserInputTabPage.Location = new System.Drawing.Point(4, 22);
-            this.UserInputTabPage.Name = "UserInputTabPage";
-            this.UserInputTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.UserInputTabPage.Size = new System.Drawing.Size(592, 340);
-            this.UserInputTabPage.TabIndex = 0;
-            this.UserInputTabPage.Text = "User Input";
-            // 
-            // InputTabPanel
-            // 
-            this.InputTabPanel.BackColor = System.Drawing.Color.Transparent;
-            this.InputTabPanel.BorderColor = System.Drawing.Color.Gray;
-            this.InputTabPanel.Controls.Add(this.StatusGroupBox1);
-            this.InputTabPanel.Controls.Add(this.InputGroupBox);
-            this.InputTabPanel.HeadingBackColor = System.Drawing.Color.LightBlue;
-            this.InputTabPanel.HeadingFont = null;
-            this.InputTabPanel.HeadingLeftMargin = 0;
-            this.InputTabPanel.HeadingText = null;
-            this.InputTabPanel.HeadingTextColor = System.Drawing.Color.Black;
-            this.InputTabPanel.HeadingTopMargin = 3;
-            this.InputTabPanel.Location = new System.Drawing.Point(0, 0);
-            this.InputTabPanel.Name = "InputTabPanel";
-            this.InputTabPanel.Size = new System.Drawing.Size(592, 340);
-            this.InputTabPanel.TabIndex = 1;
-            // 
-            // ExportPreviewTabPage
-            // 
-            this.ExportPreviewTabPage.BackColor = System.Drawing.Color.Transparent;
-            this.ExportPreviewTabPage.Controls.Add(this.ExportPreviewPanel);
-            this.ExportPreviewTabPage.Location = new System.Drawing.Point(4, 22);
-            this.ExportPreviewTabPage.Name = "ExportPreviewTabPage";
-            this.ExportPreviewTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ExportPreviewTabPage.Size = new System.Drawing.Size(592, 340);
-            this.ExportPreviewTabPage.TabIndex = 1;
-            this.ExportPreviewTabPage.Text = "Export Preview";
-            // 
-            // ExportPreviewPanel
-            // 
-            this.ExportPreviewPanel.BackColor = System.Drawing.Color.Transparent;
-            this.ExportPreviewPanel.BorderColor = System.Drawing.Color.Gray;
-            this.ExportPreviewPanel.Controls.Add(this.StatusGroupBox2);
-            this.ExportPreviewPanel.Controls.Add(this.ExportGroupBox);
-            this.ExportPreviewPanel.HeadingBackColor = System.Drawing.Color.LightBlue;
-            this.ExportPreviewPanel.HeadingFont = null;
-            this.ExportPreviewPanel.HeadingLeftMargin = 0;
-            this.ExportPreviewPanel.HeadingText = null;
-            this.ExportPreviewPanel.HeadingTextColor = System.Drawing.Color.Black;
-            this.ExportPreviewPanel.HeadingTopMargin = 3;
-            this.ExportPreviewPanel.Location = new System.Drawing.Point(0, 0);
-            this.ExportPreviewPanel.Name = "ExportPreviewPanel";
-            this.ExportPreviewPanel.Size = new System.Drawing.Size(592, 340);
-            this.ExportPreviewPanel.TabIndex = 9;
             // 
             // StatusGroupBox2
             // 
             this.StatusGroupBox2.Controls.Add(this.ExportedCheckBox2);
-            this.StatusGroupBox2.Location = new System.Drawing.Point(3, 3);
+            this.StatusGroupBox2.Location = new System.Drawing.Point(6, 6);
             this.StatusGroupBox2.Name = "StatusGroupBox2";
             this.StatusGroupBox2.Size = new System.Drawing.Size(583, 65);
             this.StatusGroupBox2.TabIndex = 7;
@@ -401,7 +168,7 @@ namespace Janohl.ST2Funbeat
             this.ExportGroupBox.Controls.Add(this.label2);
             this.ExportGroupBox.Controls.Add(this.DateTextBox);
             this.ExportGroupBox.Controls.Add(this.label1);
-            this.ExportGroupBox.Location = new System.Drawing.Point(3, 74);
+            this.ExportGroupBox.Location = new System.Drawing.Point(6, 77);
             this.ExportGroupBox.Name = "ExportGroupBox";
             this.ExportGroupBox.Size = new System.Drawing.Size(583, 258);
             this.ExportGroupBox.TabIndex = 8;
@@ -844,45 +611,297 @@ namespace Janohl.ST2Funbeat
             this.label1.TabIndex = 0;
             this.label1.Text = "Date";
             // 
+            // PanelChoiceActionBanner
+            // 
+            this.PanelChoiceActionBanner.BackColor = System.Drawing.Color.Transparent;
+            this.PanelChoiceActionBanner.ContextMenuStrip = this.PanelChoiceMenuStrip;
+            this.PanelChoiceActionBanner.HasMenuButton = true;
+            this.PanelChoiceActionBanner.Location = new System.Drawing.Point(0, 0);
+            this.PanelChoiceActionBanner.Name = "PanelChoiceActionBanner";
+            this.PanelChoiceActionBanner.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.PanelChoiceActionBanner.Size = new System.Drawing.Size(604, 20);
+            this.PanelChoiceActionBanner.Style = ZoneFiveSoftware.Common.Visuals.ActionBanner.BannerStyle.Header2;
+            this.PanelChoiceActionBanner.TabIndex = 7;
+            this.PanelChoiceActionBanner.UseStyleFont = true;
+            this.PanelChoiceActionBanner.MenuClicked += new System.EventHandler(this.PanelChoiceActionBanner_MenuClicked);
+            // 
+            // PanelChoiceMenuStrip
+            // 
+            this.PanelChoiceMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.inputToolStripMenuItem,
+            this.exportPreviewToolStripMenuItem});
+            this.PanelChoiceMenuStrip.Name = "PanelChoiceMenuStrip";
+            this.PanelChoiceMenuStrip.Size = new System.Drawing.Size(152, 48);
+            // 
+            // inputToolStripMenuItem
+            // 
+            this.inputToolStripMenuItem.Name = "inputToolStripMenuItem";
+            this.inputToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.inputToolStripMenuItem.Text = "Input";
+            this.inputToolStripMenuItem.Click += new System.EventHandler(this.inputToolStripMenuItem_Click);
+            // 
+            // exportPreviewToolStripMenuItem
+            // 
+            this.exportPreviewToolStripMenuItem.Name = "exportPreviewToolStripMenuItem";
+            this.exportPreviewToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportPreviewToolStripMenuItem.Text = "Export Preview";
+            this.exportPreviewToolStripMenuItem.Click += new System.EventHandler(this.exportPreviewToolStripMenuItem_Click);
+            // 
+            // InputsPanel
+            // 
+            this.InputsPanel.AutoSize = true;
+            this.InputsPanel.BackColor = System.Drawing.Color.Transparent;
+            this.InputsPanel.BorderColor = System.Drawing.Color.Gray;
+            this.InputsPanel.Controls.Add(this.StatusGroupBox1);
+            this.InputsPanel.Controls.Add(this.InputGroupBox);
+            this.InputsPanel.HeadingBackColor = System.Drawing.Color.Transparent;
+            this.InputsPanel.HeadingFont = null;
+            this.InputsPanel.HeadingLeftMargin = 0;
+            this.InputsPanel.HeadingText = null;
+            this.InputsPanel.HeadingTextColor = System.Drawing.Color.Black;
+            this.InputsPanel.HeadingTopMargin = 3;
+            this.InputsPanel.Location = new System.Drawing.Point(0, 0);
+            this.InputsPanel.Name = "InputsPanel";
+            this.InputsPanel.Size = new System.Drawing.Size(604, 350);
+            this.InputsPanel.TabIndex = 9;
+            // 
+            // StatusGroupBox1
+            // 
+            this.StatusGroupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.StatusGroupBox1.Controls.Add(this.ExportedCheckBox1);
+            this.StatusGroupBox1.Location = new System.Drawing.Point(6, 6);
+            this.StatusGroupBox1.Name = "StatusGroupBox1";
+            this.StatusGroupBox1.Size = new System.Drawing.Size(583, 65);
+            this.StatusGroupBox1.TabIndex = 6;
+            this.StatusGroupBox1.TabStop = false;
+            this.StatusGroupBox1.Text = "Export Status";
+            // 
+            // ExportedCheckBox1
+            // 
+            this.ExportedCheckBox1.AutoSize = true;
+            this.ExportedCheckBox1.Enabled = false;
+            this.ExportedCheckBox1.Location = new System.Drawing.Point(10, 19);
+            this.ExportedCheckBox1.Name = "ExportedCheckBox1";
+            this.ExportedCheckBox1.Size = new System.Drawing.Size(122, 17);
+            this.ExportedCheckBox1.TabIndex = 0;
+            this.ExportedCheckBox1.Text = "Exported to Funbeat";
+            this.ExportedCheckBox1.UseVisualStyleBackColor = true;
+            // 
+            // InputGroupBox
+            // 
+            this.InputGroupBox.Controls.Add(this.RPELabel2);
+            this.InputGroupBox.Controls.Add(this.RPELabel1);
+            this.InputGroupBox.Controls.Add(this.SetsInputTextBox);
+            this.InputGroupBox.Controls.Add(this.RepInputTextBox);
+            this.InputGroupBox.Controls.Add(this.TEInputTextBox);
+            this.InputGroupBox.Controls.Add(this.SetLabel);
+            this.InputGroupBox.Controls.Add(this.RepLabel);
+            this.InputGroupBox.Controls.Add(this.TELabel);
+            this.InputGroupBox.Controls.Add(this.RPEComboBox);
+            this.InputGroupBox.Location = new System.Drawing.Point(6, 77);
+            this.InputGroupBox.Name = "InputGroupBox";
+            this.InputGroupBox.Size = new System.Drawing.Size(583, 167);
+            this.InputGroupBox.TabIndex = 2;
+            this.InputGroupBox.TabStop = false;
+            this.InputGroupBox.Text = "User Input - for info used by Funbeat that otherwise isn\'t in ST";
+            // 
+            // RPELabel2
+            // 
+            this.RPELabel2.AutoSize = true;
+            this.RPELabel2.Location = new System.Drawing.Point(7, 36);
+            this.RPELabel2.Name = "RPELabel2";
+            this.RPELabel2.Size = new System.Drawing.Size(119, 13);
+            this.RPELabel2.TabIndex = 9;
+            this.RPELabel2.Text = "according to Borg scale";
+            // 
+            // RPELabel1
+            // 
+            this.RPELabel1.AutoSize = true;
+            this.RPELabel1.Location = new System.Drawing.Point(7, 23);
+            this.RPELabel1.Name = "RPELabel1";
+            this.RPELabel1.Size = new System.Drawing.Size(119, 13);
+            this.RPELabel1.TabIndex = 8;
+            this.RPELabel1.Text = "Funbeat Intensity (RPE)";
+            // 
+            // SetsInputTextBox
+            // 
+            this.SetsInputTextBox.AcceptsReturn = false;
+            this.SetsInputTextBox.AcceptsTab = false;
+            this.SetsInputTextBox.BackColor = System.Drawing.Color.White;
+            this.SetsInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.SetsInputTextBox.ButtonImage = null;
+            this.SetsInputTextBox.Location = new System.Drawing.Point(190, 136);
+            this.SetsInputTextBox.MaxLength = 32767;
+            this.SetsInputTextBox.Multiline = false;
+            this.SetsInputTextBox.Name = "SetsInputTextBox";
+            this.SetsInputTextBox.ReadOnly = false;
+            this.SetsInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.SetsInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.SetsInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SetsInputTextBox.Size = new System.Drawing.Size(75, 20);
+            this.SetsInputTextBox.TabIndex = 12;
+            this.SetsInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.SetsInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
+            // 
+            // RepInputTextBox
+            // 
+            this.RepInputTextBox.AcceptsReturn = false;
+            this.RepInputTextBox.AcceptsTab = false;
+            this.RepInputTextBox.BackColor = System.Drawing.Color.White;
+            this.RepInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.RepInputTextBox.ButtonImage = null;
+            this.RepInputTextBox.Location = new System.Drawing.Point(190, 99);
+            this.RepInputTextBox.MaxLength = 32767;
+            this.RepInputTextBox.Multiline = false;
+            this.RepInputTextBox.Name = "RepInputTextBox";
+            this.RepInputTextBox.ReadOnly = false;
+            this.RepInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.RepInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.RepInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.RepInputTextBox.Size = new System.Drawing.Size(75, 20);
+            this.RepInputTextBox.TabIndex = 11;
+            this.RepInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.RepInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
+            // 
+            // TEInputTextBox
+            // 
+            this.TEInputTextBox.AcceptsReturn = false;
+            this.TEInputTextBox.AcceptsTab = false;
+            this.TEInputTextBox.BackColor = System.Drawing.Color.White;
+            this.TEInputTextBox.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(114)))), ((int)(((byte)(108)))));
+            this.TEInputTextBox.ButtonImage = null;
+            this.TEInputTextBox.Location = new System.Drawing.Point(190, 62);
+            this.TEInputTextBox.MaxLength = 32767;
+            this.TEInputTextBox.Multiline = false;
+            this.TEInputTextBox.Name = "TEInputTextBox";
+            this.TEInputTextBox.ReadOnly = false;
+            this.TEInputTextBox.ReadOnlyColor = System.Drawing.SystemColors.Control;
+            this.TEInputTextBox.ReadOnlyTextColor = System.Drawing.SystemColors.ControlLight;
+            this.TEInputTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TEInputTextBox.Size = new System.Drawing.Size(75, 20);
+            this.TEInputTextBox.TabIndex = 7;
+            this.TEInputTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.TEInputTextBox.Leave += new System.EventHandler(this.NewUserInput);
+            // 
+            // SetLabel
+            // 
+            this.SetLabel.AutoSize = true;
+            this.SetLabel.Location = new System.Drawing.Point(7, 139);
+            this.SetLabel.Name = "SetLabel";
+            this.SetLabel.Size = new System.Drawing.Size(28, 13);
+            this.SetLabel.TabIndex = 10;
+            this.SetLabel.Text = "Sets";
+            // 
+            // RepLabel
+            // 
+            this.RepLabel.AutoSize = true;
+            this.RepLabel.Location = new System.Drawing.Point(7, 102);
+            this.RepLabel.Name = "RepLabel";
+            this.RepLabel.Size = new System.Drawing.Size(60, 13);
+            this.RepLabel.TabIndex = 9;
+            this.RepLabel.Text = "Repetitions";
+            // 
+            // TELabel
+            // 
+            this.TELabel.AutoSize = true;
+            this.TELabel.Location = new System.Drawing.Point(6, 64);
+            this.TELabel.Name = "TELabel";
+            this.TELabel.Size = new System.Drawing.Size(119, 13);
+            this.TELabel.TabIndex = 6;
+            this.TELabel.Text = "Training Effect (Suunto)";
+            // 
+            // RPEComboBox
+            // 
+            this.RPEComboBox.FormattingEnabled = true;
+            this.RPEComboBox.Items.AddRange(new object[] {
+            "",
+            "6 - No exertion at all",
+            "7 - Extremely light",
+            "8 - ",
+            "9 - Very light",
+            "10 -",
+            "11 - Light",
+            "12 - ",
+            "13 - Somewhat hard",
+            "14 - ",
+            "15 - Hard (heavy)",
+            "16 - ",
+            "17 - Very hard",
+            "18 -",
+            "19 - Extremely hard",
+            "20 - Maximal exertion"});
+            this.RPEComboBox.Location = new System.Drawing.Point(190, 23);
+            this.RPEComboBox.Name = "RPEComboBox";
+            this.RPEComboBox.Size = new System.Drawing.Size(175, 21);
+            this.RPEComboBox.TabIndex = 3;
+            this.RPEComboBox.SelectionChangeCommitted += new System.EventHandler(this.NewUserInput);
+            // 
+            // ExportPreviewPanel
+            // 
+            this.ExportPreviewPanel.BackColor = System.Drawing.Color.Transparent;
+            this.ExportPreviewPanel.BorderColor = System.Drawing.Color.Gray;
+            this.ExportPreviewPanel.Controls.Add(this.StatusGroupBox2);
+            this.ExportPreviewPanel.Controls.Add(this.ExportGroupBox);
+            this.ExportPreviewPanel.HeadingBackColor = System.Drawing.Color.LightBlue;
+            this.ExportPreviewPanel.HeadingFont = null;
+            this.ExportPreviewPanel.HeadingLeftMargin = 0;
+            this.ExportPreviewPanel.HeadingText = null;
+            this.ExportPreviewPanel.HeadingTextColor = System.Drawing.Color.Black;
+            this.ExportPreviewPanel.HeadingTopMargin = 3;
+            this.ExportPreviewPanel.Location = new System.Drawing.Point(0, 0);
+            this.ExportPreviewPanel.Name = "ExportPreviewPanel";
+            this.ExportPreviewPanel.Size = new System.Drawing.Size(604, 350);
+            this.ExportPreviewPanel.TabIndex = 10;
+            // 
+            // MainSplitContainer
+            // 
+            this.MainSplitContainer.Location = new System.Drawing.Point(0, 19);
+            this.MainSplitContainer.Name = "MainSplitContainer";
+            this.MainSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // MainSplitContainer.Panel1
+            // 
+            this.MainSplitContainer.Panel1.Controls.Add(this.InputsPanel);
+            // 
+            // MainSplitContainer.Panel2
+            // 
+            this.MainSplitContainer.Panel2.Controls.Add(this.ExportPreviewPanel);
+            this.MainSplitContainer.Panel2Collapsed = true;
+            this.MainSplitContainer.Size = new System.Drawing.Size(604, 355);
+            this.MainSplitContainer.SplitterDistance = 380;
+            this.MainSplitContainer.TabIndex = 11;
+            // 
             // ActivityDetailsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.TabControl);
+            this.Controls.Add(this.MainSplitContainer);
+            this.Controls.Add(this.PanelChoiceActionBanner);
             this.Name = "ActivityDetailsControl";
-            this.Size = new System.Drawing.Size(614, 471);
-            this.InputGroupBox.ResumeLayout(false);
-            this.InputGroupBox.PerformLayout();
-            this.StatusGroupBox1.ResumeLayout(false);
-            this.StatusGroupBox1.PerformLayout();
-            this.TabControl.ResumeLayout(false);
-            this.UserInputTabPage.ResumeLayout(false);
-            this.InputTabPanel.ResumeLayout(false);
-            this.ExportPreviewTabPage.ResumeLayout(false);
-            this.ExportPreviewPanel.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(607, 410);
             this.StatusGroupBox2.ResumeLayout(false);
             this.StatusGroupBox2.PerformLayout();
             this.ExportGroupBox.ResumeLayout(false);
             this.ExportGroupBox.PerformLayout();
+            this.PanelChoiceMenuStrip.ResumeLayout(false);
+            this.InputsPanel.ResumeLayout(false);
+            this.StatusGroupBox1.ResumeLayout(false);
+            this.StatusGroupBox1.PerformLayout();
+            this.InputGroupBox.ResumeLayout(false);
+            this.InputGroupBox.PerformLayout();
+            this.ExportPreviewPanel.ResumeLayout(false);
+            this.MainSplitContainer.Panel1.ResumeLayout(false);
+            this.MainSplitContainer.Panel1.PerformLayout();
+            this.MainSplitContainer.Panel2.ResumeLayout(false);
+            this.MainSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckBox ExportedCheckBox1;
-        private System.Windows.Forms.GroupBox InputGroupBox;
-        private System.Windows.Forms.ComboBox RPEComboBox;
-        private System.Windows.Forms.Label TELabel;
-        private System.Windows.Forms.GroupBox StatusGroupBox1;
-        private System.Windows.Forms.Label SetLabel;
-        private System.Windows.Forms.Label RepLabel;
-        private System.Windows.Forms.TabControl TabControl;
-        private System.Windows.Forms.TabPage UserInputTabPage;
-        private System.Windows.Forms.TabPage ExportPreviewTabPage;
         private System.Windows.Forms.GroupBox ExportGroupBox;
         private System.Windows.Forms.GroupBox StatusGroupBox2;
         private System.Windows.Forms.CheckBox ExportedCheckBox2;
@@ -918,13 +937,25 @@ namespace Janohl.ST2Funbeat
         private System.Windows.Forms.CheckBox GPSCheckBox;
         private ZoneFiveSoftware.Common.Visuals.TextBox StartTimeTextBox;
         private System.Windows.Forms.Label label4;
-        private ZoneFiveSoftware.Common.Visuals.TextBox TEInputTextBox;
-        private ZoneFiveSoftware.Common.Visuals.TextBox RepInputTextBox;
-        private ZoneFiveSoftware.Common.Visuals.TextBox SetsInputTextBox;
-        private System.Windows.Forms.Label RPELabel1;
+        private ZoneFiveSoftware.Common.Visuals.ActionBanner PanelChoiceActionBanner;
+        private ZoneFiveSoftware.Common.Visuals.Panel InputsPanel;
+        private System.Windows.Forms.ContextMenuStrip PanelChoiceMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem inputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportPreviewToolStripMenuItem;
+        private System.Windows.Forms.GroupBox StatusGroupBox1;
+        private System.Windows.Forms.CheckBox ExportedCheckBox1;
+        private System.Windows.Forms.GroupBox InputGroupBox;
         private System.Windows.Forms.Label RPELabel2;
-        private ZoneFiveSoftware.Common.Visuals.Panel InputTabPanel;
+        private System.Windows.Forms.Label RPELabel1;
+        private ZoneFiveSoftware.Common.Visuals.TextBox SetsInputTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox RepInputTextBox;
+        private ZoneFiveSoftware.Common.Visuals.TextBox TEInputTextBox;
+        private System.Windows.Forms.Label SetLabel;
+        private System.Windows.Forms.Label RepLabel;
+        private System.Windows.Forms.Label TELabel;
+        private System.Windows.Forms.ComboBox RPEComboBox;
         private ZoneFiveSoftware.Common.Visuals.Panel ExportPreviewPanel;
+        private System.Windows.Forms.SplitContainer MainSplitContainer;
     }
 #endif
 }
