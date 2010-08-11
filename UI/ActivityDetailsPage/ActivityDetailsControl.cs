@@ -144,7 +144,7 @@ namespace Janohl.ST2Funbeat
                 this.StartTimeTextBox.Text = startDate.TimeOfDay.ToString();
             else
                 this.StartTimeTextBox.Text = "";
-            this.DurationTextBox.Text = duration.ToString();
+            this.DurationTextBox.Text = duration.Hours.ToString("D2") + ":" + duration.Minutes.ToString("D2") + ":" + duration.Seconds.ToString("D2");
             this.TETextBox.Text = TE.ToString();
             this.CadenceTextBox.Text = cadenceAvg.ToString();
             this.DistanceTextBox.Text = distance.ToString();
