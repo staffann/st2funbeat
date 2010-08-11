@@ -221,9 +221,9 @@ namespace Janohl.ST2Funbeat
 
                 startDate = ConvertToLocalTime(activity.StartTime);
                 hasStartTime = activity.HasStartTime;
-                duration = activity.TotalTimeEntered;
+                duration = activityInfo.Time;
                 TE = (float?)TECustFieldData;
-                distance = activity.TotalDistanceMetersEntered / 1000;
+                distance = (float?)activityInfo.DistanceMeters/1000;
                 comment = activity.Notes;
                 intensity = RPECustFieldData;
                 if (activity.TotalCalories == 0)
