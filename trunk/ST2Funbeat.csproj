@@ -18,12 +18,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityMappingControl.cs">
+    <Compile Include="UI\ActivityDetailsPage\ActivityDetailsPage.cs" />
+    <Compile Include="UI\ActivityDetailsPage\ActivityDetailsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ActivityMappingControl.Designer.cs">
+    <Compile Include="UI\ActivityDetailsPage\ActivityDetailsControl.Designer.cs">
+      <DependentUpon>ActivityDetailsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsPage\ActivityMappingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SettingsPage\ActivityMappingControl.Designer.cs">
       <DependentUpon>ActivityMappingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="FitnessDataHandler.cs" />
     <Compile Include="FunbeatService.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -37,18 +45,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="SendTraining.cs" />
-    <Compile Include="SettingsControl.cs">
+    <Compile Include="UI\ExportMenu\SendTraining.cs" />
+    <Compile Include="UI\SettingsPage\SettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SettingsControl.Designer.cs">
+    <Compile Include="UI\SettingsPage\SettingsControl.Designer.cs">
       <DependentUpon>SettingsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsDialog.cs" />
+    <Compile Include="UI\SettingsPage\SettingsDialog.cs" />
     <Compile Include="Settings\ActivityTypeMapping.cs" />
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Settings\UserSettings.cs" />
-    <Compile Include="TransferActivity.cs" />
+    <Compile Include="UI\ExportMenu\TransferActivity.cs" />
     <Compile Include="Web References\Funbeat\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -80,12 +88,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ActivityMappingControl.resx">
+    <EmbeddedResource Include="UI\ActivityDetailsPage\ActivityDetailsControl.resx">
+      <DependentUpon>ActivityDetailsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SettingsPage\ActivityMappingControl.resx">
       <DependentUpon>ActivityMappingControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\funbeat.gif" />
-    <EmbeddedResource Include="SettingsControl.resx">
+    <EmbeddedResource Include="UI\SettingsPage\SettingsControl.resx">
       <DependentUpon>SettingsControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

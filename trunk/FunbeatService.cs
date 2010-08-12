@@ -47,7 +47,7 @@ namespace Janohl.ST2Funbeat
         }
 
         public static int? SendTraining(DateTime startDate, bool hasStartTime, TimeSpan duration, float?TE, int? cadenceAvg, float? distance, string comment,
-            int? hrAvg, int? hrMax, int? intensity, int kcal, string privateComment, int? repetitions, int? sets,
+            int? hrAvg, int? hrMax, int? intensity, int? kcal, string privateComment, int? repetitions, int? sets,
             int trainingType, TrackPoint[] trackPoints)
         {
             User login;
