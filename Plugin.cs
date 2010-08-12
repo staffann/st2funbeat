@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using System.ComponentModel;
 using ZoneFiveSoftware.Common.Visuals.Fitness;
 using Janohl.ST2Funbeat.Settings;
 using System.Windows.Forms;
@@ -29,6 +30,9 @@ namespace Janohl.ST2Funbeat
 {
     class Plugin : IPlugin
     {
+        private PropertyChangedEventHandler appEventHandler = null;
+        string logBookLocation = null;
+        public static FitnessDataHandler dataHandler = null;
 
         internal static Dictionary<string, string> SportTrackActivityTypes
         {
@@ -68,7 +72,16 @@ namespace Janohl.ST2Funbeat
         private static IApplication application;
         public IApplication Application
         {
-            set { application = value; }
+            set 
+            { 
+                application = value;
+                if (appEventHandler == null)
+                {
+                    appEventHandler = new PropertyChangedEventHandler(OnApplicationChanged);
+                    application.PropertyChanged += appEventHandler;
+                }
+
+            }
         }
 
         public Guid Id
@@ -102,5 +115,26 @@ namespace Janohl.ST2Funbeat
         {
             return application;
         }
+
+        private void OnApplicationChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Check for changed logbook. If changed, call datahandler to check for custom data fields
+            if (application.Logbook != null)
+            {
+                if (application.Logbook.FileLocation != logBookLocation)
+                {
+                    logBookLocation = application.Logbook.FileLocation;
+                    if (dataHandler == null)
+                        dataHandler = new FitnessDataHandler(application.Logbook, PluginId);
+                    else
+                    {
+#if !ST_2_1
+                        dataHandler.CheckCustomDataFields(application.Logbook, PluginId);
+#endif
+                    }
+                }
+            }
+        }
+
     }
 }
