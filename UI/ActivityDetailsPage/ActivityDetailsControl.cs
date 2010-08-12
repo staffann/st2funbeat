@@ -345,16 +345,16 @@ namespace Janohl.ST2Funbeat
 
         private void inputToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MainSplitContainer.Panel1Collapsed = false;
-            MainSplitContainer.Panel2Collapsed = true;
+            PanelSplitContainer1.Panel1Collapsed = false;
+            PanelSplitContainer1.Panel2Collapsed = true;
             this.PanelChoiceActionBanner.Text = "User Input";
 
         }
 
         private void exportPreviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MainSplitContainer.Panel1Collapsed = true;
-            MainSplitContainer.Panel2Collapsed = false;
+            PanelSplitContainer1.Panel1Collapsed = true;
+            PanelSplitContainer1.Panel2Collapsed = false;
             this.PanelChoiceActionBanner.Text = "Export Preview";
         }
 

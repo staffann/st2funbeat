@@ -100,7 +100,8 @@ namespace Janohl.ST2Funbeat
             this.TELabel = new System.Windows.Forms.Label();
             this.RPEComboBox = new System.Windows.Forms.ComboBox();
             this.ExportPreviewPanel = new ZoneFiveSoftware.Common.Visuals.Panel();
-            this.MainSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.PanelSplitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.MainSplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.StatusGroupBox2.SuspendLayout();
             this.ExportGroupBox.SuspendLayout();
             this.PanelChoiceMenuStrip.SuspendLayout();
@@ -108,9 +109,12 @@ namespace Janohl.ST2Funbeat
             this.StatusGroupBox1.SuspendLayout();
             this.InputGroupBox.SuspendLayout();
             this.ExportPreviewPanel.SuspendLayout();
-            this.MainSplitContainer.Panel1.SuspendLayout();
-            this.MainSplitContainer.Panel2.SuspendLayout();
-            this.MainSplitContainer.SuspendLayout();
+            this.PanelSplitContainer1.Panel1.SuspendLayout();
+            this.PanelSplitContainer1.Panel2.SuspendLayout();
+            this.PanelSplitContainer1.SuspendLayout();
+            this.MainSplitContainer1.Panel1.SuspendLayout();
+            this.MainSplitContainer1.Panel2.SuspendLayout();
+            this.MainSplitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // StatusGroupBox2
@@ -613,13 +617,15 @@ namespace Janohl.ST2Funbeat
             // 
             // PanelChoiceActionBanner
             // 
+            this.PanelChoiceActionBanner.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PanelChoiceActionBanner.BackColor = System.Drawing.Color.Transparent;
             this.PanelChoiceActionBanner.ContextMenuStrip = this.PanelChoiceMenuStrip;
+            this.PanelChoiceActionBanner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelChoiceActionBanner.HasMenuButton = true;
             this.PanelChoiceActionBanner.Location = new System.Drawing.Point(0, 0);
             this.PanelChoiceActionBanner.Name = "PanelChoiceActionBanner";
             this.PanelChoiceActionBanner.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.PanelChoiceActionBanner.Size = new System.Drawing.Size(604, 20);
+            this.PanelChoiceActionBanner.Size = new System.Drawing.Size(607, 20);
             this.PanelChoiceActionBanner.Style = ZoneFiveSoftware.Common.Visuals.ActionBanner.BannerStyle.Header2;
             this.PanelChoiceActionBanner.TabIndex = 7;
             this.PanelChoiceActionBanner.UseStyleFont = true;
@@ -649,11 +655,14 @@ namespace Janohl.ST2Funbeat
             // 
             // InputsPanel
             // 
+            this.InputsPanel.AutoScroll = true;
             this.InputsPanel.AutoSize = true;
+            this.InputsPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.InputsPanel.BackColor = System.Drawing.Color.Transparent;
             this.InputsPanel.BorderColor = System.Drawing.Color.Gray;
             this.InputsPanel.Controls.Add(this.StatusGroupBox1);
             this.InputsPanel.Controls.Add(this.InputGroupBox);
+            this.InputsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InputsPanel.HeadingBackColor = System.Drawing.Color.Transparent;
             this.InputsPanel.HeadingFont = null;
             this.InputsPanel.HeadingLeftMargin = 0;
@@ -662,7 +671,7 @@ namespace Janohl.ST2Funbeat
             this.InputsPanel.HeadingTopMargin = 3;
             this.InputsPanel.Location = new System.Drawing.Point(0, 0);
             this.InputsPanel.Name = "InputsPanel";
-            this.InputsPanel.Size = new System.Drawing.Size(604, 350);
+            this.InputsPanel.Size = new System.Drawing.Size(607, 463);
             this.InputsPanel.TabIndex = 9;
             // 
             // StatusGroupBox1
@@ -838,10 +847,13 @@ namespace Janohl.ST2Funbeat
             // 
             // ExportPreviewPanel
             // 
+            this.ExportPreviewPanel.AutoScroll = true;
+            this.ExportPreviewPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ExportPreviewPanel.BackColor = System.Drawing.Color.Transparent;
             this.ExportPreviewPanel.BorderColor = System.Drawing.Color.Gray;
             this.ExportPreviewPanel.Controls.Add(this.StatusGroupBox2);
             this.ExportPreviewPanel.Controls.Add(this.ExportGroupBox);
+            this.ExportPreviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ExportPreviewPanel.HeadingBackColor = System.Drawing.Color.LightBlue;
             this.ExportPreviewPanel.HeadingFont = null;
             this.ExportPreviewPanel.HeadingLeftMargin = 0;
@@ -850,26 +862,47 @@ namespace Janohl.ST2Funbeat
             this.ExportPreviewPanel.HeadingTopMargin = 3;
             this.ExportPreviewPanel.Location = new System.Drawing.Point(0, 0);
             this.ExportPreviewPanel.Name = "ExportPreviewPanel";
-            this.ExportPreviewPanel.Size = new System.Drawing.Size(604, 350);
+            this.ExportPreviewPanel.Size = new System.Drawing.Size(150, 46);
             this.ExportPreviewPanel.TabIndex = 10;
             // 
-            // MainSplitContainer
+            // PanelSplitContainer1
             // 
-            this.MainSplitContainer.Location = new System.Drawing.Point(0, 19);
-            this.MainSplitContainer.Name = "MainSplitContainer";
-            this.MainSplitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.PanelSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelSplitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.PanelSplitContainer1.Name = "PanelSplitContainer1";
+            this.PanelSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // MainSplitContainer.Panel1
+            // PanelSplitContainer1.Panel1
             // 
-            this.MainSplitContainer.Panel1.Controls.Add(this.InputsPanel);
+            this.PanelSplitContainer1.Panel1.Controls.Add(this.InputsPanel);
             // 
-            // MainSplitContainer.Panel2
+            // PanelSplitContainer1.Panel2
             // 
-            this.MainSplitContainer.Panel2.Controls.Add(this.ExportPreviewPanel);
-            this.MainSplitContainer.Panel2Collapsed = true;
-            this.MainSplitContainer.Size = new System.Drawing.Size(604, 355);
-            this.MainSplitContainer.SplitterDistance = 380;
-            this.MainSplitContainer.TabIndex = 11;
+            this.PanelSplitContainer1.Panel2.Controls.Add(this.ExportPreviewPanel);
+            this.PanelSplitContainer1.Panel2Collapsed = true;
+            this.PanelSplitContainer1.Size = new System.Drawing.Size(607, 463);
+            this.PanelSplitContainer1.SplitterDistance = 330;
+            this.PanelSplitContainer1.TabIndex = 11;
+            // 
+            // MainSplitContainer1
+            // 
+            this.MainSplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainSplitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.MainSplitContainer1.Name = "MainSplitContainer1";
+            this.MainSplitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // MainSplitContainer1.Panel1
+            // 
+            this.MainSplitContainer1.Panel1.Controls.Add(this.PanelChoiceActionBanner);
+            this.MainSplitContainer1.Panel1MinSize = 20;
+            // 
+            // MainSplitContainer1.Panel2
+            // 
+            this.MainSplitContainer1.Panel2.Controls.Add(this.PanelSplitContainer1);
+            this.MainSplitContainer1.Size = new System.Drawing.Size(607, 484);
+            this.MainSplitContainer1.SplitterDistance = 20;
+            this.MainSplitContainer1.SplitterWidth = 1;
+            this.MainSplitContainer1.TabIndex = 12;
             // 
             // ActivityDetailsControl
             // 
@@ -877,10 +910,9 @@ namespace Janohl.ST2Funbeat
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.MainSplitContainer);
-            this.Controls.Add(this.PanelChoiceActionBanner);
+            this.Controls.Add(this.MainSplitContainer1);
             this.Name = "ActivityDetailsControl";
-            this.Size = new System.Drawing.Size(607, 410);
+            this.Size = new System.Drawing.Size(607, 484);
             this.StatusGroupBox2.ResumeLayout(false);
             this.StatusGroupBox2.PerformLayout();
             this.ExportGroupBox.ResumeLayout(false);
@@ -892,10 +924,13 @@ namespace Janohl.ST2Funbeat
             this.InputGroupBox.ResumeLayout(false);
             this.InputGroupBox.PerformLayout();
             this.ExportPreviewPanel.ResumeLayout(false);
-            this.MainSplitContainer.Panel1.ResumeLayout(false);
-            this.MainSplitContainer.Panel1.PerformLayout();
-            this.MainSplitContainer.Panel2.ResumeLayout(false);
-            this.MainSplitContainer.ResumeLayout(false);
+            this.PanelSplitContainer1.Panel1.ResumeLayout(false);
+            this.PanelSplitContainer1.Panel1.PerformLayout();
+            this.PanelSplitContainer1.Panel2.ResumeLayout(false);
+            this.PanelSplitContainer1.ResumeLayout(false);
+            this.MainSplitContainer1.Panel1.ResumeLayout(false);
+            this.MainSplitContainer1.Panel2.ResumeLayout(false);
+            this.MainSplitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -955,7 +990,8 @@ namespace Janohl.ST2Funbeat
         private System.Windows.Forms.Label TELabel;
         private System.Windows.Forms.ComboBox RPEComboBox;
         private ZoneFiveSoftware.Common.Visuals.Panel ExportPreviewPanel;
-        private System.Windows.Forms.SplitContainer MainSplitContainer;
+        private System.Windows.Forms.SplitContainer PanelSplitContainer1;
+        private System.Windows.Forms.SplitContainer MainSplitContainer1;
     }
 #endif
 }
