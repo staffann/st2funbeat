@@ -10,6 +10,7 @@
  * Issue 22 is fixed, Average cadence is now exported if available.
  * Issue 23 is fixed, ST2funbeat now adheres to the ST settings regarding stopped time and watch pauses. That affects the total distance and time. It seems that at the moment funbeat overrides the information send by ST2funbeat.
  * Average and max heart rate is rounded instead of truncated which can be more accurate.
+ * The last number in the version name is now the version number in Subversion.
 
 == 0.6.1 for Sporttracks 2.1 ==
 
