@@ -3,6 +3,12 @@
 
 = Revision History =
 
+== 0.7.54 for Sporttracks 3 ==
+ * The user can now enter Intensity (Rate of Percieved Exertion) according to the Borg scale, Suunto Training Effect, Sets and Repetitions into Sporttracks and expert them to funbeat. The data is entered in the daily activity view into the ST2funbeat activity detail page. It can be shown in tables within ST and should be possible to see in charts in the Activity Report view as soon as custom data fields are made chartable in ST (should be soon).
+ * It is now possible to preview what information will be exported to funbeat in the ST2funbeat activity detail page.
+ * Issue 22 is fixed, Average cadence is now exported if available.
+ * Issue 23 is fixed, ST2funbeat now adheres to the ST settings regarding stopped time and watch pauses. That affects the total distance and time. It seems that at the moment funbeat overrides the information send by ST2funbeat.
+
 == 0.6.1 for Sporttracks 2.1 ==
 
  * Issue 21, No pace exported when activity is created with foot pod (no GPS track), is corrected. Now all relevant data tracks are exported when available.
