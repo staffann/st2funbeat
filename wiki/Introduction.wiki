@@ -18,3 +18,16 @@ Note that you have to be connected to internet when choosing your settings!
 Now go to Daily Activity view within ST. Choose an activity that you'd like to export to funbeat. Choose Export->Funbeat and your activity will automatically be exported.
 
 Fire up for web browser and go to [http://www.funbeat.se] or [http://www.funbeat.net]. Log in. Go to your starting tab ("Min startsida"). You will see a yellow box saying that a new activity is waiting. Click the link. Now you can edit the activity, adding more information if you like. Save the activity and you're done!
+
+= Entering extended information into Sporttracks =
+Versions of ST2Funbeat for ST3 above 0.7.54 allows the user to enter extra information into Sporttracks. The information is used by funbeat and will therefore be exported, but it can also be used and analyzed within Sporttracks itself.
+The extra information is:
+ * Intensity or Rate of Percieved Exertion according to the Borg scale.
+ * Training Effect as defined by Suunto devices.
+ * Sets and Repetitions can be useful.
+
+The information can be entered from the daily activity view, the ST2Funbeat activity detail page.
+
+= Preview data to be exported =
+The ST2Funbeat activity detail page in the daily activity view can be used to preview the information that will be exported to funbeat. When going to the ST2Funbeat activity detail page, you will see the fields for entering extra information (as described above). Use the menu arrow to the right of "User Information" to change to the Export Preview page.
+This feature is only available for versions of ST2Funbeat for ST3 above 0.7.54.
