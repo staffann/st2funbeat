@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ST2Funbeat", "ST2Funbeat.csproj", "{8A7EBCE8-1745-43FA-A4AD-C0B67139A82F}"
 EndProject
 Global
