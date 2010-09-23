@@ -292,17 +292,23 @@ namespace Janohl.ST2Funbeat
         {
             if (activity != null)
             {
+#if !ST_2_1
                 int? ExportedCustData = (int?)(activity.GetCustomDataValue(TEField) as double?);
+#else
+                int? ExportedCustData = null;
+#endif
 
                 // Upgrade from old to new method of marking an activity to be exported
                 if (ExportedCustData == null)
                 {
                     // Check if metadata string exists and update the cust data field
                     bool boExported = (activity.Metadata.Source.IndexOf("Funbeated") >= 0);
+#if !ST_2_1
                     if (boExported)
                         activity.SetCustomDataValue(FunbeatExportedField, (double?)1.0);
                     else
                         activity.SetCustomDataValue(FunbeatExportedField, (double?)0.0);
+#endif
                     return boExported;
                 }
                 else
@@ -322,12 +328,16 @@ namespace Janohl.ST2Funbeat
                 {
                     // Use both old method (metadata string) and new method (cust data field)
                     activity.Metadata.Source += "Funbeated";
+#if !ST_2_1
                     activity.SetCustomDataValue(FunbeatExportedField, (double?)1.0);
+#endif
                 }
                 else
                 {
                     //TODO: Add code to remove the Funbeated string
+#if !ST_2_1
                     activity.SetCustomDataValue(FunbeatExportedField, (double?)0.0);
+#endif
                 }
             }
         }
@@ -359,9 +369,9 @@ namespace Janohl.ST2Funbeat
             {
 
                 TrackPoint tp = new TrackPoint();
-                tp.DateTime = ConvertToLocalTime(activity.StartTime.AddSeconds(p.ElapsedSeconds));
+                tp.DateTime = ConvertToLocalTime(activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds));
 
-                DateTime actualTime = activity.StartTime.AddSeconds(p.ElapsedSeconds);
+                DateTime actualTime = activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds);
 
                 if (activity.HeartRatePerMinuteTrack != null)
                 {
@@ -422,9 +432,9 @@ namespace Janohl.ST2Funbeat
             {
 
                 TrackPoint tp = new TrackPoint();
-                tp.DateTime = ConvertToLocalTime(activity.StartTime.AddSeconds(p.ElapsedSeconds));
+                tp.DateTime = ConvertToLocalTime(ReferenceTrack.StartTime.AddSeconds(p.ElapsedSeconds));
 
-                DateTime actualTime = activity.StartTime.AddSeconds(p.ElapsedSeconds);
+                DateTime actualTime = ReferenceTrack.StartTime.AddSeconds(p.ElapsedSeconds);
 
                 // Get distance
                 if (activity.DistanceMetersTrack != null)
