@@ -115,6 +115,7 @@ namespace Janohl.ST2Funbeat
 
                         FitnessDataHandler dataHandler = Plugin.dataHandler;
                         dataHandler.GetExportData(activity,
+                            Settings.Settings.Instance.boExportNameInComment,
                             out startDate,
                             out hasStartTime,
                             out duration,

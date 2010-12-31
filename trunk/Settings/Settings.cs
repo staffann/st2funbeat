@@ -49,6 +49,7 @@ namespace Janohl.ST2Funbeat.Settings
         private Settings()
         {
             Version = 1;
+            boExportNameInComment = false;
             User = new UserSettings();
             ActivityTypeMappings = new List<ActivityTypeMapping>();
         }
@@ -56,6 +57,8 @@ namespace Janohl.ST2Funbeat.Settings
         public UserSettings User { get; set; }
 
         public List<ActivityTypeMapping> ActivityTypeMappings { get; set; }
+
+        public bool boExportNameInComment { get; set; }
 
         public static int GetFunbeatActivityTypeID(IActivityCategory st)
         {
@@ -77,6 +80,10 @@ namespace Janohl.ST2Funbeat.Settings
                     instance.User.Username = node.Attributes[0].Value;
                     instance.User.Password = node.Attributes[1].Value;
 
+                }
+                else if (node.Name == "ExportNameInComment")
+                {
+                    instance.boExportNameInComment = bool.Parse(node.Attributes[0].Value);
                 }
                 else if (node.Name == "Mappings")
                 {
@@ -111,6 +118,16 @@ namespace Janohl.ST2Funbeat.Settings
                 pluginNode.AppendChild(user);
             else
                 pluginNode.ReplaceChild(user, existing);
+
+            XmlElement ExportNameInComment = xmlDoc.CreateElement("ExportNameInComment");
+            XmlAttribute export = xmlDoc.CreateAttribute("export");
+            export.Value = instance.boExportNameInComment.ToString();
+            ExportNameInComment.Attributes.Append(export);
+            existing = pluginNode.SelectSingleNode(ExportNameInComment.Name);
+            if (existing == null)
+                pluginNode.AppendChild(ExportNameInComment);
+            else
+                pluginNode.ReplaceChild(ExportNameInComment, existing);            
 
             XmlElement mappings = xmlDoc.CreateElement("Mappings");
             foreach (ActivityTypeMapping atm in instance.ActivityTypeMappings)

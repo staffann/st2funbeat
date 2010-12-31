@@ -35,6 +35,8 @@
             this.gbAccount = new System.Windows.Forms.GroupBox();
             this.gbMappings = new System.Windows.Forms.GroupBox();
             this.pnlMappings = new System.Windows.Forms.FlowLayoutPanel();
+            this.exportNameCheckBox = new System.Windows.Forms.CheckBox();
+            this.SettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.gbAccount.SuspendLayout();
             this.gbMappings.SuspendLayout();
             this.SuspendLayout();
@@ -110,6 +112,26 @@
             this.pnlMappings.Size = new System.Drawing.Size(463, 88);
             this.pnlMappings.TabIndex = 6;
             // 
+            // exportNameCheckBox
+            // 
+            this.exportNameCheckBox.AutoSize = true;
+            this.exportNameCheckBox.Location = new System.Drawing.Point(328, 39);
+            this.exportNameCheckBox.Name = "exportNameCheckBox";
+            this.exportNameCheckBox.Size = new System.Drawing.Size(218, 17);
+            this.exportNameCheckBox.TabIndex = 6;
+            this.exportNameCheckBox.Text = "Export activity name to funbeat comment";
+            this.exportNameCheckBox.UseVisualStyleBackColor = true;
+            this.exportNameCheckBox.CheckedChanged += new System.EventHandler(this.exportNameCheckBox_CheckedChanged);
+            // 
+            // SettingsGroupBox
+            // 
+            this.SettingsGroupBox.Location = new System.Drawing.Point(312, 3);
+            this.SettingsGroupBox.Name = "SettingsGroupBox";
+            this.SettingsGroupBox.Size = new System.Drawing.Size(243, 71);
+            this.SettingsGroupBox.TabIndex = 7;
+            this.SettingsGroupBox.TabStop = false;
+            this.SettingsGroupBox.Text = "Settings";
+            // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,10 +139,12 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.exportNameCheckBox);
             this.Controls.Add(this.gbMappings);
             this.Controls.Add(this.gbAccount);
+            this.Controls.Add(this.SettingsGroupBox);
             this.Name = "SettingsControl";
-            this.Size = new System.Drawing.Size(475, 190);
+            this.Size = new System.Drawing.Size(558, 190);
             this.gbAccount.ResumeLayout(false);
             this.gbAccount.PerformLayout();
             this.gbMappings.ResumeLayout(false);
@@ -139,5 +163,7 @@
         private System.Windows.Forms.GroupBox gbAccount;
         private System.Windows.Forms.GroupBox gbMappings;
         private System.Windows.Forms.FlowLayoutPanel pnlMappings;
+        private System.Windows.Forms.CheckBox exportNameCheckBox;
+        private System.Windows.Forms.GroupBox SettingsGroupBox;
     }
 }

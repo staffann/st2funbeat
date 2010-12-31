@@ -169,6 +169,7 @@ namespace Janohl.ST2Funbeat
         }
 #endif
         public void GetExportData(IActivity activity,
+                                  bool boExportNameInComment,
                                   out DateTime startDate,
                                   out bool hasStartTime,
                                   out TimeSpan duration,
@@ -224,7 +225,14 @@ namespace Janohl.ST2Funbeat
                 duration = activityInfo.Time;
                 TE = (float?)TECustFieldData;
                 distance = (float?)activityInfo.DistanceMeters/1000;
-                comment = activity.Notes;
+                if (boExportNameInComment)
+                {
+                    comment = activity.Name + "\r\n" + activity.Notes;
+                }
+                else
+                {
+                    comment = activity.Notes;
+                }
                 intensity = RPECustFieldData;
                 if (activity.TotalCalories == 0)
                     kcal = null;

@@ -38,6 +38,7 @@ namespace Janohl.ST2Funbeat
             {
                 txtUsername.Text = Settings.Settings.Instance.User.Username;
                 txtPassword.Text = Settings.Settings.Instance.User.Password;
+                exportNameCheckBox.Checked = Settings.Settings.Instance.boExportNameInComment;
                 List<Control> amcs = new List<Control>();
                 ActivityTypeMapping active = null;
                 foreach (string ac in Plugin.SportTrackActivityTypes.Keys)
@@ -84,6 +85,11 @@ namespace Janohl.ST2Funbeat
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             Settings.Settings.Instance.User.Password = txtPassword.Text;
+        }
+
+        private void exportNameCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Settings.Instance.boExportNameInComment = exportNameCheckBox.Checked;
         }
     }
 }
