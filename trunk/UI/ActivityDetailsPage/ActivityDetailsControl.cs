@@ -123,6 +123,7 @@ namespace Janohl.ST2Funbeat
             int? sets;
             TrackPoint[] trackPoints;
             fitnessDataHandler.GetExportData(activity,
+                                  Settings.Settings.Instance.boExportNameInComment,
                                   out startDate,
                                   out hasStartTime,
                                   out duration,
@@ -200,6 +201,7 @@ namespace Janohl.ST2Funbeat
             {
                 TB.ThemeChanged(visualTheme);
             }
+
             // ThemeChanged combo box looks worse when following the colors of the theme
             // since the frame and arrow remain white
             //this.RPEComboBox.BackColor = visualTheme.Window;
