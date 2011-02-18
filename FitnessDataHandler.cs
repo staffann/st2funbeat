@@ -205,8 +205,7 @@ namespace Janohl.ST2Funbeat
 #endif
 
                 // Get pulse data. Works with and without a HR data track.
-                ActivityInfoCache actInfoCache = new ActivityInfoCache();
-                ActivityInfo activityInfo = actInfoCache.GetInfo(activity);
+                ActivityInfo activityInfo = ActivityInfoCache.Instance.GetInfo(activity);
                 if (activityInfo.AverageHeartRate == 0)
                     hrAvg = null;
                 else
