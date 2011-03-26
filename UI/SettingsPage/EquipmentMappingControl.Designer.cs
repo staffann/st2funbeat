@@ -1,6 +1,6 @@
 ﻿namespace Janohl.ST2Funbeat
 {
-    partial class ActivityMappingControl
+    partial class EquipmentMappingControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblSTActivity = new System.Windows.Forms.Label();
-            this.cbFunbeatActivity = new System.Windows.Forms.ComboBox();
+            this.cbFunbeatEquip = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblSTActivity
@@ -42,17 +42,17 @@
             // 
             // cbFunbeatEquip
             // 
-            this.cbFunbeatActivity.FormattingEnabled = true;
-            this.cbFunbeatActivity.Location = new System.Drawing.Point(278, 3);
-            this.cbFunbeatActivity.Name = "cbFunbeatActivity";
-            this.cbFunbeatActivity.Size = new System.Drawing.Size(322, 21);
-            this.cbFunbeatActivity.TabIndex = 1;
+            this.cbFunbeatEquip.FormattingEnabled = true;
+            this.cbFunbeatEquip.Location = new System.Drawing.Point(278, 3);
+            this.cbFunbeatEquip.Name = "cbFunbeatActivity";
+            this.cbFunbeatEquip.Size = new System.Drawing.Size(322, 21);
+            this.cbFunbeatEquip.TabIndex = 1;
             // 
             // ActivityMappingControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cbFunbeatActivity);
+            this.Controls.Add(this.cbFunbeatEquip);
             this.Controls.Add(this.lblSTActivity);
             this.Name = "ActivityMappingControl";
             this.Size = new System.Drawing.Size(603, 28);
@@ -64,6 +64,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblSTActivity;
-        private System.Windows.Forms.ComboBox cbFunbeatActivity;
+        private System.Windows.Forms.ComboBox cbFunbeatEquip;
     }
 }

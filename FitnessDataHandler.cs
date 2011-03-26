@@ -23,7 +23,8 @@ using ZoneFiveSoftware.Common.Data.GPS;
 #if !ST_2_1
 using ZoneFiveSoftware.Common.Data.Fitness.CustomData;
 #endif
-using Janohl.ST2Funbeat.Funbeat;
+using ZoneFiveSoftware.Common.Visuals.Fitness;
+using Janohl.ST2Funbeat.se.funbeat.api;
 
 namespace Janohl.ST2Funbeat
 {
@@ -184,6 +185,7 @@ namespace Janohl.ST2Funbeat
                                   out string privateComment,
                                   out int? repetitions,
                                   out int? sets,
+                                  out TrainingInterval[] laps,
                                   out TrackPoint[] trackPoints)
         {
             if (activity != null)
@@ -240,6 +242,7 @@ namespace Janohl.ST2Funbeat
                 privateComment = "SportsTracks reference: " + activity.ReferenceId;
                 repetitions = RepetitionsCustFieldData;
                 sets = SetsCustFieldData;
+                laps = GetLaps(activity);
                 trackPoints = GetTrackPoints(activity);
             }
             else
@@ -258,6 +261,7 @@ namespace Janohl.ST2Funbeat
                 privateComment = "";
                 repetitions = null;
                 sets = null;
+                laps = null;
                 trackPoints = null;
 
             }
@@ -349,6 +353,31 @@ namespace Janohl.ST2Funbeat
             }
         }
 
+        private TrainingInterval[] GetLaps(IActivity activity)
+        {
+            ActivityInfo activityInfo = ActivityInfoCache.Instance.GetInfo(activity);
+            List<TrainingInterval> newLaps = new List<TrainingInterval>();
+            IList<LapDetailInfo> activityLaps;
+
+            if (Plugin.GetApplication().DisplayOptions.SelectedLapsType.Kind == ActivityLapsType.LapKind.RecordedLaps)
+                activityLaps = activityInfo.RecordedLapDetailInfo;
+            else
+                activityLaps = activityInfo.CustomDistanceLapDetailInfo;
+
+            foreach (LapDetailInfo lapInfo in activityLaps)
+            {
+                TrainingInterval newLap = new TrainingInterval();
+                newLap.Distance = lapInfo.LapDistanceMeters / 1000;
+                newLap.Comment = lapInfo.Notes;
+                newLap.Duration = new Duration();
+                newLap.Duration.Hours = lapInfo.LapElapsed.Hours;
+                newLap.Duration.Minutes = lapInfo.LapElapsed.Minutes;
+                newLap.Duration.Seconds = lapInfo.LapElapsed.Seconds;
+                newLaps.Add(newLap);
+            }
+            return newLaps.ToArray();
+        }
+        
         private TrackPoint[] GetTrackPoints(IActivity activity)
         {
             if (activity.GPSRoute != null)
@@ -376,10 +405,13 @@ namespace Janohl.ST2Funbeat
             {
 
                 TrackPoint tp = new TrackPoint();
-                tp.DateTime = ConvertToLocalTime(activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds));
+                if (p == activity.GPSRoute[0])
+                    tp.isStartPoint = true;
+                tp.TimeStamp = ConvertToLocalTime(activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds));
 
                 DateTime actualTime = activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds);
 
+                // Get heartrate track
                 if (activity.HeartRatePerMinuteTrack != null)
                 {
                     if (actualTime < activity.HeartRatePerMinuteTrack.StartTime)
@@ -401,6 +433,32 @@ namespace Janohl.ST2Funbeat
                     tp.HR = null;
                 }
 
+                // Get cadence track
+                if (activity.CadencePerMinuteTrack != null)
+                {
+                    if (actualTime < activity.CadencePerMinuteTrack.StartTime)
+                        actualTime = activity.CadencePerMinuteTrack.StartTime;
+
+                    ITimeValueEntry<float> interpolatedCadence = activity.CadencePerMinuteTrack.GetInterpolatedValue(actualTime);
+                    if (interpolatedCadence != null)
+                    {
+                        float cadence = interpolatedCadence.Value;
+                        tp.Cad = Convert.ToInt32(cadence);
+                        if (double.IsNaN((double)tp.Cad))
+                        {
+                            tp.Cad = null;
+                        }
+                    }
+                    else
+                    {
+                        tp.Cad = null;
+                    }
+                }
+                else
+                {
+                    tp.Cad = null;
+                }                
+                
                 tp.Latitude = Convert.ToDouble(p.Value.LatitudeDegrees);
                 tp.Longitude = Convert.ToDouble(p.Value.LongitudeDegrees);
                 tp.Altitude = Convert.ToDouble(p.Value.ElevationMeters);
@@ -431,6 +489,8 @@ namespace Janohl.ST2Funbeat
                 ReferenceTrack = activity.HeartRatePerMinuteTrack;
             else if (activity.ElevationMetersTrack != null)
                 ReferenceTrack = activity.ElevationMetersTrack;
+            else if (activity.CadencePerMinuteTrack != null)
+                ReferenceTrack = activity.CadencePerMinuteTrack;
             else
                 return null;
 
@@ -439,7 +499,10 @@ namespace Janohl.ST2Funbeat
             {
 
                 TrackPoint tp = new TrackPoint();
-                tp.DateTime = ConvertToLocalTime(ReferenceTrack.StartTime.AddSeconds(p.ElapsedSeconds));
+                if (p == ReferenceTrack[0])
+                    tp.isStartPoint = true;
+
+                tp.TimeStamp = ConvertToLocalTime(ReferenceTrack.StartTime.AddSeconds(p.ElapsedSeconds));
 
                 DateTime actualTime = ReferenceTrack.StartTime.AddSeconds(p.ElapsedSeconds);
 
@@ -518,6 +581,33 @@ namespace Janohl.ST2Funbeat
                 else
                 {
                     tp.HR = null;
+                }
+
+
+                // Get cadence track
+                if (activity.CadencePerMinuteTrack != null)
+                {
+                    if (actualTime < activity.CadencePerMinuteTrack.StartTime)
+                        actualTime = activity.CadencePerMinuteTrack.StartTime;
+
+                    ITimeValueEntry<float> interpolatedCadence = activity.CadencePerMinuteTrack.GetInterpolatedValue(actualTime);
+                    if (interpolatedCadence != null)
+                    {
+                        float cadence = interpolatedCadence.Value;
+                        tp.Cad = Convert.ToInt32(cadence);
+                        if (double.IsNaN((double)tp.Cad))
+                        {
+                            tp.Cad = null;
+                        }
+                    }
+                    else
+                    {
+                        tp.Cad = null;
+                    }
+                }
+                else
+                {
+                    tp.Cad = null;
                 }
 
                 tp.Latitude = null;

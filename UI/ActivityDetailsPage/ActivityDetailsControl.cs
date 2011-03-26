@@ -24,7 +24,7 @@ using System.Data;
 using System.Text;
 using System.Windows.Forms;
 using ZoneFiveSoftware.Common.Data.Fitness;
-using Janohl.ST2Funbeat.Funbeat;
+using Janohl.ST2Funbeat.se.funbeat.api;
 
 namespace Janohl.ST2Funbeat
 {
@@ -121,6 +121,7 @@ namespace Janohl.ST2Funbeat
             string privateComment;
             int? repetitions;
             int? sets;
+            TrainingInterval[] laps;
             TrackPoint[] trackPoints;
             fitnessDataHandler.GetExportData(activity,
                                   Settings.Settings.Instance.boExportNameInComment,
@@ -138,6 +139,7 @@ namespace Janohl.ST2Funbeat
                                   out privateComment,
                                   out repetitions,
                                   out sets,
+                                  out laps,
                                   out trackPoints);
             this.DateTextBox.Text = startDate.Date.ToString();
             this.DateTextBox.Text = this.DateTextBox.Text.Remove(10); //For some reason the Data.ToString method includes the time of midnight in its output. We have to remove that.

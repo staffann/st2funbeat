@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Results>
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://www.funbeat.se/api/TrainingService.asmx?disco" filename="TrainingService.disco" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://www.funbeat.se/api/TrainingService.asmx?wsdl" filename="TrainingService.wsdl" />
-  </Results>
-</DiscoveryClientResultsFile>

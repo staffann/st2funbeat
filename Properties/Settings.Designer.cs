@@ -26,10 +26,10 @@ namespace Janohl.ST2Funbeat.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://www.funbeat.se/api/TrainingService.asmx")]
-        public string Janohl_ST2Funbeat_Funbeat_TrainingService {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://api.funbeat.se/Default.asmx")]
+        public string Janohl_ST2Funbeat_se_funbeat_api_MobileService {
             get {
-                return ((string)(this["Janohl_ST2Funbeat_Funbeat_TrainingService"]));
+                return ((string)(this["Janohl_ST2Funbeat_se_funbeat_api_MobileService"]));
             }
         }
     }

@@ -38,7 +38,11 @@ namespace Janohl.ST2Funbeat
             {
                 txtUsername.Text = Settings.Settings.Instance.User.Username;
                 txtPassword.Text = Settings.Settings.Instance.User.Password;
+                this.txtUsername.TextChanged += new System.EventHandler(this.OnUsernameChanged);
+                this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
                 exportNameCheckBox.Checked = Settings.Settings.Instance.boExportNameInComment;
+                
+                // Activity type mappings
                 List<Control> amcs = new List<Control>();
                 ActivityTypeMapping active = null;
                 foreach (string ac in Plugin.SportTrackActivityTypes.Keys)
@@ -61,17 +65,43 @@ namespace Janohl.ST2Funbeat
                     ActivityMappingControl amc = new ActivityMappingControl(active);
                     amcs.Add(amc);
                 }
-                pnlMappings.Controls.AddRange(amcs.ToArray());
+                actMappingsFlowLayoutPanel.Controls.AddRange(amcs.ToArray());
+
+                // Equipment mappings
+                List<Control>  emcs = new List<Control>();
+                EquipmentTypeMapping activeEq = null;
+                foreach (string ac in Plugin.SportTrackEquipment.Keys)
+                {
+                    activeEq = null;
+                    foreach (EquipmentTypeMapping etm in Settings.Settings.Instance.EquipmentTypeMappings)
+                        if (etm.SportTracks == ac)
+                        {
+                            activeEq = etm;
+                            break;
+                        }
+                    if (activeEq == null)
+                    {
+                        activeEq = new EquipmentTypeMapping();
+                        activeEq.SportTracks = ac;
+                        activeEq.Funbeat = "";
+                        Settings.Settings.Instance.EquipmentTypeMappings.Add(activeEq);
+                    }
+                    EquipmentMappingControl emc = new EquipmentMappingControl(activeEq);
+                    emcs.Add(emc);
+                }
+                eqMappingsFlowLayoutPanel.Controls.AddRange(emcs.ToArray());
+                equipmentMappingsGroupBox.Location = new Point(actMappingsGroupBox.Location.X,
+                                                               actMappingsGroupBox.Location.Y + actMappingsGroupBox.Size.Height + 10);
             }
             catch (Exception ex)
             {
                 TextBox ErrMessageBox = new TextBox();
                 ErrMessageBox.Text = string.Concat("Failed to read training type mappings from funbeat.\r\nException message:\r\n",
                                                     ex.ToString());
-                ErrMessageBox.Size = pnlMappings.Size;
+                ErrMessageBox.Size = actMappingsFlowLayoutPanel.Size;
                 ErrMessageBox.ReadOnly = true;
                 ErrMessageBox.Multiline = true;
-                pnlMappings.Controls.Add(ErrMessageBox);
+                actMappingsFlowLayoutPanel.Controls.Add(ErrMessageBox);
             }
         }
 

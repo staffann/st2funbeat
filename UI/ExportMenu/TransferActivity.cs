@@ -26,7 +26,7 @@ using System.Windows.Forms;
 using Janohl.ST2Funbeat.Settings;
 using ZoneFiveSoftware.Common.Data.GPS;
 using ZoneFiveSoftware.Common.Data;
-using Janohl.ST2Funbeat.Funbeat;
+using Janohl.ST2Funbeat.se.funbeat.api;
 #if !ST_2_1
 using ZoneFiveSoftware.Common.Visuals.Util;
 #endif
@@ -83,10 +83,12 @@ namespace Janohl.ST2Funbeat
 
         public void Run(System.Drawing.Rectangle rectButton)
         {
+            FitnessDataHandler dataHandler = Plugin.dataHandler;
+
             foreach (IActivity activity in activities)
             {
 
-                bool okToExport = activity.Metadata.Source.IndexOf("Funbeated") < 0;
+                bool okToExport = !dataHandler.boGetExported(activity);
                 if (!okToExport)
                     okToExport = MessageBox.Show("Already exported once, export again?", "Re-Export", MessageBoxButtons.YesNo) == DialogResult.Yes;
 
@@ -108,12 +110,13 @@ namespace Janohl.ST2Funbeat
                         string privateComment;
                         int? repetitions;
                         int? sets;
+                        TrainingInterval[] laps;
                         TrackPoint[] trackPoints;
 
                         
                         int funbeatActivityTypeID = Settings.Settings.GetFunbeatActivityTypeID(activity.Category);
+                        string[] equipment = Settings.Settings.GetFunbeatEquipment(activity.EquipmentUsed);
 
-                        FitnessDataHandler dataHandler = Plugin.dataHandler;
                         dataHandler.GetExportData(activity,
                             Settings.Settings.Instance.boExportNameInComment,
                             out startDate,
@@ -130,6 +133,7 @@ namespace Janohl.ST2Funbeat
                             out privateComment,
                             out repetitions,
                             out sets,
+                            out laps,
                             out trackPoints);
 
                         int? id = FunbeatService.SendTraining(
@@ -148,7 +152,9 @@ namespace Janohl.ST2Funbeat
                             repetitions,
                             sets,
                             funbeatActivityTypeID,
-                            trackPoints);
+                            laps,
+                            trackPoints,
+                            equipment);
 
                         if (id.HasValue)
                             dataHandler.SetExported(activity, true);
