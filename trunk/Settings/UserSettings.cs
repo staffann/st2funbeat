@@ -24,7 +24,97 @@ namespace Janohl.ST2Funbeat.Settings
     [Serializable]
     public class UserSettings
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        private bool boLoginIdNeedsUpdating = true;
+        private bool boLoginSecretNeedsUpdating = true;
+        private string userName, password;
+        private string loginId, loginSecret;
+        
+        public string Username
+        {
+            get
+            {
+                return userName;
+            }
+            set
+            {
+                userName = value;
+                boLoginIdNeedsUpdating = true;
+                boLoginSecretNeedsUpdating = true;
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                password = value;
+                boLoginIdNeedsUpdating = true;
+                boLoginSecretNeedsUpdating = true;
+            }
+        }
+
+        public string LoginId
+        {
+            get
+            {
+                if (boLoginIdNeedsUpdating || boLoginSecretNeedsUpdating)
+                {
+                    // Encrypt password
+                    // Call ValidateAndCreateSecrets
+                    // Hash loginSecret
+                    if (FunbeatService.CreateLogin(userName, password, out loginId, out loginSecret))
+                    {
+                        boLoginIdNeedsUpdating = false;
+                        boLoginSecretNeedsUpdating = false;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return loginId;
+
+            }
+            set
+            {
+                loginId = value;
+                if(loginId != "")
+                    boLoginIdNeedsUpdating = false;
+            }
+        }
+
+        public string LoginSecret
+        {
+            get
+            {
+                if (boLoginIdNeedsUpdating || boLoginSecretNeedsUpdating)
+                {
+                    // Encrypt password
+                    // Call ValidateAndCreateSecrets
+                    // Hash loginSecret
+                    if (FunbeatService.CreateLogin(userName, password, out loginId, out loginSecret))
+                    {
+                        boLoginIdNeedsUpdating = false;
+                        boLoginSecretNeedsUpdating = false;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return loginSecret;
+
+            }
+            set
+            {
+                loginSecret = value;
+                if(loginSecret != "")
+                    boLoginSecretNeedsUpdating = false;
+            }
+        }
+    
     }
 }

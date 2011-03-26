@@ -10,6 +10,9 @@
   </PropertyGroup>
   <Import Project=".\Common-References.csproj" />
   <ItemGroup>
+    <Reference Include="FunbeatDll">
+      <HintPath>.\FunbeatDll.dll</HintPath>
+    </Reference>
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Services" />
   </ItemGroup>
@@ -42,6 +45,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="UI\ExportMenu\SendTraining.cs" />
+    <Compile Include="UI\SettingsPage\EquipmentMappingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SettingsPage\EquipmentMappingControl.Designer.cs">
+      <DependentUpon>EquipmentMappingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SettingsPage\SettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -53,7 +62,7 @@
     <Compile Include="Settings\Settings.cs" />
     <Compile Include="Settings\UserSettings.cs" />
     <Compile Include="UI\ExportMenu\TransferActivity.cs" />
-    <Compile Include="Web References\Funbeat\Reference.cs">
+    <Compile Include="Web References\se.funbeat.api\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -92,11 +101,48 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\funbeat.gif" />
+    <EmbeddedResource Include="UI\SettingsPage\EquipmentMappingControl.resx">
+      <DependentUpon>EquipmentMappingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SettingsPage\SettingsControl.resx">
       <DependentUpon>SettingsControl.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Web References\Funbeat\TrainingService.disco" />
+    <None Include="Web References\se.funbeat.api\ClientServerRelationResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\Default.wsdl" />
+    <None Include="Web References\se.funbeat.api\EquipmentShortInfo.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\ExerciseTitle.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\FriendResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\LoginResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\NewsFeedItem.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\PersonInfoItem.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\se.funbeat.api\TrackPoint.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\TrainingResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\se.funbeat.api\TrainingType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
@@ -107,27 +153,22 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\Funbeat\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\Funbeat\TrainingService.wsdl" />
-    <None Include="Web References\Funbeat\TrainingType.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://www.funbeat.se/api/TrainingService.asmx">
+    <WebReferenceUrl Include="http://api.funbeat.se/">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\Funbeat\</RelPath>
-      <UpdateFromURL>http://www.funbeat.se/api/TrainingService.asmx</UpdateFromURL>
+      <RelPath>Web References\se.funbeat.api\</RelPath>
+      <UpdateFromURL>http://api.funbeat.se/</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>Janohl_ST2Funbeat_Funbeat_TrainingService</CachedSettingsPropName>
+      <CachedSettingsPropName>Janohl_ST2Funbeat_se_funbeat_api_MobileService</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\se.funbeat.api\Default.disco" />
   </ItemGroup>
   <Import Project=".\Common-Files.csproj" />
 </Project>

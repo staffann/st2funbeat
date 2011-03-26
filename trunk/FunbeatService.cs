@@ -19,18 +19,20 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
-using Janohl.ST2Funbeat.Funbeat;
+using System.IO;
 using Janohl.ST2Funbeat.Settings;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
-
-
+using System.Security.Cryptography;
+using Janohl.ST2Funbeat.se.funbeat.api;
+using FunbeatDll;
 
 namespace Janohl.ST2Funbeat
 {
     public class FunbeatService
     {
-        private readonly static System.Guid funbeatKey = new System.Guid("65a574f3-1c59-462d-8df6-0cea15c44089");
+        private readonly static string appID = "7b93365a-960f-44cf-958a-af030f4c3c68";
+        private readonly static string clientID = "ST2Funbeat";
         private static FunbeatService instance;
         private static FunbeatService Instance
         {
@@ -48,30 +50,30 @@ namespace Janohl.ST2Funbeat
 
         public static int? SendTraining(DateTime startDate, bool hasStartTime, TimeSpan duration, float?TE, int? cadenceAvg, float? distance, string comment,
             int? hrAvg, int? hrMax, int? intensity, int? kcal, string privateComment, int? repetitions, int? sets,
-            int trainingType, TrackPoint[] trackPoints)
+            int trainingType, TrainingInterval[] laps, TrackPoint[] trackPoints, string[] equipment)
         {
-            User login;
-
-            login = new User();
-            login.Password = Settings.Settings.Instance.User.Password;
-            login.Username = Settings.Settings.Instance.User.Username;
-            login.PasswordFormat = PasswordFormats.Clear;
-
-            if (login.Username.Length == 0 || login.Password.Length == 0)
+            if (Settings.Settings.Instance.User.Username.Length == 0 || Settings.Settings.Instance.User.Password.Length == 0)
             {
                 MessageBox.Show("Funbeat user name and password must be entered in the ST2funbeat settings", "Login failure", MessageBoxButtons.OK);
+                return null;
+            }
+            else if (Settings.Settings.Instance.User.LoginId.Length == 0 || Settings.Settings.Instance.User.LoginSecret.Length == 0)
+            {
+                MessageBox.Show("Funbeat user name and password could not be confirmed. Make sure they are correct and that you are connected to the internet", "Login failure", MessageBoxButtons.OK);
                 return null;
             }
             else
             {
                 Training training = new Training();
-                training.Comment = comment;
+                training.Description = comment;
+                //training.Comment = comment;
                 training.Distance = distance;
                 training.StartDateTime = startDate;
                 training.HasTimeOfDay = hasStartTime;
-                training.Hours = duration.Hours;
-                training.Minutes = duration.Minutes;
-                training.Seconds = duration.Seconds;
+                training.Duration = new Duration();
+                training.Duration.Hours = duration.Hours;
+                training.Duration.Minutes = duration.Minutes;
+                training.Duration.Seconds = duration.Seconds;
 
                 training.TE = TE;
                 training.CadAvg = cadenceAvg;
@@ -83,12 +85,67 @@ namespace Janohl.ST2Funbeat
                 training.Repetitions = repetitions;
                 training.Sets = sets;
                 training.TrainingTypeID = trainingType;
+                training.IntervalsAndLaps = laps;
+                training.NewRouteName = startDate.ToString();
+                training.NewRoutePrivacy = Privacy.NotSet;
                 training.TrackPoints = trackPoints;
+                training.Equipment = equipment;
+
+                //FileInfo t = new FileInfo("Training.txt");
+                //StreamWriter Tex = t.CreateText();
+                //Tex.WriteLine("Description: "+comment.ToString());
+                ////training.Comment = comment;
+                //Tex.WriteLine("Distance: " + distance.ToString());
+                //Tex.WriteLine("StartDateTime: " + startDate.ToString());
+                //Tex.WriteLine("HasTimeOfDay: " + hasStartTime.ToString());
+                //Tex.WriteLine("Duration: " + duration.ToString());
+                //Tex.WriteLine("TE: " + TE.ToString());
+                //Tex.WriteLine("CadAvg: " + cadenceAvg.ToString());
+                //Tex.WriteLine("HRAvg: " + hrAvg.ToString());
+                //Tex.WriteLine("HRMax: " + hrMax.ToString());
+                //Tex.WriteLine("Intensity: " + intensity.ToString());
+                //Tex.WriteLine("KCal: " + kcal.ToString());
+                //Tex.WriteLine("PrivateComment: " + privateComment.ToString());
+                //Tex.WriteLine("Repetitions: " + repetitions.ToString());
+                //Tex.WriteLine("Sets: " + sets.ToString());
+                //Tex.WriteLine("TrainingTypeID: " + trainingType.ToString());
+                //Tex.WriteLine("NewRouteName: " + startDate.ToString());
+                //Tex.WriteLine("NewRoutePrivacy: " + "Me");
+                //Tex.WriteLine();
+
+                //if (trackPoints != null)
+                //{
+                //    foreach (TrackPoint tp in trackPoints)
+                //    {
+                //        Tex.WriteLine("Trackpoint");
+                //        Tex.WriteLine("isStartPoint: " + tp.isStartPoint.ToString());
+                //        Tex.WriteLine("TimeStamp: " + tp.TimeStamp.ToString());
+                //        Tex.WriteLine("HR: " + tp.HR.ToString());
+                //        Tex.WriteLine("Latitude: " + tp.Latitude.ToString());
+                //        Tex.WriteLine("Longitude: " + tp.Longitude.ToString());
+                //        Tex.WriteLine("Pace: " + tp.Pace.ToString());
+                //        Tex.WriteLine("Power: " + tp.Power.ToString());
+                //        Tex.WriteLine("Speed: " + tp.Speed.ToString());
+                //        Tex.WriteLine("Altitude: " + tp.Altitude.ToString());
+                //        Tex.WriteLine("Cadence: " + tp.Cad.ToString());
+                //        Tex.WriteLine("Distance: " + tp.Distance.ToString());
+                //        Tex.WriteLine();
+                //    }
+                //}
+                //Tex.Close();
 
                 try
                 {
-                    TrainingService client = new TrainingService();
-                    return client.AddTraining(funbeatKey, login, training);
+                    MobileService client = new MobileService();
+                    ClientServerRelationResult result = client.SaveTraining(appID, 
+                                                                            Settings.Settings.Instance.User.LoginId, 
+                                                                            Settings.Settings.Instance.User.LoginSecret, 
+                                                                            training, 
+                                                                            clientID);
+                    if (result != null)
+                        return result.ServerID;
+                    else
+                        return null;
                 }
                 catch (Exception ex)
                 {
@@ -98,13 +155,30 @@ namespace Janohl.ST2Funbeat
             }
         }
 
+        public static bool CreateLogin(string userName, string password, out string loginId, out string loginSecret)
+        {
+            MobileService client = new MobileService();
+            try
+            {
+                FunbeatDll.FunbeatEncryption.CreateLogin(Plugin.GetApplication(), appID, userName, password, out loginId, out loginSecret);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(string.Concat("Problem communicating login information with funbeat\n", ex.Message), "Funbeat communication error");
+                loginId = "";
+                loginSecret = "";
+                return false;
+            }
+        }
+
         private static Dictionary<int, string> GetTrainingTypes()
         {
-            TrainingService client = new TrainingService();
-            TrainingType[] types = client.GetTrainingTypes(funbeatKey);
+            MobileService client = new MobileService();
+            TrainingType[] types = client.GetTrainingTypes(appID, "sv-SE");
             Dictionary<int, string> result = new Dictionary<int, string>();
             foreach (TrainingType t in types)
-                result.Add(t.ID, t.Name);
+                result.Add(t.TrainingTypeID, t.TrainingTypeName);
 
             return result;
         }
@@ -150,5 +224,64 @@ namespace Janohl.ST2Funbeat
                 return Name;
             }
         }
+
+        private static EquipmentShortInfo[] GetEquipment()
+        {
+            if (Settings.Settings.Instance.User.Username.Length == 0 || Settings.Settings.Instance.User.Password.Length == 0)
+            {
+                MessageBox.Show("Funbeat user name and password must be entered in the ST2funbeat settings", "Login failure", MessageBoxButtons.OK);
+                return new EquipmentShortInfo[0];
+            }
+            else if (Settings.Settings.Instance.User.LoginId.Length == 0 || Settings.Settings.Instance.User.LoginSecret.Length == 0)
+            {
+                MessageBox.Show("Funbeat user name and password could not be confirmed. Make sure they are correct and that you are connected to the internet", "Login failure", MessageBoxButtons.OK);
+                return new EquipmentShortInfo[0];
+            }
+            else
+            {
+                try
+                {
+                    MobileService client = new MobileService();
+                    EquipmentShortInfo[] equipment = client.GetMyEquipment(appID,
+                                                                       Settings.Settings.Instance.User.LoginId,
+                                                                       Settings.Settings.Instance.User.LoginSecret);
+                    return equipment;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(string.Concat("Problem communicating equipment information with funbeat\n", ex.Message), "Funbeat communication error");
+                    return new EquipmentShortInfo[0];
+                }
+
+            }
+        }
+
+        private static IList<string> funbeatEquipment;
+        public static IList<string> FunbeatEquipment
+        {
+            get
+            {
+                if (funbeatEquipment == null)
+                {
+                    try
+                    {
+                        funbeatEquipment = new Collection<string>();
+                        funbeatEquipment.Add(""); // Must have the possibility not to map to a funbeat equipment
+                        EquipmentShortInfo[] eqInfoArray = FunbeatService.GetEquipment();
+                        foreach (EquipmentShortInfo ei in eqInfoArray)
+                            funbeatEquipment.Add(ei.EquipmentTitle);
+                    }
+                    catch (Exception ex)
+                    {
+                        funbeatEquipment = new Collection<string>();
+                        MessageBox.Show(string.Concat("The settings page needs to communicate with funbeat. Make sure that you are connected to the internet.\n", ex.Message),
+                                        "Funbeat communication error");
+                        throw;
+                    }
+                }
+                return funbeatEquipment;
+            }
+        }
+
     }
 }

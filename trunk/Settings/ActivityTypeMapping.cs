@@ -27,4 +27,12 @@ namespace Janohl.ST2Funbeat.Settings
         public string SportTracks { get; set; }
         public int Funbeat { get; set; }
     }
+
+    [Serializable]
+    public class EquipmentTypeMapping
+    {
+        public string SportTracks { get; set; }
+        public string Funbeat { get; set; }
+    }
+
 }

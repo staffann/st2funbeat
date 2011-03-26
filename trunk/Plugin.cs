@@ -49,6 +49,19 @@ namespace Janohl.ST2Funbeat
             }
         }
 
+        internal static Dictionary<string, string> SportTrackEquipment
+        {
+            get
+            {
+                Dictionary<string, string> sportTrackEquipment = new Dictionary<string, string>();
+
+                IEnumerable<IEquipmentItem> equipment = application.Logbook.Equipment;
+                foreach (IEquipmentItem eq in equipment)
+                    sportTrackEquipment.Add(eq.ReferenceId, eq.Name);
+
+                return sportTrackEquipment;
+            }
+        }
 
         private static void FlattenSportTrackActivityTypes(Dictionary<string, string> list, IActivityCategory category)
         {
