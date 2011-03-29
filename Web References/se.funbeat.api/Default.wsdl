@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://api.funbeat.se/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://api.funbeat.se/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://api.funbeat.se/">
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClientAd">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ClientAd" nillable="true" type="tns:ClientAd" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClientAd">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BannerOrderId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LowerPercentage" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="UpperPercentage" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClickURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContentURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Width" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Slot" type="tns:Slots" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfSecondsPerView" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MaxViewsPerPersonAndDay" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Slots">
+        <s:restriction base="s:string">
+          <s:enumeration value="NewsFeed" />
+          <s:enumeration value="AfterAddActivity" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="WhichTrainingsHaveBeenDeleted">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="trainingIDs" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WhichTrainingsHaveBeenDeletedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WhichTrainingsHaveBeenDeletedResult" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackPointsFromTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="trainingID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackPointsFromTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrackPointsFromTrainingResult" type="tns:ArrayOfTrackPoint" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTrackPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrackPoint" nillable="true" type="tns:TrackPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrackPoint">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TimeStamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="isStartPoint" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Longitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Altitude" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Speed" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pace" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cad" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Power" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HR" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetPhotosForTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="trainingID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPhotosForTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPhotosForTrainingResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddTrainingComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="trainingID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="markAsRead" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddTrainingCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddTrainingCommentResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTrainingComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TrainingCommentID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTrainingCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteTrainingCommentResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TrainingID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="languageCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrainingResult" type="tns:TrainingResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TrainingResult">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Training">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Person" type="tns:PersonInfoItem" />
+              <s:element minOccurs="1" maxOccurs="1" name="InvitedFromTrainingID" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="RouteName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RaceTitle" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TrainingTypeName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Training">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingTypeID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDateTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Duration" type="tns:Duration" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrivateComment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PostingID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HRAvg" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HRMax" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="KCal" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Intensity" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreationDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Repetitions" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sets" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasTimeOfDay" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="GeoRegionID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="isEveryoneInvited" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="CadAvg" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TE" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="RouteID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingProgramTrainingID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="isCompetition" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:Statuses" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImportedDataID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImportedData" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="ImportedDataFormat" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewRouteName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NewRoutePrivacy" type="tns:Privacy" />
+          <s:element minOccurs="1" maxOccurs="1" name="NeverPublishToOtherSites" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exercises" type="tns:ArrayOfTrainingExercise" />
+          <s:element minOccurs="0" maxOccurs="1" name="Photos" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrackPoints" type="tns:ArrayOfTrackPoint" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comments" type="tns:ArrayOfTrainingComment" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntervalsAndLaps" type="tns:ArrayOfTrainingInterval" />
+          <s:element minOccurs="0" maxOccurs="1" name="Equipment" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Duration">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Hours" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Minutes" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Seconds" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Statuses">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="PlannedTraining" />
+          <s:enumeration value="PlannedTrainingThatWasNotPerformed" />
+          <s:enumeration value="ImportedAndMustBeFollowedUp" />
+          <s:enumeration value="ImportedButDeletedAndShouldBeIgnored" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="Privacy">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="Everyone" />
+          <s:enumeration value="Friends" />
+          <s:enumeration value="Me" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTrainingExercise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrainingExercise" nillable="true" type="tns:TrainingExercise" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrainingExercise">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Sets" type="tns:ArrayOfTrainingExerciseSet" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingExerciseID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrainingExerciseTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTrainingExerciseSet">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrainingExerciseSet" nillable="true" type="tns:TrainingExerciseSet" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrainingExerciseSet">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Reps" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" nillable="true" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTrainingComment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrainingComment" nillable="true" type="tns:TrainingComment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrainingComment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingCommentID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDateTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lastname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoMicroURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTrainingInterval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrainingInterval" nillable="true" type="tns:TrainingInterval" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrainingInterval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Duration" type="tns:Duration" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonInfoItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lastname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Motto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonalDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoNormalURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoSmallURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoMiniURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoMicroURL" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="isPersonOnViewersFriendList" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="isViewerOnPersonsFriendList" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyTraining" type="tns:Privacy" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyWeight" type="tns:Privacy" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyDayNote" type="tns:Privacy" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyTracks" type="tns:Privacy" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyEquipment" type="tns:Privacy" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrivacyBlog" type="tns:Privacy" />
+          <s:element minOccurs="0" maxOccurs="1" name="FeedItems" type="tns:ArrayOfPersonFeedItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPersonFeedItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PersonFeedItem" nillable="true" type="tns:PersonFeedItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonFeedItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientItemID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="What" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDateTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfPhotos" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrainingTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingTypeID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Duration" type="tns:Duration" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfComments" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Training" type="tns:Training" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveTrainingResult" type="tns:ClientServerRelationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientServerRelationResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ServerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteTraining">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="trainingID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="clientID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTrainingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteTrainingResult" type="tns:ClientServerRelationResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyNewsFeed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyNewsFeedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyNewsFeedResult" type="tns:ArrayOfNewsFeedItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfNewsFeedItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="NewsFeedItem" nillable="true" type="tns:NewsFeedItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NewsFeedItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientItemID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="What" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DateTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDateTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Subject" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfPhotos" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lastname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PictureURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrainingTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingTypeID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Duration" type="tns:Duration" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfSubItems" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddToFriendList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="personID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="helloMessage" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddToFriendListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddToFriendListResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyFriends">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyFriendsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyFriendsResult" type="tns:ArrayOfFriendResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFriendResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FriendResult" nillable="true" type="tns:FriendResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FriendResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Firstname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lastname" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Motto" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoNormalURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoSmallURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoMiniURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhotoMicroURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTrainingTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="languageCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrainingTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrainingTypesResult" type="tns:ArrayOfTrainingType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTrainingType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrainingType" nillable="true" type="tns:TrainingType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrainingType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TrainingTypeID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrainingTypeName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SignUp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordHashed" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="privacy" type="tns:Privacy" />
+            <s:element minOccurs="0" maxOccurs="1" name="languageCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SignUpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SignUpResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateAndCreateSecrets">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="username" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passwordHashed" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateAndCreateSecretsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateAndCreateSecretsResult" type="tns:LoginResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LoginResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:PersonInfoItem" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoginSecret" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMyEquipment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyEquipmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyEquipmentResult" type="tns:ArrayOfEquipmentShortInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfEquipmentShortInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="EquipmentShortInfo" nillable="true" type="tns:EquipmentShortInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EquipmentShortInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="EquipmentTitle" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InUse" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetExerciseTitleList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExerciseTitleListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExerciseTitleListResult" type="tns:ArrayOfExerciseTitle" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfExerciseTitle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExerciseTitle" nillable="true" type="tns:ExerciseTitle" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExerciseTitle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="isMine" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMyMostRecentlyUsedTrainingTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="languageCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMyMostRecentlyUsedTrainingTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMyMostRecentlyUsedTrainingTypesResult" type="tns:ArrayOfTrainingType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPerson">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPersonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPersonResult" type="tns:PersonInfoItem" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchPersons">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="applicationID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loginSecret" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="searchText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchPersonsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchPersonsResult" type="tns:ArrayOfFriendResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WhichTrainingsHaveBeenDeletedSoapIn">
+    <wsdl:part name="parameters" element="tns:WhichTrainingsHaveBeenDeleted" />
+  </wsdl:message>
+  <wsdl:message name="WhichTrainingsHaveBeenDeletedSoapOut">
+    <wsdl:part name="parameters" element="tns:WhichTrainingsHaveBeenDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackPointsFromTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrackPointsFromTraining" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackPointsFromTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrackPointsFromTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotosForTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPhotosForTraining" />
+  </wsdl:message>
+  <wsdl:message name="GetPhotosForTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPhotosForTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddTrainingCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTrainingComment" />
+  </wsdl:message>
+  <wsdl:message name="AddTrainingCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTrainingCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTrainingCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTrainingComment" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTrainingCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTrainingCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTraining" />
+  </wsdl:message>
+  <wsdl:message name="GetTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveTraining" />
+  </wsdl:message>
+  <wsdl:message name="SaveTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTrainingSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTraining" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTrainingSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTrainingResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyNewsFeedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyNewsFeed" />
+  </wsdl:message>
+  <wsdl:message name="GetMyNewsFeedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyNewsFeedResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddToFriendListSoapIn">
+    <wsdl:part name="parameters" element="tns:AddToFriendList" />
+  </wsdl:message>
+  <wsdl:message name="AddToFriendListSoapOut">
+    <wsdl:part name="parameters" element="tns:AddToFriendListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyFriendsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyFriends" />
+  </wsdl:message>
+  <wsdl:message name="GetMyFriendsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyFriendsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrainingTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrainingTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetTrainingTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrainingTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SignUpSoapIn">
+    <wsdl:part name="parameters" element="tns:SignUp" />
+  </wsdl:message>
+  <wsdl:message name="SignUpSoapOut">
+    <wsdl:part name="parameters" element="tns:SignUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateAndCreateSecretsSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateAndCreateSecrets" />
+  </wsdl:message>
+  <wsdl:message name="ValidateAndCreateSecretsSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateAndCreateSecretsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyEquipmentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyEquipment" />
+  </wsdl:message>
+  <wsdl:message name="GetMyEquipmentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyEquipmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExerciseTitleListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExerciseTitleList" />
+  </wsdl:message>
+  <wsdl:message name="GetExerciseTitleListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExerciseTitleListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMyMostRecentlyUsedTrainingTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMyMostRecentlyUsedTrainingTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetMyMostRecentlyUsedTrainingTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMyMostRecentlyUsedTrainingTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPerson" />
+  </wsdl:message>
+  <wsdl:message name="GetPersonSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchPersonsSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchPersons" />
+  </wsdl:message>
+  <wsdl:message name="SearchPersonsSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchPersonsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MobileServiceSoap">
+    <wsdl:operation name="WhichTrainingsHaveBeenDeleted">
+      <wsdl:input message="tns:WhichTrainingsHaveBeenDeletedSoapIn" />
+      <wsdl:output message="tns:WhichTrainingsHaveBeenDeletedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackPointsFromTraining">
+      <wsdl:input message="tns:GetTrackPointsFromTrainingSoapIn" />
+      <wsdl:output message="tns:GetTrackPointsFromTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotosForTraining">
+      <wsdl:input message="tns:GetPhotosForTrainingSoapIn" />
+      <wsdl:output message="tns:GetPhotosForTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainingComment">
+      <wsdl:input message="tns:AddTrainingCommentSoapIn" />
+      <wsdl:output message="tns:AddTrainingCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainingComment">
+      <wsdl:input message="tns:DeleteTrainingCommentSoapIn" />
+      <wsdl:output message="tns:DeleteTrainingCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTraining">
+      <wsdl:input message="tns:GetTrainingSoapIn" />
+      <wsdl:output message="tns:GetTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveTraining">
+      <wsdl:input message="tns:SaveTrainingSoapIn" />
+      <wsdl:output message="tns:SaveTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTraining">
+      <wsdl:input message="tns:DeleteTrainingSoapIn" />
+      <wsdl:output message="tns:DeleteTrainingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNewsFeed">
+      <wsdl:input message="tns:GetMyNewsFeedSoapIn" />
+      <wsdl:output message="tns:GetMyNewsFeedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddToFriendList">
+      <wsdl:input message="tns:AddToFriendListSoapIn" />
+      <wsdl:output message="tns:AddToFriendListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFriends">
+      <wsdl:input message="tns:GetMyFriendsSoapIn" />
+      <wsdl:output message="tns:GetMyFriendsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingTypes">
+      <wsdl:input message="tns:GetTrainingTypesSoapIn" />
+      <wsdl:output message="tns:GetTrainingTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <wsdl:input message="tns:SignUpSoapIn" />
+      <wsdl:output message="tns:SignUpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAndCreateSecrets">
+      <wsdl:input message="tns:ValidateAndCreateSecretsSoapIn" />
+      <wsdl:output message="tns:ValidateAndCreateSecretsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyEquipment">
+      <wsdl:input message="tns:GetMyEquipmentSoapIn" />
+      <wsdl:output message="tns:GetMyEquipmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseTitleList">
+      <wsdl:input message="tns:GetExerciseTitleListSoapIn" />
+      <wsdl:output message="tns:GetExerciseTitleListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMostRecentlyUsedTrainingTypes">
+      <wsdl:input message="tns:GetMyMostRecentlyUsedTrainingTypesSoapIn" />
+      <wsdl:output message="tns:GetMyMostRecentlyUsedTrainingTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <wsdl:input message="tns:GetPersonSoapIn" />
+      <wsdl:output message="tns:GetPersonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersons">
+      <wsdl:input message="tns:SearchPersonsSoapIn" />
+      <wsdl:output message="tns:SearchPersonsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MobileServiceSoap" type="tns:MobileServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WhichTrainingsHaveBeenDeleted">
+      <soap:operation soapAction="http://api.funbeat.se/WhichTrainingsHaveBeenDeleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackPointsFromTraining">
+      <soap:operation soapAction="http://api.funbeat.se/GetTrackPointsFromTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotosForTraining">
+      <soap:operation soapAction="http://api.funbeat.se/GetPhotosForTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainingComment">
+      <soap:operation soapAction="http://api.funbeat.se/AddTrainingComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainingComment">
+      <soap:operation soapAction="http://api.funbeat.se/DeleteTrainingComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraining">
+      <soap:operation soapAction="http://api.funbeat.se/GetTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTraining">
+      <soap:operation soapAction="http://api.funbeat.se/SaveTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTraining">
+      <soap:operation soapAction="http://api.funbeat.se/DeleteTraining" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNewsFeed">
+      <soap:operation soapAction="http://api.funbeat.se/GetMyNewsFeed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToFriendList">
+      <soap:operation soapAction="http://api.funbeat.se/AddToFriendList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFriends">
+      <soap:operation soapAction="http://api.funbeat.se/GetMyFriends" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingTypes">
+      <soap:operation soapAction="http://api.funbeat.se/GetTrainingTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <soap:operation soapAction="http://api.funbeat.se/SignUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAndCreateSecrets">
+      <soap:operation soapAction="http://api.funbeat.se/ValidateAndCreateSecrets" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyEquipment">
+      <soap:operation soapAction="http://api.funbeat.se/GetMyEquipment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseTitleList">
+      <soap:operation soapAction="http://api.funbeat.se/GetExerciseTitleList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMostRecentlyUsedTrainingTypes">
+      <soap:operation soapAction="http://api.funbeat.se/GetMyMostRecentlyUsedTrainingTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <soap:operation soapAction="http://api.funbeat.se/GetPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersons">
+      <soap:operation soapAction="http://api.funbeat.se/SearchPersons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MobileServiceSoap12" type="tns:MobileServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ReportAdViewsAndGetNewCurrentList">
+      <soap12:operation soapAction="http://api.funbeat.se/ReportAdViewsAndGetNewCurrentList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WhichTrainingsHaveBeenDeleted">
+      <soap12:operation soapAction="http://api.funbeat.se/WhichTrainingsHaveBeenDeleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackPointsFromTraining">
+      <soap12:operation soapAction="http://api.funbeat.se/GetTrackPointsFromTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPhotosForTraining">
+      <soap12:operation soapAction="http://api.funbeat.se/GetPhotosForTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTrainingComment">
+      <soap12:operation soapAction="http://api.funbeat.se/AddTrainingComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTrainingComment">
+      <soap12:operation soapAction="http://api.funbeat.se/DeleteTrainingComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTraining">
+      <soap12:operation soapAction="http://api.funbeat.se/GetTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveTraining">
+      <soap12:operation soapAction="http://api.funbeat.se/SaveTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTraining">
+      <soap12:operation soapAction="http://api.funbeat.se/DeleteTraining" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyNewsFeed">
+      <soap12:operation soapAction="http://api.funbeat.se/GetMyNewsFeed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEveryoneNewsFeed">
+      <soap12:operation soapAction="http://api.funbeat.se/GetEveryoneNewsFeed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddToFriendList">
+      <soap12:operation soapAction="http://api.funbeat.se/AddToFriendList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyFriends">
+      <soap12:operation soapAction="http://api.funbeat.se/GetMyFriends" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrainingTypes">
+      <soap12:operation soapAction="http://api.funbeat.se/GetTrainingTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SignUp">
+      <soap12:operation soapAction="http://api.funbeat.se/SignUp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateAndCreateSecrets">
+      <soap12:operation soapAction="http://api.funbeat.se/ValidateAndCreateSecrets" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyEquipment">
+      <soap12:operation soapAction="http://api.funbeat.se/GetMyEquipment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExerciseTitleList">
+      <soap12:operation soapAction="http://api.funbeat.se/GetExerciseTitleList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMyMostRecentlyUsedTrainingTypes">
+      <soap12:operation soapAction="http://api.funbeat.se/GetMyMostRecentlyUsedTrainingTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPerson">
+      <soap12:operation soapAction="http://api.funbeat.se/GetPerson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchPersons">
+      <soap12:operation soapAction="http://api.funbeat.se/SearchPersons" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MobileService">
+    <wsdl:port name="MobileServiceSoap" binding="tns:MobileServiceSoap">
+      <soap:address location="http://api.funbeat.se/Default.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MobileServiceSoap12" binding="tns:MobileServiceSoap12">
+      <soap12:address location="http://api.funbeat.se/Default.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
