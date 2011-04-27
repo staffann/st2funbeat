@@ -91,48 +91,63 @@ namespace Janohl.ST2Funbeat
                 training.TrackPoints = trackPoints;
                 training.Equipment = equipment;
 
-                //FileInfo t = new FileInfo("Training.txt");
-                //StreamWriter Tex = t.CreateText();
-                //Tex.WriteLine("Description: "+comment.ToString());
-                ////training.Comment = comment;
-                //Tex.WriteLine("Distance: " + distance.ToString());
-                //Tex.WriteLine("StartDateTime: " + startDate.ToString());
-                //Tex.WriteLine("HasTimeOfDay: " + hasStartTime.ToString());
-                //Tex.WriteLine("Duration: " + duration.ToString());
-                //Tex.WriteLine("TE: " + TE.ToString());
-                //Tex.WriteLine("CadAvg: " + cadenceAvg.ToString());
-                //Tex.WriteLine("HRAvg: " + hrAvg.ToString());
-                //Tex.WriteLine("HRMax: " + hrMax.ToString());
-                //Tex.WriteLine("Intensity: " + intensity.ToString());
-                //Tex.WriteLine("KCal: " + kcal.ToString());
-                //Tex.WriteLine("PrivateComment: " + privateComment.ToString());
-                //Tex.WriteLine("Repetitions: " + repetitions.ToString());
-                //Tex.WriteLine("Sets: " + sets.ToString());
-                //Tex.WriteLine("TrainingTypeID: " + trainingType.ToString());
-                //Tex.WriteLine("NewRouteName: " + startDate.ToString());
-                //Tex.WriteLine("NewRoutePrivacy: " + "Me");
-                //Tex.WriteLine();
+#if DEBUG                
+                FileInfo t = new FileInfo("Training.txt");
+                StreamWriter Tex = t.CreateText();
+                Tex.WriteLine("Description: " + comment.ToString());
+                //training.Comment = comment;
+                Tex.WriteLine("Distance: " + distance.ToString());
+                Tex.WriteLine("StartDateTime: " + startDate.ToString());
+                Tex.WriteLine("HasTimeOfDay: " + hasStartTime.ToString());
+                Tex.WriteLine("Duration: " + duration.ToString());
+                Tex.WriteLine("TE: " + TE.ToString());
+                Tex.WriteLine("CadAvg: " + cadenceAvg.ToString());
+                Tex.WriteLine("HRAvg: " + hrAvg.ToString());
+                Tex.WriteLine("HRMax: " + hrMax.ToString());
+                Tex.WriteLine("Intensity: " + intensity.ToString());
+                Tex.WriteLine("KCal: " + kcal.ToString());
+                Tex.WriteLine("PrivateComment: " + privateComment.ToString());
+                Tex.WriteLine("Repetitions: " + repetitions.ToString());
+                Tex.WriteLine("Sets: " + sets.ToString());
+                Tex.WriteLine("TrainingTypeID: " + trainingType.ToString());
+                Tex.WriteLine("NewRouteName: " + startDate.ToString());
+                Tex.WriteLine("NewRoutePrivacy: " + training.NewRoutePrivacy.ToString());
+                Tex.WriteLine();
+                if (trackPoints != null)
+                {
+                    for(int i=0; i<trackPoints.Length; i++)
+                    //foreach (TrackPoint tp in trackPoints)
+                    {
+                        TrackPoint tp = trackPoints[i];
+                        Tex.WriteLine("Trackpoint");
+                        Tex.WriteLine("isStartPoint: " + tp.isStartPoint.ToString());
+                        Tex.WriteLine("TimeStamp: " + tp.TimeStamp.ToString());
+                        Tex.WriteLine("HR: " + tp.HR.ToString());
+                        Tex.WriteLine("Latitude: " + tp.Latitude.ToString());
+                        Tex.WriteLine("Longitude: " + tp.Longitude.ToString());
+                        Tex.WriteLine("Pace: " + tp.Pace.ToString());
+                        Tex.WriteLine("Power: " + tp.Power.ToString());
+                        Tex.WriteLine("Speed: " + tp.Speed.ToString());
+                        Tex.WriteLine("Altitude: " + tp.Altitude.ToString());
+                        Tex.WriteLine("Cadence: " + tp.Cad.ToString());
+                        Tex.WriteLine("Distance: " + tp.Distance.ToString());
+                        Tex.WriteLine("TrackPoint no;" + i.ToString());
 
-                //if (trackPoints != null)
-                //{
-                //    foreach (TrackPoint tp in trackPoints)
-                //    {
-                //        Tex.WriteLine("Trackpoint");
-                //        Tex.WriteLine("isStartPoint: " + tp.isStartPoint.ToString());
-                //        Tex.WriteLine("TimeStamp: " + tp.TimeStamp.ToString());
-                //        Tex.WriteLine("HR: " + tp.HR.ToString());
-                //        Tex.WriteLine("Latitude: " + tp.Latitude.ToString());
-                //        Tex.WriteLine("Longitude: " + tp.Longitude.ToString());
-                //        Tex.WriteLine("Pace: " + tp.Pace.ToString());
-                //        Tex.WriteLine("Power: " + tp.Power.ToString());
-                //        Tex.WriteLine("Speed: " + tp.Speed.ToString());
-                //        Tex.WriteLine("Altitude: " + tp.Altitude.ToString());
-                //        Tex.WriteLine("Cadence: " + tp.Cad.ToString());
-                //        Tex.WriteLine("Distance: " + tp.Distance.ToString());
-                //        Tex.WriteLine();
-                //    }
-                //}
-                //Tex.Close();
+                        if (i>0)
+                        {
+                            if(tp.Latitude == trackPoints[i-1].Latitude)
+                                Tex.WriteLine("Marker: Same latitude");
+                            if(tp.Longitude == trackPoints[i-1].Longitude)
+                                Tex.WriteLine("Marker: Same longitude");
+                            if (tp.TimeStamp.CompareTo(trackPoints[i - 1].TimeStamp) == 0)
+                                Tex.WriteLine("Marker: Same time");
+                        }
+                        
+                        Tex.WriteLine();
+                    }
+                }
+                Tex.Close();
+#endif
 
                 try
                 {
