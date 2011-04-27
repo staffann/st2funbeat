@@ -401,15 +401,18 @@ namespace Janohl.ST2Funbeat
             List<TrackPoint> tps = new List<TrackPoint>();
             double accDistance = 0;
             ITimeValueEntry<IGPSPoint> prevPoint = null;
-            foreach (ITimeValueEntry<IGPSPoint> p in activity.GPSRoute)
+
+            IGPSRoute ActGPSRoute = new GPSRoute(activity.GPSRoute);
+            ActGPSRoute.AllowMultipleAtSameTime = false;
+            foreach (ITimeValueEntry<IGPSPoint> p in ActGPSRoute)
             {
 
                 TrackPoint tp = new TrackPoint();
-                if (p == activity.GPSRoute[0])
+                if (p == ActGPSRoute[0])
                     tp.isStartPoint = true;
-                tp.TimeStamp = ConvertToLocalTime(activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds));
+                tp.TimeStamp = ConvertToLocalTime(ActGPSRoute.StartTime.AddSeconds(p.ElapsedSeconds));
 
-                DateTime actualTime = activity.GPSRoute.StartTime.AddSeconds(p.ElapsedSeconds);
+                DateTime actualTime = ActGPSRoute.StartTime.AddSeconds(p.ElapsedSeconds);
 
                 // Get heartrate track
                 if (activity.HeartRatePerMinuteTrack != null)
@@ -484,15 +487,16 @@ namespace Janohl.ST2Funbeat
         {
             ITimeDataSeries<float> ReferenceTrack;
             if (activity.DistanceMetersTrack != null)
-                ReferenceTrack = activity.DistanceMetersTrack;
+                ReferenceTrack = new TimeDataSeries<float>(activity.DistanceMetersTrack);
             else if (activity.HeartRatePerMinuteTrack != null)
-                ReferenceTrack = activity.HeartRatePerMinuteTrack;
+                ReferenceTrack = new TimeDataSeries<float>(activity.HeartRatePerMinuteTrack);
             else if (activity.ElevationMetersTrack != null)
-                ReferenceTrack = activity.ElevationMetersTrack;
+                ReferenceTrack = new TimeDataSeries<float>(activity.ElevationMetersTrack);
             else if (activity.CadencePerMinuteTrack != null)
-                ReferenceTrack = activity.CadencePerMinuteTrack;
+                ReferenceTrack = new TimeDataSeries<float>(activity.CadencePerMinuteTrack);
             else
                 return null;
+            ReferenceTrack.AllowMultipleAtSameTime = false;
 
             List<TrackPoint> tps = new List<TrackPoint>();
             foreach (ITimeValueEntry<float> p in ReferenceTrack)
