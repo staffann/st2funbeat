@@ -146,6 +146,14 @@ namespace Janohl.ST2Funbeat
                         Tex.WriteLine();
                     }
                 }
+
+                if(equipment != null)
+                {
+                    for (int i = 0; i < equipment.Length; i++)
+                    {
+                        Tex.WriteLine("Equipment: " + equipment[i]);
+                    }
+                }
                 Tex.Close();
 #endif
 

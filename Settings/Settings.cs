@@ -89,7 +89,10 @@ namespace Janohl.ST2Funbeat.Settings
                 string fbEq = Settings.GetOneFunbeatEquipment(stEq);
                 if (fbEq != null)
                 {
-                    equipment.Add(fbEq);
+                    if (fbEq.CompareTo("") != 0)
+                    {
+                        equipment.Add(fbEq);
+                    }
                 }
             }
             return equipment.ToArray();
