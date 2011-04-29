@@ -91,11 +91,28 @@ namespace Janohl.ST2Funbeat
                 training.TrackPoints = trackPoints;
                 training.Equipment = equipment;
 
+                // Workaround for the funbeat server not working when two subsequent GPS point have identical position
+                // Ought to be fixed on the server side
+                if (trackPoints != null)
+                {
+                    for (int i = 0; i < trackPoints.Length; i++)
+                    {
+                        TrackPoint tp = trackPoints[i];
+                        if (i > 0)
+                        {
+                            if (tp.Latitude == trackPoints[i - 1].Latitude && tp.Longitude == trackPoints[i - 1].Longitude)
+                            {
+                                tp.Latitude = null;
+                                tp.Longitude = null;
+                            }
+                        }
+                    }
+                }
+
 #if DEBUG                
                 FileInfo t = new FileInfo("Training.txt");
                 StreamWriter Tex = t.CreateText();
                 Tex.WriteLine("Description: " + comment.ToString());
-                //training.Comment = comment;
                 Tex.WriteLine("Distance: " + distance.ToString());
                 Tex.WriteLine("StartDateTime: " + startDate.ToString());
                 Tex.WriteLine("HasTimeOfDay: " + hasStartTime.ToString());
@@ -116,7 +133,6 @@ namespace Janohl.ST2Funbeat
                 if (trackPoints != null)
                 {
                     for(int i=0; i<trackPoints.Length; i++)
-                    //foreach (TrackPoint tp in trackPoints)
                     {
                         TrackPoint tp = trackPoints[i];
                         Tex.WriteLine("Trackpoint");
@@ -135,10 +151,17 @@ namespace Janohl.ST2Funbeat
 
                         if (i>0)
                         {
-                            if(tp.Latitude == trackPoints[i-1].Latitude)
-                                Tex.WriteLine("Marker: Same latitude");
-                            if(tp.Longitude == trackPoints[i-1].Longitude)
-                                Tex.WriteLine("Marker: Same longitude");
+                            if (tp.Latitude == trackPoints[i - 1].Latitude && tp.Longitude == trackPoints[i - 1].Longitude)
+                            {
+                                Tex.WriteLine("Marker: Same latitude and longitude");
+                            }
+                            else
+                            {
+                                if (tp.Latitude == trackPoints[i - 1].Latitude)
+                                    Tex.WriteLine("Marker: Same latitude");
+                                if (tp.Longitude == trackPoints[i - 1].Longitude)
+                                    Tex.WriteLine("Marker: Same longitude");
+                            }
                             if (tp.TimeStamp.CompareTo(trackPoints[i - 1].TimeStamp) == 0)
                                 Tex.WriteLine("Marker: Same time");
                         }
