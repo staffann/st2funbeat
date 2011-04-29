@@ -402,8 +402,11 @@ namespace Janohl.ST2Funbeat
             double accDistance = 0;
             ITimeValueEntry<IGPSPoint> prevPoint = null;
 
+            // Removing GPS points at identical time is a workaround for the funbeat server not being able to handle them
+            // Ought to be fixed on the server side
             IGPSRoute ActGPSRoute = new GPSRoute(activity.GPSRoute);
             ActGPSRoute.AllowMultipleAtSameTime = false;
+            
             foreach (ITimeValueEntry<IGPSPoint> p in ActGPSRoute)
             {
 
