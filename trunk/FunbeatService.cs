@@ -66,7 +66,6 @@ namespace Janohl.ST2Funbeat
             {
                 Training training = new Training();
                 training.Description = comment;
-                //training.Comment = comment;
                 training.Distance = distance;
                 training.StartDateTime = startDate;
                 training.HasTimeOfDay = hasStartTime;
@@ -88,25 +87,35 @@ namespace Janohl.ST2Funbeat
                 training.IntervalsAndLaps = laps;
                 training.NewRouteName = startDate.ToString();
                 training.NewRoutePrivacy = Privacy.NotSet;
-                training.TrackPoints = trackPoints;
                 training.Equipment = equipment;
 
-                // Workaround for the funbeat server not working when two subsequent GPS point have identical position
+                // Workaround for the funbeat server not working when two or more subsequent GPS points have identical position
                 // Ought to be fixed on the server side
                 if (trackPoints != null)
                 {
-                    for (int i = 0; i < trackPoints.Length; i++)
+                    List<TrackPoint> trackPointsList = new List<TrackPoint>(trackPoints);
+                    if (trackPointsList.Count > 0)
                     {
-                        TrackPoint tp = trackPoints[i];
-                        if (i > 0)
+                        for (int i = trackPointsList.Count - 1; i > 0; i--)
                         {
-                            if (tp.Latitude == trackPoints[i - 1].Latitude && tp.Longitude == trackPoints[i - 1].Longitude)
+                            TrackPoint tp = trackPointsList[i];
+                            if (tp.Latitude == trackPointsList[i - 1].Latitude && tp.Longitude == trackPointsList[i - 1].Longitude)
                             {
                                 tp.Latitude = null;
                                 tp.Longitude = null;
                             }
+                            if (!tp.Altitude.HasValue && !tp.Cad.HasValue && !tp.Distance.HasValue && !tp.HR.HasValue &&
+                                !tp.Latitude.HasValue && !tp.Longitude.HasValue && !tp.Pace.HasValue && !tp.Power.HasValue &&
+                                !tp.Speed.HasValue)
+                                trackPointsList.Remove(tp);
                         }
+
                     }
+                    training.TrackPoints = trackPointsList.ToArray();
+                }
+                else
+                {
+                    training.TrackPoints = trackPoints; // i.e. null
                 }
 
 #if DEBUG                
