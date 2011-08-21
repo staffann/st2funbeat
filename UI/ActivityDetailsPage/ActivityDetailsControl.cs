@@ -301,7 +301,14 @@ namespace Janohl.ST2Funbeat
         // Event handler: activity properties (maybe custom fields data!) has changed
         public void ActivityPropChanged(object sender, PropertyChangedEventArgs e)
         {
-            RefreshInfo();
+            if (this.InvokeRequired)
+            {
+                this.Invoke((PropertyChangedEventHandler)ActivityPropChanged, sender, e);
+            }
+            else
+            {
+                RefreshInfo();
+            }
         }
 
         private void CheckAndCorrectRPEAndTE()
