@@ -361,8 +361,10 @@ namespace Janohl.ST2Funbeat
 
             if (Plugin.GetApplication().DisplayOptions.SelectedLapsType.Kind == ActivityLapsType.LapKind.RecordedLaps)
                 activityLaps = activityInfo.RecordedLapDetailInfo;
-            else
+            else if (Plugin.GetApplication().DisplayOptions.SelectedLapsType.Kind == ActivityLapsType.LapKind.CustomDistance)
                 activityLaps = activityInfo.CustomDistanceLapDetailInfo;
+            else
+                activityLaps = activityInfo.DistanceLapDetailInfo(Plugin.GetApplication().DisplayOptions.SelectedLapsType.DistanceMeters);
 
             foreach (LapDetailInfo lapInfo in activityLaps)
             {
