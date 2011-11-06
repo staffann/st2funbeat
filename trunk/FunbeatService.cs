@@ -85,7 +85,6 @@ namespace Janohl.ST2Funbeat
                 training.Sets = sets;
                 training.TrainingTypeID = trainingType;
                 training.IntervalsAndLaps = laps;
-                training.NewRouteName = startDate.ToString();
                 training.NewRoutePrivacy = Privacy.NotSet;
                 training.Equipment = equipment;
 
@@ -117,6 +116,16 @@ namespace Janohl.ST2Funbeat
                 {
                     training.TrackPoints = trackPoints; // i.e. null
                 }
+
+                if (training.TrackPoints != null)
+                {
+                    training.NewRouteName = startDate.ToString();
+                }
+                else
+                {
+                    // Do nothing, leave at value null
+                }
+
 
 #if DEBUG                
                 FileInfo t = new FileInfo("Training.txt");
