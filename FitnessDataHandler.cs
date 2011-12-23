@@ -304,7 +304,7 @@ namespace Janohl.ST2Funbeat
             if (activity != null)
             {
 #if !ST_2_1
-                int? ExportedCustData = (int?)(activity.GetCustomDataValue(TEField) as double?);
+                int? ExportedCustData = (int?)(activity.GetCustomDataValue(FunbeatExportedField) as double?);
 #else
                 int? ExportedCustData = null;
 #endif
