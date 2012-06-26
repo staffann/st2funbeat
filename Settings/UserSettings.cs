@@ -26,8 +26,8 @@ namespace Janohl.ST2Funbeat.Settings
     {
         private bool boLoginIdNeedsUpdating = true;
         private bool boLoginSecretNeedsUpdating = true;
-        private string userName, password;
-        private string loginId, loginSecret;
+        private string userName="", password="";
+        private string loginId="", loginSecret="";
         
         public string Username
         {
@@ -48,6 +48,15 @@ namespace Janohl.ST2Funbeat.Settings
             {
                 return password;
             }
+            set
+            {
+                password = FunbeatDll.FunbeatEncryption.EncryptPassword(value);
+                boLoginIdNeedsUpdating = true;
+                boLoginSecretNeedsUpdating = true;
+            }
+        }
+        public string HashedPassword
+        {
             set
             {
                 password = value;

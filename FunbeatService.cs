@@ -50,7 +50,7 @@ namespace Janohl.ST2Funbeat
 
         public static int? SendTraining(DateTime startDate, bool hasStartTime, TimeSpan duration, float?TE, int? cadenceAvg, float? distance, string comment,
             int? hrAvg, int? hrMax, int? intensity, int? kcal, string privateComment, int? repetitions, int? sets,
-            int trainingType, TrainingInterval[] laps, TrackPoint[] trackPoints, string[] equipment)
+            int trainingType, TrainingInterval[] laps, TrackPoint[] trackPoints, Privacy RoutePrivacy, string[] equipment)
         {
             if (Settings.Settings.Instance.User.Username.Length == 0 || Settings.Settings.Instance.User.Password.Length == 0)
             {
@@ -85,7 +85,7 @@ namespace Janohl.ST2Funbeat
                 training.Sets = sets;
                 training.TrainingTypeID = trainingType;
                 training.IntervalsAndLaps = laps;
-                training.NewRoutePrivacy = Privacy.NotSet;
+                training.NewRoutePrivacy = RoutePrivacy;
                 training.Equipment = equipment;
 
                 // Workaround for the funbeat server not working when two or more subsequent GPS points have identical position

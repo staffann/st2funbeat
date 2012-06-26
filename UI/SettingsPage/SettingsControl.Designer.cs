@@ -39,8 +39,11 @@
             this.SettingsGroupBox = new System.Windows.Forms.GroupBox();
             this.equipmentMappingsGroupBox = new System.Windows.Forms.GroupBox();
             this.eqMappingsFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.RoutePrivacyComboBox = new System.Windows.Forms.ComboBox();
+            this.RoutePrivacyLabel = new System.Windows.Forms.Label();
             this.gbAccount.SuspendLayout();
             this.actMappingsGroupBox.SuspendLayout();
+            this.SettingsGroupBox.SuspendLayout();
             this.equipmentMappingsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,7 +97,7 @@
             // 
             this.actMappingsGroupBox.AutoSize = true;
             this.actMappingsGroupBox.Controls.Add(this.actMappingsFlowLayoutPanel);
-            this.actMappingsGroupBox.Location = new System.Drawing.Point(3, 80);
+            this.actMappingsGroupBox.Location = new System.Drawing.Point(3, 154);
             this.actMappingsGroupBox.Name = "actMappingsGroupBox";
             this.actMappingsGroupBox.Size = new System.Drawing.Size(469, 107);
             this.actMappingsGroupBox.TabIndex = 5;
@@ -126,9 +129,11 @@
             // 
             // SettingsGroupBox
             // 
+            this.SettingsGroupBox.Controls.Add(this.RoutePrivacyLabel);
+            this.SettingsGroupBox.Controls.Add(this.RoutePrivacyComboBox);
             this.SettingsGroupBox.Location = new System.Drawing.Point(312, 3);
             this.SettingsGroupBox.Name = "SettingsGroupBox";
-            this.SettingsGroupBox.Size = new System.Drawing.Size(243, 71);
+            this.SettingsGroupBox.Size = new System.Drawing.Size(297, 135);
             this.SettingsGroupBox.TabIndex = 7;
             this.SettingsGroupBox.TabStop = false;
             this.SettingsGroupBox.Text = "Settings";
@@ -137,7 +142,7 @@
             // 
             this.equipmentMappingsGroupBox.AutoSize = true;
             this.equipmentMappingsGroupBox.Controls.Add(this.eqMappingsFlowLayoutPanel);
-            this.equipmentMappingsGroupBox.Location = new System.Drawing.Point(3, 193);
+            this.equipmentMappingsGroupBox.Location = new System.Drawing.Point(3, 267);
             this.equipmentMappingsGroupBox.Name = "equipmentMappingsGroupBox";
             this.equipmentMappingsGroupBox.Size = new System.Drawing.Size(469, 107);
             this.equipmentMappingsGroupBox.TabIndex = 8;
@@ -156,6 +161,24 @@
             this.eqMappingsFlowLayoutPanel.Size = new System.Drawing.Size(463, 88);
             this.eqMappingsFlowLayoutPanel.TabIndex = 6;
             // 
+            // RoutePrivacyComboBox
+            // 
+            this.RoutePrivacyComboBox.FormattingEnabled = true;
+            this.RoutePrivacyComboBox.Location = new System.Drawing.Point(16, 76);
+            this.RoutePrivacyComboBox.Name = "RoutePrivacyComboBox";
+            this.RoutePrivacyComboBox.Size = new System.Drawing.Size(75, 21);
+            this.RoutePrivacyComboBox.TabIndex = 9;
+            this.RoutePrivacyComboBox.SelectedIndexChanged += new System.EventHandler(this.RoutePrivacyComboBox_SelectedIndexChanged);
+            // 
+            // RoutePrivacyLabel
+            // 
+            this.RoutePrivacyLabel.AutoSize = true;
+            this.RoutePrivacyLabel.Location = new System.Drawing.Point(97, 79);
+            this.RoutePrivacyLabel.Name = "RoutePrivacyLabel";
+            this.RoutePrivacyLabel.Size = new System.Drawing.Size(73, 13);
+            this.RoutePrivacyLabel.TabIndex = 10;
+            this.RoutePrivacyLabel.Text = "Route privacy";
+            // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,11 +191,13 @@
             this.Controls.Add(this.gbAccount);
             this.Controls.Add(this.SettingsGroupBox);
             this.Name = "SettingsControl";
-            this.Size = new System.Drawing.Size(558, 316);
+            this.Size = new System.Drawing.Size(623, 377);
             this.gbAccount.ResumeLayout(false);
             this.gbAccount.PerformLayout();
             this.actMappingsGroupBox.ResumeLayout(false);
             this.actMappingsGroupBox.PerformLayout();
+            this.SettingsGroupBox.ResumeLayout(false);
+            this.SettingsGroupBox.PerformLayout();
             this.equipmentMappingsGroupBox.ResumeLayout(false);
             this.equipmentMappingsGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -193,5 +218,7 @@
         private System.Windows.Forms.GroupBox SettingsGroupBox;
         private System.Windows.Forms.GroupBox equipmentMappingsGroupBox;
         private System.Windows.Forms.FlowLayoutPanel eqMappingsFlowLayoutPanel;
+        private System.Windows.Forms.Label RoutePrivacyLabel;
+        private System.Windows.Forms.ComboBox RoutePrivacyComboBox;
     }
 }
