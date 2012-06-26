@@ -50,6 +50,7 @@ namespace Janohl.ST2Funbeat.Settings
         {
             Version = 1;
             boExportNameInComment = false;
+            RoutePrivacyIndex = 0; //NotSet
             User = new UserSettings();
             ActivityTypeMappings = new List<ActivityTypeMapping>();
             EquipmentTypeMappings = new List<EquipmentTypeMapping>();
@@ -62,6 +63,8 @@ namespace Janohl.ST2Funbeat.Settings
         public List<EquipmentTypeMapping> EquipmentTypeMappings { get; set; }
 
         public bool boExportNameInComment { get; set; }
+
+        public int RoutePrivacyIndex { get; set; }
 
         public static int GetFunbeatActivityTypeID(IActivityCategory st)
         {
@@ -106,9 +109,8 @@ namespace Janohl.ST2Funbeat.Settings
             {
                 if (node.Name == "User")
                 {
-                    instance.User.Username = node.Attributes[0].Value;
-                    instance.User.Password = node.Attributes[1].Value;
-
+                    instance.User.Username = node.Attributes[0].Value; //Saved username only used to display to user on settings page
+                    instance.User.HashedPassword = node.Attributes[1].Value; // Password only used to display to user on settings page
                 }
                 else if (node.Name == "Login")
                 {
@@ -138,6 +140,12 @@ namespace Janohl.ST2Funbeat.Settings
                         etm.Funbeat = mapping.Attributes["funbeat"].Value;
                         instance.EquipmentTypeMappings.Add(etm);
                     }
+                }
+                else if (node.Name == "RoutePrivacy")
+                {
+                    int privacy;
+                    if (int.TryParse(node.Attributes[0].Value, out privacy))
+                        instance.RoutePrivacyIndex = privacy;
                 }
             }
         }
@@ -184,21 +192,34 @@ namespace Janohl.ST2Funbeat.Settings
             if (existing == null)
                 pluginNode.AppendChild(ExportNameInComment);
             else
-                pluginNode.ReplaceChild(ExportNameInComment, existing);            
+                pluginNode.ReplaceChild(ExportNameInComment, existing);
+
+            XmlElement RoutePrivacyElement = xmlDoc.CreateElement("RoutePrivacy");
+            RoutePrivacyElement.SetAttribute("RoutePrivacyIndex", instance.RoutePrivacyIndex.ToString());
+            existing = pluginNode.SelectSingleNode(RoutePrivacyElement.Name);
+            if (existing == null)
+                pluginNode.AppendChild(RoutePrivacyElement);
+            else
+                pluginNode.ReplaceChild(RoutePrivacyElement, existing);
+
+
 
             // Save activity type mappings
             XmlElement mappings = xmlDoc.CreateElement("Mappings"); //Remains called only Mappings for compatibility reasons
             foreach (ActivityTypeMapping atm in instance.ActivityTypeMappings)
             {
-                XmlElement mapping = xmlDoc.CreateElement("Mapping");
-                XmlAttribute funbeat = xmlDoc.CreateAttribute("funbeat");
-                XmlAttribute st2 = xmlDoc.CreateAttribute("st2");
-                funbeat.Value = atm.Funbeat.ToString();
-                st2.Value = atm.SportTracks;
-                mapping.Attributes.Append(funbeat);
-                mapping.Attributes.Append(st2);
+                if (atm.Funbeat != 51) // 51 is default, only save mappings that differ
+                {
+                    XmlElement mapping = xmlDoc.CreateElement("Mapping");
+                    XmlAttribute funbeat = xmlDoc.CreateAttribute("funbeat");
+                    XmlAttribute st2 = xmlDoc.CreateAttribute("st2");
+                    funbeat.Value = atm.Funbeat.ToString();
+                    st2.Value = atm.SportTracks;
+                    mapping.Attributes.Append(funbeat);
+                    mapping.Attributes.Append(st2);
 
-                mappings.AppendChild(mapping);
+                    mappings.AppendChild(mapping);
+                }
             }
 
             existing = pluginNode.SelectSingleNode(mappings.Name);
@@ -211,15 +232,18 @@ namespace Janohl.ST2Funbeat.Settings
             XmlElement eqMappings = xmlDoc.CreateElement("EquipmentMappings");
             foreach (EquipmentTypeMapping etm in instance.EquipmentTypeMappings)
             {
-                XmlElement mapping = xmlDoc.CreateElement("Mapping");
-                XmlAttribute funbeat = xmlDoc.CreateAttribute("funbeat");
-                XmlAttribute st2 = xmlDoc.CreateAttribute("st2");
-                funbeat.Value = etm.Funbeat;
-                st2.Value = etm.SportTracks;
-                mapping.Attributes.Append(funbeat);
-                mapping.Attributes.Append(st2);
+                if (etm.Funbeat != "") // Only save mappings that are used
+                {
+                    XmlElement mapping = xmlDoc.CreateElement("Mapping");
+                    XmlAttribute funbeat = xmlDoc.CreateAttribute("funbeat");
+                    XmlAttribute st2 = xmlDoc.CreateAttribute("st2");
+                    funbeat.Value = etm.Funbeat;
+                    st2.Value = etm.SportTracks;
+                    mapping.Attributes.Append(funbeat);
+                    mapping.Attributes.Append(st2);
 
-                eqMappings.AppendChild(mapping);
+                    eqMappings.AppendChild(mapping);
+                }
             }
 
             existing = pluginNode.SelectSingleNode(eqMappings.Name);

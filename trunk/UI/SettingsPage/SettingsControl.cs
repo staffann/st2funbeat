@@ -24,6 +24,7 @@ using System.Text;
 using System.Windows.Forms;
 using ZoneFiveSoftware.Common.Data.Fitness;
 using Janohl.ST2Funbeat.Settings;
+using Janohl.ST2Funbeat.se.funbeat.api;
 
 namespace Janohl.ST2Funbeat
 {
@@ -41,6 +42,9 @@ namespace Janohl.ST2Funbeat
                 this.txtUsername.TextChanged += new System.EventHandler(this.OnUsernameChanged);
                 this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
                 exportNameCheckBox.Checked = Settings.Settings.Instance.boExportNameInComment;
+                String [] privacyStrings = {Privacy.NotSet.ToString(), Privacy.Me.ToString(), Privacy.Friends.ToString(), Privacy.Everyone.ToString()};
+                this.RoutePrivacyComboBox.Items.AddRange(privacyStrings);
+                this.RoutePrivacyComboBox.SelectedIndex = Settings.Settings.Instance.RoutePrivacyIndex;
                 
                 // Activity type mappings
                 List<Control> amcs = new List<Control>();
@@ -120,6 +124,11 @@ namespace Janohl.ST2Funbeat
         private void exportNameCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Settings.Instance.boExportNameInComment = exportNameCheckBox.Checked;
+        }
+
+        private void RoutePrivacyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings.Settings.Instance.RoutePrivacyIndex = this.RoutePrivacyComboBox.SelectedIndex;
         }
     }
 }

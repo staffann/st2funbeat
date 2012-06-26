@@ -116,6 +116,16 @@ namespace Janohl.ST2Funbeat
                         
                         int funbeatActivityTypeID = Settings.Settings.GetFunbeatActivityTypeID(activity.Category);
                         string[] equipment = Settings.Settings.GetFunbeatEquipment(activity.EquipmentUsed);
+                        
+                        Privacy RoutePrivacy;
+                        if (Settings.Settings.Instance.RoutePrivacyIndex == 3)
+                            RoutePrivacy = Privacy.Everyone;
+                        else if (Settings.Settings.Instance.RoutePrivacyIndex == 2)
+                            RoutePrivacy = Privacy.Friends;
+                        else if (Settings.Settings.Instance.RoutePrivacyIndex == 1)
+                            RoutePrivacy = Privacy.Me;
+                        else
+                            RoutePrivacy = Privacy.NotSet;
 
                         dataHandler.GetExportData(activity,
                             Settings.Settings.Instance.boExportNameInComment,
@@ -154,6 +164,7 @@ namespace Janohl.ST2Funbeat
                             funbeatActivityTypeID,
                             laps,
                             trackPoints,
+                            RoutePrivacy,
                             equipment);
 
                         if (id.HasValue)
