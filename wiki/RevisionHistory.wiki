@@ -3,6 +3,12 @@
 
 = Revision History =
 
+== 0.8.85 for Sporttracks 3 ==
+ * Corrected a bug where the wrong custom data field was used to check for a previous export of an activity
+ * Issue 34 - Added possibility to set the default route privacy.
+ * Issue 35 - Password is no longer stored without encryption
+ * Activity mappings and equipment mappings with default values are no longer stored between sessions. This will make the mapping list smaller, especially for people who try different logbooks.
+
 == 0.8.82 for Sporttracks 3 ==
  * Fix for issue 32, making sure that funbeat doesn't create an empty route when the activity lacks GPS data.
 
