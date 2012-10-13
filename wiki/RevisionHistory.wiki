@@ -3,6 +3,9 @@
 
 = Revision History =
 
+== 0.8.87 for Sporttracks 3 ==
+ * Workaround for issue 36: Suunto Ambit exercise without GPS-data not created correctly in FB. The ST Suunto Ambit importer creates an empty GPSRoute when the GPS has been switched off during a workout. This is different from the import from other devices like Garmin where no GPSRoute is created in the same situation. This workaround ignores an empty GPSRoute when exporting to funbeat.
+
 == 0.8.85 for Sporttracks 3 ==
  * Corrected a bug where the wrong custom data field was used to check for a previous export of an activity
  * Issue 34 - Added possibility to set the default route privacy.
