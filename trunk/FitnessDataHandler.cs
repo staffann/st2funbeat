@@ -382,7 +382,7 @@ namespace Janohl.ST2Funbeat
         
         private TrackPoint[] GetTrackPoints(IActivity activity)
         {
-            if (activity.GPSRoute != null)
+            if (activity.GPSRoute != null && activity.GPSRoute.Count > 0) // The second part is a workaround for the ST Suunto Ambit import that creates an empty GPS route when GPS was off
             {
                 // GPS track exists. Base the trackpoints on that and use HR data if available
                 return GetTrackPointsFromGPSTrack(activity);
