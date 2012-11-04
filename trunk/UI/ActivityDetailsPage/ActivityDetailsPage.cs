@@ -42,7 +42,7 @@ namespace Janohl.ST2Funbeat
         #endregion
     }
 
-    public class ST2FunbeatDetailsPage : IDetailPage
+    public class ST2FunbeatDetailsPage : IDetailPage, IDisposable
     {
         private IList<string> menuPath = null;
         private bool menuEnabled = true;
@@ -164,6 +164,11 @@ namespace Janohl.ST2Funbeat
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public void Dispose()
+        {
+            this.control.Dispose();
         }
     }
 #endif
