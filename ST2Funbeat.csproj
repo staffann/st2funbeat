@@ -7,8 +7,10 @@
     <RootNamespace>Janohl.ST2Funbeat</RootNamespace>
     <AssemblyName>Janohl.ST2Funbeat</AssemblyName>
     <PluginId>91c28a94-93e5-44ea-a2b2-1a9f900672c4</PluginId>
+    <BaseRelativeDir>.\</BaseRelativeDir>
+    <CommonRelativeDir>$(BaseRelativeDir)Common\</CommonRelativeDir>
   </PropertyGroup>
-  <Import Project=".\Common-References.csproj" />
+  <Import Project="$(CommonRelativeDir)Common-References.csproj" />
   <ItemGroup>
     <Reference Include="FunbeatDll">
       <HintPath>.\FunbeatDll.dll</HintPath>
@@ -17,6 +19,7 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="UI\ActivityDetailsPage\ActivityDetailsPage.cs" />
     <Compile Include="UI\ActivityDetailsPage\ActivityDetailsControl.cs">
       <SubType>UserControl</SubType>
@@ -170,5 +173,5 @@
   <ItemGroup>
     <None Include="Web References\se.funbeat.api\Default.disco" />
   </ItemGroup>
-  <Import Project=".\Common-Files.csproj" />
+  <Import Project="$(CommonRelativeDir)Common-Files.csproj" />
 </Project>
