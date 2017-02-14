@@ -168,7 +168,16 @@ namespace Janohl.ST2Funbeat
 
         public void Dispose()
         {
-            this.control.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this.control.Dispose();
+            }
         }
     }
 #endif
